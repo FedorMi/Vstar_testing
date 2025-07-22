@@ -28,6 +28,13 @@ from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
 vqa_llm = None
 vsm = None
 
+def iou(bbox1, bbox2):
+	x1 = max(bbox1[0], bbox2[0])
+	y1 = max(bbox1[1], bbox2[1])
+	x2 = min(bbox1[0]+bbox1[2], bbox2[0]+bbox2[2])
+	y2 = min(bbox1[1]+bbox1[3],bbox2[1]+bbox2[3])
+	inter_area = max(0, x2 - x1) * max(0, y2 - y1)
+	return inter_area/(bbox1[2]*bbox1[3]+bbox2[2]*bbox2[3]-inter_area)
 
 def handle_deepseek_response(response: str):
         temp = response.strip().split(", ")
@@ -296,11 +303,12 @@ def main_test_seal_choice_optimise():
             break
         prompt = optimized_prompt
 
-def main_test_seal_bbox():
+def main_test_seal_bbox(initial_prompt):
     # open the eval_result_correct_objects.json file
     with open('eval_result_correct_objects.json', 'r') as f:
         data = json.load(f)
     typer = "direct_attributes"
+    type_list = []
     image_list = []
     expected_output = []
     iteri = 0
@@ -326,26 +334,81 @@ def main_test_seal_bbox():
         iteri += 1
         image_list.append(image)
         expected_output.append(curr_focus_msg)
-    question_image_list = []
-    for i in range(len(image_list)):
-        question_image_list.append(image_list[i]+"$"+typer)
+        type_list.append(typer)
 
-    initial_prompt = "Please locate the {} in this image."
+    
     # use optimise_prompt to optimize the prompt
-    optimized_prompt = optimize_prompt_ollama(
+    optimized_prompt = optimize_prompt_ollama_two(
         model_fn=test_model_multiple_bbox,
         model_name="llava:34b",
         initial_prompt=initial_prompt,
-        input_set=question_image_list,
+        input_set=type_list,
+        image_input_set=image_list,
         expected_output_set=expected_output,
         steps=3
     )
     #save the optimized prompt to a file
-    with open('optimized_prompt_text.txt', 'w') as f:
-        f.write(optimized_prompt)
-
+    if False:
+        with open('optimized_prompt_text.txt', 'w') as f:
+            f.write(optimized_prompt)
+    return optimized_prompt
 def main_test_seal_bbox_optimise():
-    pass
+    # initial setup
+    # open the eval_result_correct_objects.json file
+    with open('eval_result_correct_objects.json', 'r') as f:
+        data = json.load(f)
+    typer = "direct_attributes"
+    type_list_test = []
+    image_list_test = []
+    expected_output_test = []
+    iteri = 0
+    for item in tqdm(data[typer]):
+        image = item["image"]
+        image_json_path = os.path.join("vbench", typer, image.split("/")[-1].split(".")[0]+".json")
+        #open the json file and get the question
+        with open(image_json_path, 'r') as json_file:
+            json_data = json.load(json_file)
+        result = {}
+        for iteri, objs in enumerate(json_data["target_object"]):
+            bbox = json_data["bbox"][iteri]
+            result.append({'bbox':bbox,'name':objs})
+        iteri += 1
+        image_list_test.append(image)
+        expected_output_test.append(result)
+        type_list_test.append(typer)
+
+    
+    #initial prompt
+    #prompt = "{} <object> at location [{:.3f},{:.3f},{:.3f},{:.3f}]"
+    prompt = "Please locate the {} in this image."
+    while True:
+        # use optimise_prompt to optimize the prompt
+        optimized_prompt = main_test_seal_bbox(
+            initial_prompt=prompt
+        )
+        #test the optimized prompt
+        model_name = "llava:34b"
+        expected_output_set = expected_output_test
+        #compute recall for the optimized prompt
+        total_correct = 0
+        total_tests = 0
+        for i in range(len(image_list_test)):
+            test_type = type_list_test[i]
+            image_file = image_list_test[i]
+            bounding_boxes = expected_output_set[i]
+            result = test_model_multiple_choice(model_name, optimized_prompt, test_type, image_file, retrieve_bounding_boxes=True)
+            total_tests += 1
+            total_correct += iou(result, bounding_boxes) > 0.5
+        #compute percentage correct
+        percentage_correct = total_correct / total_tests
+        print(f"Optimized prompt: {optimized_prompt}")
+        print(f"Percentage correct: {percentage_correct:.2f}")
+        if percentage_correct > 0.8:
+            # save the optimized prompt to a file
+            with open('optimized_prompt_text.txt', 'w') as f:
+                f.write(optimized_prompt)
+            break
+        prompt = optimized_prompt
 
 def test_model_multiple_choice(model_name, prompt_part, test_type, image_file, vqa_do=False, missing_objects=[]):
     #image_file = image_test.split("$")[0]
@@ -469,9 +532,7 @@ def test_model_multiple_choice(model_name, prompt_part, test_type, image_file, v
     
     return "correct answer" if correct else "incorrect answer"
 
-def test_model_multiple_bbox(model_name, prompt_part, image_test, vqa_do=False, missing_objects=[]):
-    image_file = image_test.split("$")[0]
-    test_type = image_test.split("$")[1]
+def test_model_multiple_bbox(model_name, prompt_part, test_type, image_file, retrieve_bounding_boxes = False, vqa_do=False, missing_objects=[]):
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--vqa-model-path", type=str, default="craigwu/seal_vqa_7b")
@@ -567,8 +628,12 @@ def test_model_multiple_bbox(model_name, prompt_part, image_test, vqa_do=False, 
                 cur_focus_msg = cur_focus_msg+"; "
             else:
                 cur_focus_msg = cur_focus_msg +'.'
+        if retrieve_bounding_boxes:
+            return search_result
         return cur_focus_msg
     else:
+        if retrieve_bounding_boxes:
+            return {}
         return "no missing objects"
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
