@@ -52,6 +52,13 @@ def optimize_prompt_ollama(model_fn: Callable[[str, Any], Any], model_name:str, 
             model_output = model_fn(model_name, prompt.value, inp)
             if inp == expected:
                 continue
+            if isinstance(model_output, list):
+                temper = 0
+                for i in expected:
+                    if i in model_output:
+                        temper += 1
+                if temper == len(expected):
+                    continue
             #feedback = f"Prompt Template To Improve: {prompt.value}\nInput: {inp}\nExpected: {expected}\nModel Output: {model_output}"
             feedback = f"Prompt Template To Improve: {prompt.value}\nExpected: {expected}\nModel Output: {model_output}"
             feedback_text = feedback

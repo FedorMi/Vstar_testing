@@ -29,12 +29,12 @@ vqa_llm = None
 vsm = None
 
 def iou(bbox1, bbox2):
-	x1 = max(bbox1[0], bbox2[0])
-	y1 = max(bbox1[1], bbox2[1])
-	x2 = min(bbox1[0]+bbox1[2], bbox2[0]+bbox2[2])
-	y2 = min(bbox1[1]+bbox1[3],bbox2[1]+bbox2[3])
-	inter_area = max(0, x2 - x1) * max(0, y2 - y1)
-	return inter_area/(bbox1[2]*bbox1[3]+bbox2[2]*bbox2[3]-inter_area)
+    x1 = max(bbox1[0], bbox2[0])
+    y1 = max(bbox1[1], bbox2[1])
+    x2 = min(bbox1[0]+bbox1[2], bbox2[0]+bbox2[2])
+    y2 = min(bbox1[1]+bbox1[3],bbox2[1]+bbox2[3])
+    inter_area = max(0, x2 - x1) * max(0, y2 - y1)
+    return inter_area/(bbox1[2]*bbox1[3]+bbox2[2]*bbox2[3]-inter_area)
 
 def handle_deepseek_response(response: str):
         temp = response.strip().split(", ")
@@ -49,7 +49,21 @@ def handle_llava_response(response: str):
             out.append(i.strip())
         return out
 
-def call_ollama_model_image(model_name: str, prompt: str, input: str, image_name: str) -> str:
+def call_vqa_model(model_name: str, prompt: str, question: str, image_path: str) -> str:
+    missing_objects_msg = "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear:"
+    image = Image.open(image_path).convert('RGB')
+    image, _, _ = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
+    # generate free-form response to check whether visual search needs to be activated
+    prediction = vqa_llm.free_form_inference(image, question)
+    missing_objects = []
+    if missing_objects_msg in prediction:
+        missing_objects = prediction.split(missing_objects_msg)[-1]
+        if missing_objects.endswith('.'):
+            missing_objects = missing_objects[:-1]
+        missing_objects = missing_objects.split(',')
+        missing_objects = [missing_object.strip() for missing_object in missing_objects]
+    return missing_objects
+def call_ollama_model_image(model_name: str, prompt: str, input: str, image_name: str):
     #image_path = "sa_17.jpg"
     path = os.path.join("vbench", "direct_attributes", image_name)
     # Read the image content
@@ -86,7 +100,7 @@ def call_ollama_model_image(model_name: str, prompt: str, input: str, image_name
     elif model_name == "deepseek-r1:32b":
         result = handle_deepseek_response(temp_result)
     return result
-def call_ollama_model(model_name: str, prompt: str, input:str) -> str:
+def call_ollama_model(model_name: str, prompt: str, input:str):
     # Initialize the Ollama client
     text = f"{prompt} {input}"
     try:
@@ -175,7 +189,7 @@ def main_test_objects_optimise(with_image=True):
     iteri = 0
     for item in tqdm(data[typer]):
         image = item["image"]
-        missing_object_list = item["target_object"]
+        missing_object_list = item["missing_objects"]
         iteri += 1
         image_list_test.append(image)
         expected_output_test.append(missing_object_list)
@@ -369,7 +383,7 @@ def main_test_seal_bbox_optimise():
         with open(image_json_path, 'r') as json_file:
             json_data = json.load(json_file)
         result = {}
-        for iteri, objs in enumerate(json_data["target_object"]):
+        for iteri, objs in enumerate(json_data["missing_objects"]):
             bbox = json_data["bbox"][iteri]
             result.append({'bbox':bbox,'name':objs})
         iteri += 1
