@@ -186,15 +186,17 @@ def main_test_objects_optimise(with_image=True):
     typer = "direct_attributes"
     image_list_test = []
     expected_output_test = []
+    question_list_test = []
     iteri = 0
     for item in tqdm(data[typer]):
         image = item["image"]
         missing_object_list = item["missing_objects"]
         iteri += 1
         image_list_test.append(image)
+        question_list_test.append(item["question"])
         expected_output_test.append(missing_object_list)
     #initial prompt
-    prompt = "You are a helpful assistant. Do not answer the question, only provide the objects, the full object with adjectives, as mentioned in the question."
+    prompt = "You are a helpful assistant. Do not answer the question, do not write any lengthy explanations, only provide the label for the objects relevant to the question, the full object with adjectives, as mentioned in the question."
     while True:
         # use optimise_prompt to optimize the prompt
         optimized_prompt = main_test_objects(
@@ -211,9 +213,9 @@ def main_test_objects_optimise(with_image=True):
             image_test = image_list_test[i]
             missing_objects = expected_output_set[i]
             if with_image:
-                result = call_ollama_model_image(model_name, optimized_prompt, image_test)
+                result = call_ollama_model_image(model_name, optimized_prompt, question_list_test[i], image_test)
             else:
-                result = call_ollama_model(model_name, optimized_prompt, image_test)
+                result = call_ollama_model(model_name, optimized_prompt, question_list_test[i])
             found = True
             for i in missing_objects:
                 if i not in result:

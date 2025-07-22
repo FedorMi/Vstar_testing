@@ -68,6 +68,8 @@ def optimize_prompt_ollama(model_fn: Callable[[str, Any], Any], model_name:str, 
             loss.backward()
             optimizer.step()
             print("Final optimized prompt:", prompt.value)
+            break
+    print("Final optimized prompt:", prompt.value)
 
     return prompt.value
 
@@ -122,6 +124,7 @@ def optimize_prompt_ollama_two(model_fn: Callable[[str, Any], Any], model_name:s
             print(f"Loss: {loss}")
             loss.backward()
             optimizer.step()
-            print("Final optimized prompt:", prompt.value)
+            break
+    print("Final optimized prompt:", prompt.value)
 
     return prompt.value
