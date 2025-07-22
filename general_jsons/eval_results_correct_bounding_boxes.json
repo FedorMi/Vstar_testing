@@ -1,0 +1,5535 @@
+{
+    "direct_attributes": [
+        {
+            "question": "What is the color of the umbrella?",
+            "options": [
+                "The color of the umbrella is purple.",
+                "The color of the umbrella is black.",
+                "The color of the umbrella is red.",
+                "The color of the umbrella is blue."
+            ],
+            "image": "sa_64897.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "umbrella"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        308,
+                        792,
+                        36,
+                        28
+                    ],
+                    "name": "umbrella"
+                }
+            ],
+            "option_chosen": "The color of the umbrella is purple.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the woman's dress?",
+            "options": [
+                "The color of the woman's dress is black.",
+                "The color of the woman's dress is pink.",
+                "The color of the woman's dress is white.",
+                "The color of the woman's dress is red."
+            ],
+            "image": "sa_19272.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "woman's dress"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1510,
+                        1337,
+                        26,
+                        57
+                    ],
+                    "name": "woman's dress"
+                }
+            ],
+            "option_chosen": "The color of the woman's dress is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the Apple logo?",
+            "options": [
+                "The color of the Apple logo is polychromatic.",
+                "The color of the Apple logo is white.",
+                "The color of the Apple logo is silver.",
+                "The color of the Apple logo is red."
+            ],
+            "image": "sa_33492.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "Apple logo"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        172,
+                        218,
+                        19,
+                        25
+                    ],
+                    "name": "Apple logo"
+                }
+            ],
+            "option_chosen": "The color of the Apple logo is red.",
+            "correct": 0
+        },
+        {
+            "question": "What is the color of the woman's scarf?",
+            "options": [
+                "The color of the woman's scarf is red.",
+                "The color of the woman's scarf is white.",
+                "The color of the woman's scarf is green.",
+                "The color of the woman's scarf is yellow."
+            ],
+            "image": "sa_40973.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "woman's scarf"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1825,
+                        685,
+                        31,
+                        27
+                    ],
+                    "name": "woman's scarf"
+                }
+            ],
+            "option_chosen": "The color of the woman's scarf is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the luggage?",
+            "options": [
+                "The color of the luggage is red.",
+                "The color of the luggage is yellow.",
+                "The color of the luggage is black.",
+                "The color of the luggage is green."
+            ],
+            "image": "sa_19483.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "luggage"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        343,
+                        779,
+                        109,
+                        212
+                    ],
+                    "name": "luggage"
+                }
+            ],
+            "option_chosen": "The color of the luggage is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the plastic stool?",
+            "options": [
+                "The color of the plastic stool is white.",
+                "The color of the plastic stool is blue.",
+                "The color of the plastic stool is red.",
+                "The color of the plastic stool is black."
+            ],
+            "image": "sa_29744.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "plastic stool"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        495,
+                        842,
+                        24,
+                        21
+                    ],
+                    "name": "plastic stool"
+                }
+            ],
+            "option_chosen": "The color of the plastic stool is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bag?",
+            "options": [
+                "The color of the bag is purple.",
+                "The color of the bag is white.",
+                "The color of the bag is black.",
+                "The color of the bag is yellow."
+            ],
+            "image": "sa_56573.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        674,
+                        1014,
+                        20,
+                        39
+                    ],
+                    "name": "bag"
+                }
+            ],
+            "option_chosen": "The color of the bag is purple.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the pet collar?",
+            "options": [
+                "The color of the pet collar is purple.",
+                "The color of the pet collar is black.",
+                "The color of the pet collar is red.",
+                "The color of the pet collar is yellow."
+            ],
+            "image": "sa_52155.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "pet collar"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        719,
+                        726,
+                        21,
+                        67
+                    ],
+                    "name": "pet collar"
+                }
+            ],
+            "option_chosen": "The color of the pet collar is purple.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the comb?",
+            "options": [
+                "The color of the comb is purple.",
+                "The color of the comb is black.",
+                "The color of the comb is red.",
+                "The color of the comb is brown."
+            ],
+            "image": "sa_7429.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "comb"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        909,
+                        416,
+                        178,
+                        55
+                    ],
+                    "name": "comb"
+                }
+            ],
+            "option_chosen": "The color of the comb is purple.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the cyclist's box?",
+            "options": [
+                "The color of the cyclist's box is green.",
+                "The color of the cyclist's box is black.",
+                "The color of the cyclist's box is yellow.",
+                "The color of the cyclist's box is red."
+            ],
+            "image": "sa_25835.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "cyclist"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        344,
+                        745,
+                        32,
+                        62
+                    ],
+                    "name": "cyclist"
+                }
+            ],
+            "option_chosen": "The color of the cyclist's box is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the lock?",
+            "options": [
+                "The color of the lock is silver.",
+                "The color of the lock is red.",
+                "The color of the lock is yellow.",
+                "The color of the lock is golden."
+            ],
+            "image": "sa_70112.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "lock"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        587,
+                        1305,
+                        68,
+                        56
+                    ],
+                    "name": "lock"
+                }
+            ],
+            "option_chosen": "The color of the lock is silver.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the slippers?",
+            "options": [
+                "The color of the slippers is blue.",
+                "The color of the slippers is red.",
+                "The color of the slippers is black.",
+                "The color of the slippers is pink."
+            ],
+            "image": "sa_4460.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "slippers"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1137,
+                        881,
+                        88,
+                        62
+                    ],
+                    "name": "slippers"
+                }
+            ],
+            "option_chosen": "The color of the slippers is blue.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the soda can?",
+            "options": [
+                "The color of the soda can is green.",
+                "The color of the soda can is silver.",
+                "The color of the soda can is red.",
+                "The color of the soda can is white."
+            ],
+            "image": "sa_66657.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "soda can"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        117,
+                        1234,
+                        8,
+                        12
+                    ],
+                    "name": "soda can"
+                }
+            ],
+            "option_chosen": "The color of the soda can is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the dustpan?",
+            "options": [
+                "The color of the dustpan is blue.",
+                "The color of the dustpan is red.",
+                "The color of the dustpan is white.",
+                "The color of the dustpan is purple."
+            ],
+            "image": "sa_86101.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dustpan"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1599,
+                        935,
+                        45,
+                        163
+                    ],
+                    "name": "dustpan"
+                }
+            ],
+            "option_chosen": "The color of the dustpan is blue.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the flag?",
+            "options": [
+                "The color of the flag is blue and yellow.",
+                "The color of the flag is green and white.",
+                "The color of the flag is blue and red.",
+                "The color of the flag is red and yellow."
+            ],
+            "image": "sa_25219.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "flag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1634,
+                        1140,
+                        27,
+                        31
+                    ],
+                    "name": "flag"
+                }
+            ],
+            "option_chosen": "The color of the flag is blue and yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the earring?",
+            "options": [
+                "The color of the earring is blue.",
+                "The color of the earring is pink.",
+                "The color of the earring is silver.",
+                "The color of the earring is red."
+            ],
+            "image": "sa_11370.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "earring"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        980,
+                        613,
+                        12,
+                        43
+                    ],
+                    "name": "earring"
+                }
+            ],
+            "option_chosen": "The color of the earring is blue.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the man's cap?",
+            "options": [
+                "The color of the man's cap is red.",
+                "The color of the man's cap is blue.",
+                "The color of the man's cap is white.",
+                "The color of the man's cap is gray."
+            ],
+            "image": "sa_6965.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "man's cap"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        939,
+                        1014,
+                        19,
+                        11
+                    ],
+                    "name": "man's cap"
+                }
+            ],
+            "option_chosen": "The color of the man's cap is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the telephone?",
+            "options": [
+                "The color of the telephone is orange.",
+                "The color of the telephone is blue.",
+                "The color of the telephone is green.",
+                "The color of the telephone is white."
+            ],
+            "image": "sa_30034.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "telephone"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        806,
+                        1076,
+                        25,
+                        28
+                    ],
+                    "name": "telephone"
+                }
+            ],
+            "option_chosen": "The color of the telephone is orange.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the body of the bucket?",
+            "options": [
+                "The color of the body of the bucket is white.",
+                "The color of the body of the bucket is green.",
+                "The color of the body of the bucket is red.",
+                "The color of the body of the bucket is black."
+            ],
+            "image": "sa_84131.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bucket"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1283,
+                        881,
+                        39,
+                        49
+                    ],
+                    "name": "bucket"
+                }
+            ],
+            "option_chosen": "The color of the body of the bucket is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the helmet?",
+            "options": [
+                "The color of the helmet is red.",
+                "The color of the helmet is white.",
+                "The color of the helmet is yellow.",
+                "The color of the helmet is blue."
+            ],
+            "image": "sa_25212.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "helmet"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1776,
+                        994,
+                        8,
+                        8
+                    ],
+                    "name": "helmet"
+                }
+            ],
+            "option_chosen": "The color of the helmet is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the guard's glove?",
+            "options": [
+                "The color of the guard's glove is white.",
+                "The color of the guard's glove is brown.",
+                "The color of the guard's glove is black.",
+                "The color of the guard's glove is blue."
+            ],
+            "image": "sa_41908.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "guard's glove"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1967,
+                        1225,
+                        15,
+                        20
+                    ],
+                    "name": "guard's glove"
+                }
+            ],
+            "option_chosen": "The color of the guard's glove is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bucket?",
+            "options": [
+                "The color of the bucket is white.",
+                "The color of the bucket is black.",
+                "The color of the bucket is green.",
+                "The color of the bucket is red."
+            ],
+            "image": "sa_50451.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bucket"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        543,
+                        1032,
+                        46,
+                        44
+                    ],
+                    "name": "bucket"
+                }
+            ],
+            "option_chosen": "The color of the bucket is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the car?",
+            "options": [
+                "The color of the car is white.",
+                "The color of the car is black.",
+                "The color of the car is silver.",
+                "The color of the car is red."
+            ],
+            "image": "sa_43391.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "car"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        314,
+                        920,
+                        108,
+                        50
+                    ],
+                    "name": "car"
+                }
+            ],
+            "option_chosen": "The color of the car is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the pink-haired woman's handbag?",
+            "options": [
+                "The color of the pink-haired woman's handbag is white.",
+                "The color of the pink-haired woman's handbag is brown.",
+                "The color of the pink-haired woman's handbag is pink.",
+                "The color of the pink-haired woman's handbag is red."
+            ],
+            "image": "sa_26968.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "pink-haired woman"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1160,
+                        1055,
+                        28,
+                        74
+                    ],
+                    "name": "pink-haired woman"
+                }
+            ],
+            "option_chosen": "The color of the pink-haired woman's handbag is pink.",
+            "correct": 0
+        },
+        {
+            "question": "What is the color of the trash can?",
+            "options": [
+                "The color of the trash can is black.",
+                "The color of the trash can is green.",
+                "The color of the trash can is yellow.",
+                "The color of the trash can is silver."
+            ],
+            "image": "sa_29509.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "trash can"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2067,
+                        1002,
+                        10,
+                        19
+                    ],
+                    "name": "trash can"
+                }
+            ],
+            "option_chosen": "The color of the trash can is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the man's cap?",
+            "options": [
+                "The color of the man's cap is white.",
+                "The color of the man's cap is blue.",
+                "The color of the man's cap is black.",
+                "The color of the man's cap is red."
+            ],
+            "image": "sa_30411.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "man's cap"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        23,
+                        896,
+                        15,
+                        9
+                    ],
+                    "name": "man's cap"
+                }
+            ],
+            "option_chosen": "The color of the man's cap is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bench?",
+            "options": [
+                "The color of the bench is green.",
+                "The color of the bench is red.",
+                "The color of the bench is gray.",
+                "The color of the bench is yellow."
+            ],
+            "image": "sa_7683.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bench"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1809,
+                        1219,
+                        176,
+                        63
+                    ],
+                    "name": "bench"
+                }
+            ],
+            "option_chosen": "The color of the bench is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the scarf?",
+            "options": [
+                "The color of the scarf is green.",
+                "The color of the scarf is white.",
+                "The color of the scarf is yellow.",
+                "The color of the scarf is red."
+            ],
+            "image": "sa_30935.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "scarf"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1091,
+                        741,
+                        50,
+                        25
+                    ],
+                    "name": "scarf"
+                }
+            ],
+            "option_chosen": "The color of the scarf is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the cart?",
+            "options": [
+                "The color of the cart is green.",
+                "The color of the cart is white.",
+                "The color of the cart is silver.",
+                "The color of the cart is black."
+            ],
+            "image": "sa_50442.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "cart"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        233,
+                        747,
+                        57,
+                        64
+                    ],
+                    "name": "cart"
+                }
+            ],
+            "option_chosen": "The color of the cart is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the car?",
+            "options": [
+                "The color of the car is black.",
+                "The color of the car is white.",
+                "The color of the car is silver.",
+                "The color of the car is red."
+            ],
+            "image": "sa_38155.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "car"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        221,
+                        737,
+                        107,
+                        40
+                    ],
+                    "name": "car"
+                }
+            ],
+            "option_chosen": "The color of the car is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the SUV car?",
+            "options": [
+                "The color of the SUV car is silver.",
+                "The color of the SUV car is black.",
+                "The color of the SUV car is red.",
+                "The color of the SUV car is blue."
+            ],
+            "image": "sa_10919.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "SUV car"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1403,
+                        723,
+                        63,
+                        32
+                    ],
+                    "name": "SUV car"
+                }
+            ],
+            "option_chosen": "The color of the SUV car is silver.",
+            "correct": 1
+        },
+        {
+            "question": "What is the breed of the dog?",
+            "options": [
+                "The breed of the dog is golden retriever.",
+                "The breed of the dog is Dalmatian.",
+                "The breed of the dog is corgi.",
+                "The breed of the dog is Husky."
+            ],
+            "image": "sa_20519.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        652,
+                        1250,
+                        63,
+                        39
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The breed of the dog is golden retriever.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bottle cap?",
+            "options": [
+                "The color of the bottle cap is blue.",
+                "The color of the bottle cap is white.",
+                "The color of the bottle cap is red.",
+                "The color of the bottle cap is black."
+            ],
+            "image": "sa_7609.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bottle cap"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1348,
+                        789,
+                        22,
+                        17
+                    ],
+                    "name": "bottle cap"
+                }
+            ],
+            "option_chosen": "The color of the bottle cap is blue.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bicycle?",
+            "options": [
+                "The color of the bicycle is red.",
+                "The color of the bicycle is black.",
+                "The color of the bicycle is white.",
+                "The color of the bicycle is yellow."
+            ],
+            "image": "sa_30179.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bicycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1348,
+                        1353,
+                        46,
+                        41
+                    ],
+                    "name": "bicycle"
+                }
+            ],
+            "option_chosen": "The color of the bicycle is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the cart?",
+            "options": [
+                "The color of the cart is green.",
+                "The color of the cart is black.",
+                "The color of the cart is white.",
+                "The color of the cart is red."
+            ],
+            "image": "sa_3568.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "cart"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1544,
+                        969,
+                        127,
+                        84
+                    ],
+                    "name": "cart"
+                }
+            ],
+            "option_chosen": "The color of the cart is green.",
+            "correct": 1
+        },
+        {
+            "question": "Is the color of the plastic bucket black or green?",
+            "options": [
+                "The color of the plastic bucket is green.",
+                "The color of the plastic bucket is black."
+            ],
+            "image": "sa_9957.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "plastic bucket"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2303,
+                        422,
+                        138,
+                        121
+                    ],
+                    "name": "plastic bucket"
+                }
+            ],
+            "option_chosen": "The color of the plastic bucket is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the woman's jacket?",
+            "options": [
+                "The color of the woman's jacket is blue.",
+                "The color of the woman's jacket is black.",
+                "The color of the woman's jacket is red.",
+                "The color of the woman's jacket is orange."
+            ],
+            "image": "sa_7018.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "woman's jacket"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        583,
+                        1762,
+                        28,
+                        42
+                    ],
+                    "name": "woman's jacket"
+                }
+            ],
+            "option_chosen": "The color of the woman's jacket is blue.",
+            "correct": 1
+        },
+        {
+            "question": "Does the flag have two or three colors?",
+            "options": [
+                "The flag has three colors.",
+                "The flag has two colors."
+            ],
+            "image": "sa_5281.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "flag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1952,
+                        1145,
+                        64,
+                        83
+                    ],
+                    "name": "flag"
+                }
+            ],
+            "option_chosen": "The flag has two colors.",
+            "correct": 0
+        },
+        {
+            "question": "What is the color of the trash can?",
+            "options": [
+                "The color of the trash can is green.",
+                "The color of the trash can is black.",
+                "The color of the trash can is red.",
+                "The color of the trash can is yellow."
+            ],
+            "image": "sa_7081.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "trash can"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1088,
+                        1018,
+                        51,
+                        66
+                    ],
+                    "name": "trash can"
+                }
+            ],
+            "option_chosen": "The color of the trash can is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the dog?",
+            "options": [
+                "The color of the dog is white.",
+                "The color of the dog is brown.",
+                "The color of the dog is black.",
+                "The color of the dog is golden."
+            ],
+            "image": "sa_717.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        615,
+                        634,
+                        61,
+                        58
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The color of the dog is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the backpack?",
+            "options": [
+                "The color of the backpack is red.",
+                "The color of the backpack is black.",
+                "The color of the backpack is white.",
+                "The color of the backpack is yellow."
+            ],
+            "image": "sa_9877.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "backpack"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2137,
+                        994,
+                        57,
+                        72
+                    ],
+                    "name": "backpack"
+                }
+            ],
+            "option_chosen": "The color of the backpack is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the clock?",
+            "options": [
+                "The color of the clock is green.",
+                "The color of the clock is black.",
+                "The color of the clock is red.",
+                "The color of the clock is yellow."
+            ],
+            "image": "sa_16306.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "clock"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1372,
+                        832,
+                        44,
+                        29
+                    ],
+                    "name": "clock"
+                }
+            ],
+            "option_chosen": "The color of the clock is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the hat?",
+            "options": [
+                "The color of the hat is white.",
+                "The color of the hat is black.",
+                "The color of the hat is pink.",
+                "The color of the hat is yellow."
+            ],
+            "image": "sa_31451.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "hat"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        888,
+                        1363,
+                        18,
+                        12
+                    ],
+                    "name": "hat"
+                }
+            ],
+            "option_chosen": "The color of the hat is white.",
+            "correct": 1
+        },
+        {
+            "question": "What kind of animal is on the blue sail?",
+            "options": [
+                "The animal on the blue sail is a spider.",
+                "The animal on the blue sail is a bird.",
+                "The animal on the blue sail is a fish.",
+                "The animal on the blue sail is a dog."
+            ],
+            "image": "sa_47397.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "blue sail"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        846,
+                        419,
+                        73,
+                        139
+                    ],
+                    "name": "blue sail"
+                }
+            ],
+            "option_chosen": "The animal on the blue sail is a spider.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the fire hydrant?",
+            "options": [
+                "The color of the fire hydrant is yellow.",
+                "The color of the fire hydrant is red.",
+                "The color of the fire hydrant is black.",
+                "The color of the fire hydrant is white."
+            ],
+            "image": "sa_10415.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "fire hydrant"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        383,
+                        1246,
+                        22,
+                        43
+                    ],
+                    "name": "fire hydrant"
+                }
+            ],
+            "option_chosen": "The color of the fire hydrant is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the chair?",
+            "options": [
+                "The color of the chair is yellow.",
+                "The color of the chair is black.",
+                "The color of the chair is white.",
+                "The color of the chair is green."
+            ],
+            "image": "sa_4203.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "chair"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        175,
+                        473,
+                        92,
+                        76
+                    ],
+                    "name": "chair"
+                }
+            ],
+            "option_chosen": "The color of the chair is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the umbrella?",
+            "options": [
+                "The color of the umbrella is blue.",
+                "The color of the umbrella is white.",
+                "The color of the umbrella is red.",
+                "The color of the umbrella is black."
+            ],
+            "image": "sa_11290.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "umbrella"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1973,
+                        1232,
+                        59,
+                        37
+                    ],
+                    "name": "umbrella"
+                }
+            ],
+            "option_chosen": "The color of the umbrella is blue.",
+            "correct": 1
+        },
+        {
+            "question": "What is the pose of the woman with yellow backpack?",
+            "options": [
+                "The pose of the woman with yellow backpack is squatting.",
+                "The pose of the woman with yellow backpack is standing.",
+                "The pose of the woman with yellow backpack is walking.",
+                "The pose of the woman with yellow backpack is running."
+            ],
+            "image": "sa_33579.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "woman with yellow backpack"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1353,
+                        305,
+                        100,
+                        153
+                    ],
+                    "name": "woman with yellow backpack"
+                }
+            ],
+            "option_chosen": "The pose of the woman with yellow backpack is squatting.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bicycle?",
+            "options": [
+                "The color of the bicycle is red.",
+                "The color of the bicycle is blue.",
+                "The color of the bicycle is white.",
+                "The color of the bicycle is silver."
+            ],
+            "image": "sa_9230.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bicycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1202,
+                        1095,
+                        128,
+                        74
+                    ],
+                    "name": "bicycle"
+                }
+            ],
+            "option_chosen": "The color of the bicycle is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the toothbrush?",
+            "options": [
+                "The color of the toothbrush is red.",
+                "The color of the toothbrush is green.",
+                "The color of the toothbrush is yellow.",
+                "The color of the toothbrush is blue."
+            ],
+            "image": "sa_65476.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "toothbrush"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        270,
+                        629,
+                        50,
+                        8
+                    ],
+                    "name": "toothbrush"
+                }
+            ],
+            "option_chosen": "The color of the toothbrush is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the motorcycle helmet?",
+            "options": [
+                "The color of the motorcycle helmet is white.",
+                "The color of the motorcycle helmet is red.",
+                "The color of the motorcycle helmet is blue.",
+                "The color of the motorcycle helmet is black."
+            ],
+            "image": "sa_80352.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "motorcycle helmet"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        304,
+                        1111,
+                        30,
+                        28
+                    ],
+                    "name": "motorcycle helmet"
+                }
+            ],
+            "option_chosen": "The color of the motorcycle helmet is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the shovel?",
+            "options": [
+                "The color of the shovel is blue.",
+                "The color of the shovel is black.",
+                "The color of the shovel is red.",
+                "The color of the shovel is yellow."
+            ],
+            "image": "sa_65370.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "shovel"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        877,
+                        1234,
+                        10,
+                        25
+                    ],
+                    "name": "shovel"
+                }
+            ],
+            "option_chosen": "The color of the shovel is black.",
+            "correct": 0
+        },
+        {
+            "question": "What is the color of the paraglider?",
+            "options": [
+                "The color of the paraglider is blue.",
+                "The color of the paraglider is white.",
+                "The color of the paraglider is pink.",
+                "The color of the paraglider is red."
+            ],
+            "image": "sa_10701.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "paraglider"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1146,
+                        785,
+                        25,
+                        27
+                    ],
+                    "name": "paraglider"
+                }
+            ],
+            "option_chosen": "The color of the paraglider is blue.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the man's cap?",
+            "options": [
+                "The color of the man's cap is gray.",
+                "The color of the man's cap is red.",
+                "The color of the man's cap is green.",
+                "The color of the man's cap is yellow."
+            ],
+            "image": "sa_5346.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "man's cap"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1069,
+                        980,
+                        44,
+                        18
+                    ],
+                    "name": "man's cap"
+                }
+            ],
+            "option_chosen": "The color of the man's cap is gray.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the broom?",
+            "options": [
+                "The color of the broom is black.",
+                "The color of the broom is yellow.",
+                "The color of the broom is red.",
+                "The color of the broom is gray."
+            ],
+            "image": "sa_80880.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "broom"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1818,
+                        391,
+                        137,
+                        295
+                    ],
+                    "name": "broom"
+                }
+            ],
+            "option_chosen": "The color of the broom is red.",
+            "correct": 0
+        },
+        {
+            "question": "What is the color of the woman's shirt?",
+            "options": [
+                "The color of the woman's shirt is purple.",
+                "The color of the woman's shirt is pink.",
+                "The color of the woman's shirt is blue.",
+                "The color of the woman's shirt is white."
+            ],
+            "image": "sa_5413.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "woman's shirt"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        416,
+                        1171,
+                        36,
+                        45
+                    ],
+                    "name": "woman's shirt"
+                }
+            ],
+            "option_chosen": "The color of the woman's shirt is purple.",
+            "correct": 1
+        },
+        {
+            "question": "Does the kid have curly hair or straight hair?",
+            "options": [
+                "The kid has curly hair.",
+                "The kid has straight hair."
+            ],
+            "image": "sa_10225.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "kid"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1403,
+                        998,
+                        65,
+                        184
+                    ],
+                    "name": "kid"
+                }
+            ],
+            "option_chosen": "The kid has curly hair.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the straw?",
+            "options": [
+                "The color of the straw is black.",
+                "The color of the straw is white.",
+                "The color of the straw is red.",
+                "The color of the straw is pink."
+            ],
+            "image": "sa_68625.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "straw"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1744,
+                        920,
+                        15,
+                        48
+                    ],
+                    "name": "straw"
+                }
+            ],
+            "option_chosen": "The color of the straw is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the apples?",
+            "options": [
+                "The color of the apples is green.",
+                "The color of the apples is red.",
+                "The color of the apples is dark red.",
+                "The color of the apples is yellow."
+            ],
+            "image": "sa_1244.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "apples"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1929,
+                        811,
+                        105,
+                        52
+                    ],
+                    "name": "apples"
+                }
+            ],
+            "option_chosen": "The color of the apples is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the van?",
+            "options": [
+                "The color of the van is red.",
+                "The color of the van is silver.",
+                "The color of the van is black.",
+                "The color of the van is white."
+            ],
+            "image": "sa_10204.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "van"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        520,
+                        1002,
+                        64,
+                        29
+                    ],
+                    "name": "van"
+                }
+            ],
+            "option_chosen": "The color of the van is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the messenger bag?",
+            "options": [
+                "The color of the messenger bag is black.",
+                "The color of the messenger bag is brown.",
+                "The color of the messenger bag is red.",
+                "The color of the messenger bag is white."
+            ],
+            "image": "sa_16825.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "messenger bag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        182,
+                        1295,
+                        26,
+                        69
+                    ],
+                    "name": "messenger bag"
+                }
+            ],
+            "option_chosen": "The color of the messenger bag is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the electric rickshaw?",
+            "options": [
+                "The color of the electric rickshaw is yellow.",
+                "The color of the electric rickshaw is green.",
+                "The color of the electric rickshaw is black.",
+                "The color of the electric rickshaw is red."
+            ],
+            "image": "sa_55332.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "electric rickshaw"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        223,
+                        2057,
+                        51,
+                        45
+                    ],
+                    "name": "electric rickshaw"
+                }
+            ],
+            "option_chosen": "The color of the electric rickshaw is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the scooter?",
+            "options": [
+                "The color of the scooter is orange.",
+                "The color of the scooter is black.",
+                "The color of the scooter is green.",
+                "The color of the scooter is blue."
+            ],
+            "image": "sa_35748.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "scooter"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1749,
+                        895,
+                        53,
+                        49
+                    ],
+                    "name": "scooter"
+                }
+            ],
+            "option_chosen": "The color of the scooter is orange.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the baby carriage?",
+            "options": [
+                "The color of the baby carriage is black.",
+                "The color of the baby carriage is green.",
+                "The color of the baby carriage is red.",
+                "The color of the baby carriage is blue."
+            ],
+            "image": "sa_63876.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "baby carriage"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        638,
+                        992,
+                        54,
+                        51
+                    ],
+                    "name": "baby carriage"
+                }
+            ],
+            "option_chosen": "The color of the baby carriage is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the dress?",
+            "options": [
+                "The color of the dress is red.",
+                "The color of the dress is pink.",
+                "The color of the dress is black.",
+                "The color of the dress is white."
+            ],
+            "image": "sa_59482.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dress"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1766,
+                        464,
+                        29,
+                        95
+                    ],
+                    "name": "dress"
+                }
+            ],
+            "option_chosen": "The color of the dress is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the woman's handbag?",
+            "options": [
+                "The color of the woman's handbag is brown.",
+                "The color of the woman's handbag is black.",
+                "The color of the woman's handbag is white.",
+                "The color of the woman's handbag is red."
+            ],
+            "image": "sa_38669.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "woman's handbag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        3225,
+                        925,
+                        36,
+                        84
+                    ],
+                    "name": "woman's handbag"
+                }
+            ],
+            "option_chosen": "The color of the woman's handbag is brown.",
+            "correct": 1
+        },
+        {
+            "question": "Is the flag red or white?",
+            "options": [
+                "The color of the flag is white.",
+                "The color of the flag is red."
+            ],
+            "image": "sa_10033.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "flag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1648,
+                        678,
+                        29,
+                        81
+                    ],
+                    "name": "flag"
+                }
+            ],
+            "option_chosen": "The color of the flag is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the watchband?",
+            "options": [
+                "The color of the watchband is purple.",
+                "The color of the watchband is black.",
+                "The color of the watchband is blue.",
+                "The color of the watchband is red."
+            ],
+            "image": "sa_11405.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "watchband"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1415,
+                        1045,
+                        39,
+                        15
+                    ],
+                    "name": "watchband"
+                }
+            ],
+            "option_chosen": "The color of the watchband is purple.",
+            "correct": 1
+        },
+        {
+            "question": "What kind of animal is in the poster?",
+            "options": [
+                "The animal in the poster is a dove.",
+                "The animal in the poster is a cat.",
+                "The animal in the poster is a horse.",
+                "The animal in the poster is a dog."
+            ],
+            "image": "sa_10997.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "poster"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        661,
+                        880,
+                        73,
+                        150
+                    ],
+                    "name": "poster"
+                }
+            ],
+            "option_chosen": "The animal in the poster is a dove.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the seesaw?",
+            "options": [
+                "The color of the seesaw is red.",
+                "The color of the seesaw is white.",
+                "The color of the seesaw is yellow.",
+                "The color of the seesaw is black."
+            ],
+            "image": "sa_79105.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "seesaw"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        566,
+                        854,
+                        246,
+                        78
+                    ],
+                    "name": "seesaw"
+                }
+            ],
+            "option_chosen": "The color of the seesaw is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the helmet?",
+            "options": [
+                "The color of the helmet is green.",
+                "The color of the helmet is blue.",
+                "The color of the helmet is white.",
+                "The color of the helmet is red."
+            ],
+            "image": "sa_39678.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "helmet"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        668,
+                        822,
+                        19,
+                        19
+                    ],
+                    "name": "helmet"
+                }
+            ],
+            "option_chosen": "The color of the helmet is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the candles?",
+            "options": [
+                "The color of the candles is yellow.",
+                "The color of the candles is white.",
+                "The color of the candles is red.",
+                "The color of the candles is gray."
+            ],
+            "image": "sa_9019.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "candles"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1041,
+                        174,
+                        70,
+                        156
+                    ],
+                    "name": "candles"
+                }
+            ],
+            "option_chosen": "The color of the candles is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the flute?",
+            "options": [
+                "The color of the flute is black.",
+                "The color of the flute is white.",
+                "The color of the flute is silver.",
+                "The color of the flute is yellow."
+            ],
+            "image": "sa_55722.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "flute"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1507,
+                        1146,
+                        79,
+                        42
+                    ],
+                    "name": "flute"
+                }
+            ],
+            "option_chosen": "The color of the flute is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the cyclist's bag?",
+            "options": [
+                "The color of the cyclist's bag is orange and black.",
+                "The color of the cyclist's bag is white and red.",
+                "The color of the cyclist's bag is red and blue.",
+                "The color of the cyclist's bag is blue and gray."
+            ],
+            "image": "sa_38195.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "cyclist"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1550,
+                        1112,
+                        44,
+                        70
+                    ],
+                    "name": "cyclist"
+                }
+            ],
+            "option_chosen": "The color of the cyclist's bag is orange and black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the swim ring?",
+            "options": [
+                "The color of the swim ring is orange.",
+                "The color of the swim ring is white.",
+                "The color of the swim ring is blue.",
+                "The color of the swim ring is yellow."
+            ],
+            "image": "sa_51837.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "swim ring"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        117,
+                        723,
+                        42,
+                        44
+                    ],
+                    "name": "swim ring"
+                }
+            ],
+            "option_chosen": "The color of the swim ring is orange.",
+            "correct": 1
+        },
+        {
+            "question": "What is the material of the glove?",
+            "options": [
+                "The material of the glove is rubber.",
+                "The material of the glove is cotton.",
+                "The material of the glove is leather.",
+                "The material of the glove is kevlar."
+            ],
+            "image": "sa_4690.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "glove"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        564,
+                        142,
+                        155,
+                        157
+                    ],
+                    "name": "glove"
+                }
+            ],
+            "option_chosen": "The material of the glove is rubber.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the little girl's shirt?",
+            "options": [
+                "The color of the little girl's shirt is pink.",
+                "The color of the little girl's shirt is white.",
+                "The color of the little girl's shirt is yellow.",
+                "The color of the little girl's shirt is black."
+            ],
+            "image": "sa_17.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "little girl's shirt"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1682,
+                        1175,
+                        28,
+                        31
+                    ],
+                    "name": "little girl's shirt"
+                }
+            ],
+            "option_chosen": "The color of the little girl's shirt is pink.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the handbag?",
+            "options": [
+                "The color of the handbag is yellow.",
+                "The color of the handbag is white.",
+                "The color of the handbag is red.",
+                "The color of the handbag is black."
+            ],
+            "image": "sa_31511.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "handbag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2278,
+                        1010,
+                        18,
+                        35
+                    ],
+                    "name": "handbag"
+                }
+            ],
+            "option_chosen": "The color of the handbag is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the dog?",
+            "options": [
+                "The color of the dog is black and white.",
+                "The color of the dog is brown.",
+                "The color of the dog is gray.",
+                "The color of the dog is yellow."
+            ],
+            "image": "sa_59664.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        292,
+                        901,
+                        26,
+                        17
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The color of the dog is brown.",
+            "correct": 0
+        },
+        {
+            "question": "What is the color of the life buoy?",
+            "options": [
+                "The color of the life buoy is red and white.",
+                "The color of the life buoy is blue and white.",
+                "The color of the life buoy is green and white.",
+                "The color of the life buoy is yellow and red."
+            ],
+            "image": "sa_27986.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "life buoy"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2055,
+                        1038,
+                        25,
+                        23
+                    ],
+                    "name": "life buoy"
+                }
+            ],
+            "option_chosen": "The color of the life buoy is red and white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bus?",
+            "options": [
+                "The color of the bus is white.",
+                "The color of the bus is red.",
+                "The color of the bus is blue.",
+                "The color of the bus is yellow."
+            ],
+            "image": "sa_34040.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bus"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        655,
+                        1207,
+                        119,
+                        55
+                    ],
+                    "name": "bus"
+                }
+            ],
+            "option_chosen": "The color of the bus is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the car?",
+            "options": [
+                "The color of the car is silver.",
+                "The color of the car is black.",
+                "The color of the car is blue.",
+                "The color of the car is red."
+            ],
+            "image": "sa_4020.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "car"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1315,
+                        1216,
+                        115,
+                        68
+                    ],
+                    "name": "car"
+                }
+            ],
+            "option_chosen": "The color of the car is silver.",
+            "correct": 1
+        },
+        {
+            "question": "Is the color of the motorcycle red or blue?",
+            "options": [
+                "The color of the motorcycle is blue.",
+                "The color of the motorcycle is red."
+            ],
+            "image": "sa_4658.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "motorcycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        0,
+                        1007,
+                        100,
+                        91
+                    ],
+                    "name": "motorcycle"
+                }
+            ],
+            "option_chosen": "The color of the motorcycle is blue.",
+            "correct": 1
+        },
+        {
+            "question": "Is the color of the motorcycle orange or green?",
+            "options": [
+                "The color of the motorcycle is orange.",
+                "The color of the motorcycle is green."
+            ],
+            "image": "sa_6422.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "motorcycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        410,
+                        740,
+                        109,
+                        101
+                    ],
+                    "name": "motorcycle"
+                }
+            ],
+            "option_chosen": "The color of the motorcycle is orange.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the handbag?",
+            "options": [
+                "The color of the handbag is white.",
+                "The color of the handbag is red.",
+                "The color of the handbag is black.",
+                "The color of the handbag is brown."
+            ],
+            "image": "sa_42562.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "handbag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1738,
+                        944,
+                        20,
+                        49
+                    ],
+                    "name": "handbag"
+                }
+            ],
+            "option_chosen": "The color of the handbag is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the watch?",
+            "options": [
+                "The color of the watch is white.",
+                "The color of the watch is black.",
+                "The color of the watch is silver.",
+                "The color of the watch is blue."
+            ],
+            "image": "sa_16854.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "watch"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        494,
+                        891,
+                        14,
+                        30
+                    ],
+                    "name": "watch"
+                }
+            ],
+            "option_chosen": "The color of the watch is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the cartoon character on the clock.",
+            "options": [
+                "The cartoon character on the clock is Mickey Mouse.",
+                "The cartoon character on the clock is Bugs Bunny.",
+                "The cartoon character on the clock is SpongeBob.",
+                "The cartoon character on the clock is Donald Duck."
+            ],
+            "image": "sa_37675.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "clock"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        509,
+                        419,
+                        185,
+                        165
+                    ],
+                    "name": "clock"
+                }
+            ],
+            "option_chosen": "The cartoon character on the clock is Mickey Mouse.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the helmet?",
+            "options": [
+                "The color of the helmet is white.",
+                "The color of the helmet is black.",
+                "The color of the helmet is red.",
+                "The color of the helmet is yellow."
+            ],
+            "image": "sa_42585.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "helmet"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        926,
+                        1285,
+                        23,
+                        29
+                    ],
+                    "name": "helmet"
+                }
+            ],
+            "option_chosen": "The color of the helmet is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the truck?",
+            "options": [
+                "The color of the truck is yellow.",
+                "The color of the truck is white.",
+                "The color of the truck is silver.",
+                "The color of the truck is black."
+            ],
+            "image": "sa_17108.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "truck"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1045,
+                        1043,
+                        87,
+                        116
+                    ],
+                    "name": "truck"
+                }
+            ],
+            "option_chosen": "The color of the truck is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the cleaning cloth?",
+            "options": [
+                "The color of the cleaning cloth is red.",
+                "The color of the cleaning cloth is blue.",
+                "The color of the cleaning cloth is white.",
+                "The color of the cleaning cloth is green."
+            ],
+            "image": "sa_7347.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "cleaning cloth"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        518,
+                        897,
+                        108,
+                        111
+                    ],
+                    "name": "cleaning cloth"
+                }
+            ],
+            "option_chosen": "The color of the cleaning cloth is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the parachute?",
+            "options": [
+                "The color of the parachute is yellow.",
+                "The color of the parachute is blue.",
+                "The color of the parachute is green.",
+                "The color of the parachute is red."
+            ],
+            "image": "sa_5387.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "parachute"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1295,
+                        80,
+                        40,
+                        53
+                    ],
+                    "name": "parachute"
+                }
+            ],
+            "option_chosen": "The color of the parachute is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "Is the flag blue and yellow or red and yellow?",
+            "options": [
+                "The color of the flag is blue and yellow.",
+                "The color of the flag is red and yellow."
+            ],
+            "image": "sa_10885.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "flag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        317,
+                        493,
+                        40,
+                        110
+                    ],
+                    "name": "flag"
+                }
+            ],
+            "option_chosen": "The color of the flag is blue and yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the plastic stool?",
+            "options": [
+                "The color of the plastic stool is blue.",
+                "The color of the plastic stool is white.",
+                "The color of the plastic stool is black.",
+                "The color of the plastic stool is red."
+            ],
+            "image": "sa_44097.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "plastic stool"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2029,
+                        1196,
+                        45,
+                        45
+                    ],
+                    "name": "plastic stool"
+                }
+            ],
+            "option_chosen": "The color of the plastic stool is blue.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the umbrella?",
+            "options": [
+                "The color of the umbrella is purple.",
+                "The color of the umbrella is red.",
+                "The color of the umbrella is black.",
+                "The color of the umbrella is blue."
+            ],
+            "image": "sa_60786.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "umbrella"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1103,
+                        1370,
+                        23,
+                        21
+                    ],
+                    "name": "umbrella"
+                }
+            ],
+            "option_chosen": "The color of the umbrella is purple.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the woman's bikini?",
+            "options": [
+                "The color of the woman's bikini is black.",
+                "The color of the woman's bikini is red.",
+                "The color of the woman's bikini is white.",
+                "The color of the woman's bikini is yellow."
+            ],
+            "image": "sa_11528.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "woman's bikini"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        170,
+                        1318,
+                        19,
+                        32
+                    ],
+                    "name": "woman's bikini"
+                }
+            ],
+            "option_chosen": "The color of the woman's bikini is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the flower?",
+            "options": [
+                "The color of the flower is white.",
+                "The color of the flower is red.",
+                "The color of the flower is pink.",
+                "The color of the flower is yellow."
+            ],
+            "image": "sa_4988.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "flower"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1356,
+                        1073,
+                        70,
+                        33
+                    ],
+                    "name": "flower"
+                }
+            ],
+            "option_chosen": "The color of the flower is white.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the suitcase?",
+            "options": [
+                "The color of the suitcase is brown.",
+                "The color of the suitcase is black.",
+                "The color of the suitcase is gray.",
+                "The color of the suitcase is red."
+            ],
+            "image": "sa_24546.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "suitcase"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1411,
+                        1201,
+                        41,
+                        25
+                    ],
+                    "name": "suitcase"
+                }
+            ],
+            "option_chosen": "The color of the suitcase is brown.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the motorcycle?",
+            "options": [
+                "The color of the motorcycle is orange.",
+                "The color of the motorcycle is black.",
+                "The color of the motorcycle is white.",
+                "The color of the motorcycle is blue."
+            ],
+            "image": "sa_23893.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "motorcycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        108,
+                        805,
+                        46,
+                        58
+                    ],
+                    "name": "motorcycle"
+                }
+            ],
+            "option_chosen": "The color of the motorcycle is orange.",
+            "correct": 1
+        },
+        {
+            "question": "What is the material of the stool?",
+            "options": [
+                "The material of the stool is plastic.",
+                "The material of the stool is wood.",
+                "The material of the stool is steel.",
+                "The material of the stool is bamboo."
+            ],
+            "image": "sa_9611.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "stool"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1505,
+                        610,
+                        85,
+                        87
+                    ],
+                    "name": "stool"
+                }
+            ],
+            "option_chosen": "The material of the stool is plastic.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the mailbox?",
+            "options": [
+                "The color of the mailbox is black.",
+                "The color of the mailbox is red.",
+                "The color of the mailbox is yellow.",
+                "The color of the mailbox is white."
+            ],
+            "image": "sa_86882.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "mailbox"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1015,
+                        1095,
+                        50,
+                        48
+                    ],
+                    "name": "mailbox"
+                }
+            ],
+            "option_chosen": "The color of the mailbox is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the man's cap?",
+            "options": [
+                "The color of the man's cap is black.",
+                "The color of the man's cap is white.",
+                "The color of the man's cap is green.",
+                "The color of the man's cap is red."
+            ],
+            "image": "sa_13337.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "man's cap"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        500,
+                        1276,
+                        19,
+                        14
+                    ],
+                    "name": "man's cap"
+                }
+            ],
+            "option_chosen": "The color of the man's cap is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the tent?",
+            "options": [
+                "The color of the tent is green.",
+                "The color of the tent is blue.",
+                "The color of the tent is white.",
+                "The color of the tent is yellow."
+            ],
+            "image": "sa_7668.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "tent"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1958,
+                        405,
+                        97,
+                        58
+                    ],
+                    "name": "tent"
+                }
+            ],
+            "option_chosen": "The color of the tent is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the motorcycle?",
+            "options": [
+                "The color of the motorcycle is black.",
+                "The color of the motorcycle is red.",
+                "The color of the motorcycle is orange.",
+                "The color of the motorcycle is white."
+            ],
+            "image": "sa_66699.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "motorcycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1826,
+                        1251,
+                        48,
+                        41
+                    ],
+                    "name": "motorcycle"
+                }
+            ],
+            "option_chosen": "The color of the motorcycle is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the tissue box?",
+            "options": [
+                "The color of the tissue box is blue.",
+                "The color of the tissue box is gray.",
+                "The color of the tissue box is black.",
+                "The color of the tissue box is white."
+            ],
+            "image": "sa_39518.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "tissue box"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1424,
+                        740,
+                        58,
+                        37
+                    ],
+                    "name": "tissue box"
+                }
+            ],
+            "option_chosen": "The color of the tissue box is blue.",
+            "correct": 1
+        },
+        {
+            "question": "Is the color of the bus red or yellow?",
+            "options": [
+                "The color of the bus is red.",
+                "The color of the bus is yellow."
+            ],
+            "image": "sa_7065.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bus"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1150,
+                        896,
+                        101,
+                        53
+                    ],
+                    "name": "bus"
+                }
+            ],
+            "option_chosen": "The color of the bus is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the water bottle?",
+            "options": [
+                "The color of the water bottle is red.",
+                "The color of the water bottle is blue.",
+                "The color of the water bottle is white.",
+                "The color of the water bottle is black."
+            ],
+            "image": "sa_5674.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "water bottle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        43,
+                        632,
+                        26,
+                        68
+                    ],
+                    "name": "water bottle"
+                }
+            ],
+            "option_chosen": "The color of the water bottle is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bottle cap?",
+            "options": [
+                "The color of the bottle cap is red.",
+                "The color of the bottle cap is blue.",
+                "The color of the bottle cap is white.",
+                "The color of the bottle cap is orange."
+            ],
+            "image": "sa_66471.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bottle cap"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1037,
+                        757,
+                        12,
+                        11
+                    ],
+                    "name": "bottle cap"
+                }
+            ],
+            "option_chosen": "The color of the bottle cap is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the flag?",
+            "options": [
+                "The color of the flag is red.",
+                "The color of the flag is blue.",
+                "The color of the flag is yellow.",
+                "The color of the flag is white."
+            ],
+            "image": "sa_26085.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "flag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        84,
+                        793,
+                        40,
+                        46
+                    ],
+                    "name": "flag"
+                }
+            ],
+            "option_chosen": "The color of the flag is red.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the tablecloth?",
+            "options": [
+                "The color of the tablecloth is green.",
+                "The color of the tablecloth is white.",
+                "The color of the tablecloth is red.",
+                "The color of the tablecloth is blue."
+            ],
+            "image": "sa_58805.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "tablecloth"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1872,
+                        1287,
+                        62,
+                        49
+                    ],
+                    "name": "tablecloth"
+                }
+            ],
+            "option_chosen": "The color of the tablecloth is green.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the plastic basin?",
+            "options": [
+                "The color of the plastic basin is pink.",
+                "The color of the plastic basin is yellow.",
+                "The color of the plastic basin is blue.",
+                "The color of the plastic basin is white."
+            ],
+            "image": "sa_10052.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "plastic basin"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2583,
+                        1227,
+                        94,
+                        58
+                    ],
+                    "name": "plastic basin"
+                }
+            ],
+            "option_chosen": "The color of the plastic basin is pink.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the man's helmet?",
+            "options": [
+                "The color of the man's helmet is yellow.",
+                "The color of the man's helmet is white.",
+                "The color of the man's helmet is red.",
+                "The color of the man's helmet is blue."
+            ],
+            "image": "sa_7428.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "man's helmet"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1332,
+                        636,
+                        21,
+                        16
+                    ],
+                    "name": "man's helmet"
+                }
+            ],
+            "option_chosen": "The color of the man's helmet is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the dog?",
+            "options": [
+                "The color of the dog is black.",
+                "The color of the dog is brown.",
+                "The color of the dog is white.",
+                "The color of the dog is gray."
+            ],
+            "image": "sa_38610.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1223,
+                        643,
+                        29,
+                        18
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The color of the dog is black.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the bicycle?",
+            "options": [
+                "The color of the bicycle is yellow.",
+                "The color of the bicycle is red.",
+                "The color of the bicycle is white.",
+                "The color of the bicycle is black."
+            ],
+            "image": "sa_28073.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bicycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1861,
+                        953,
+                        45,
+                        30
+                    ],
+                    "name": "bicycle"
+                }
+            ],
+            "option_chosen": "The color of the bicycle is yellow.",
+            "correct": 1
+        },
+        {
+            "question": "What is the color of the backpack?",
+            "options": [
+                "The color of the backpack is gray.",
+                "The color of the backpack is yellow.",
+                "The color of the backpack is white.",
+                "The color of the backpack is red."
+            ],
+            "image": "sa_28392.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "backpack"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        23,
+                        1132,
+                        37,
+                        28
+                    ],
+                    "name": "backpack"
+                }
+            ],
+            "option_chosen": "The color of the backpack is gray.",
+            "correct": 1
+        },
+        {
+            "question": "How many people are in the oil painting?",
+            "options": [
+                "There are 2 people in the oil painting.",
+                "There are 1 person in the oil painting.",
+                "There are no person in the oil painting.",
+                "There are 4 people in the oil painting."
+            ],
+            "image": "sa_10720.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "oil painting"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1448,
+                        343,
+                        76,
+                        122
+                    ],
+                    "name": "oil painting"
+                }
+            ],
+            "option_chosen": "There are 2 people in the oil painting.",
+            "correct": 1
+        }
+    ],
+    "relative_position": [
+        {
+            "question": "Is the dog on the left or right side of the train?",
+            "options": [
+                "The dog is on the right side of the train.",
+                "The dog is on the left side of the train."
+            ],
+            "image": "sa_25747.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1863,
+                        797,
+                        23,
+                        31
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The dog is on the right side of the train.",
+            "correct": 1
+        },
+        {
+            "question": "Is the baby stroller on the left or right side of the person in orange?",
+            "options": [
+                "The baby stroller is on the right side of the person in orange.",
+                "The baby stroller is on the left side of the person in orange."
+            ],
+            "image": "sa_79349.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "baby stroller",
+                "person in orange"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        652,
+                        855,
+                        31,
+                        34
+                    ],
+                    "name": "baby stroller"
+                },
+                {
+                    "bbox": [
+                        410,
+                        840,
+                        28,
+                        42
+                    ],
+                    "name": "person in orange"
+                }
+            ],
+            "option_chosen": "The baby stroller is on the right side of the person in orange.",
+            "correct": 1
+        },
+        {
+            "question": "Is the wristband on the left or right side of the dog?",
+            "options": [
+                "The wristband is on the left side of the dog.",
+                "The wristband is on the right side of the dog."
+            ],
+            "image": "sa_7826.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "wristband",
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        124,
+                        960,
+                        20,
+                        24
+                    ],
+                    "name": "wristband"
+                },
+                {
+                    "bbox": [
+                        648,
+                        1262,
+                        170,
+                        84
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The wristband is on the left side of the dog.",
+            "correct": 1
+        },
+        {
+            "question": "Is the steel ladder on the left or right side of the wagon?",
+            "options": [
+                "The steel ladder is on the left side of the wagon.",
+                "The steel ladder is on the right side of the wagon."
+            ],
+            "image": "sa_79958.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "steel ladder",
+                "wagon"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1112,
+                        686,
+                        21,
+                        47
+                    ],
+                    "name": "steel ladder"
+                },
+                {
+                    "bbox": [
+                        1345,
+                        831,
+                        65,
+                        31
+                    ],
+                    "name": "wagon"
+                }
+            ],
+            "option_chosen": "The steel ladder is on the left side of the wagon.",
+            "correct": 1
+        },
+        {
+            "question": "Is the broom on the left or right side of the folded chair?",
+            "options": [
+                "The broom is on the left side of the folded chair.",
+                "The broom is on the right side of the folded chair."
+            ],
+            "image": "sa_71151.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "broom",
+                "folded chair"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        675,
+                        723,
+                        62,
+                        227
+                    ],
+                    "name": "broom"
+                },
+                {
+                    "bbox": [
+                        728,
+                        760,
+                        118,
+                        215
+                    ],
+                    "name": "folded chair"
+                }
+            ],
+            "option_chosen": "The broom is on the left side of the folded chair.",
+            "correct": 1
+        },
+        {
+            "question": "Is the suitcase on the left or right side of the river?",
+            "options": [
+                "The suitcase is on the left side of the river.",
+                "The suitcase is on the right side of the river."
+            ],
+            "image": "sa_36787.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "suitcase"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        20,
+                        760,
+                        68,
+                        117
+                    ],
+                    "name": "suitcase"
+                }
+            ],
+            "option_chosen": "The suitcase is on the left side of the river.",
+            "correct": 1
+        },
+        {
+            "question": "Is the trash can on the left or right side of the black chair?",
+            "options": [
+                "The trash can is on the left side of the black chair.",
+                "The trash can is on the right side of the black chair."
+            ],
+            "image": "sa_5156.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "trash can",
+                "black chair"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1312,
+                        823,
+                        50,
+                        73
+                    ],
+                    "name": "trash can"
+                },
+                {
+                    "bbox": [
+                        1443,
+                        837,
+                        45,
+                        54
+                    ],
+                    "name": "black chair"
+                }
+            ],
+            "option_chosen": "The trash can is on the left side of the black chair.",
+            "correct": 1
+        },
+        {
+            "question": "Is the cyclist on the left or right side of the sculpture?",
+            "options": [
+                "The cyclist is on the right side of the sculpture.",
+                "The cyclist is on the left side of the sculpture."
+            ],
+            "image": "sa_41869.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "cyclist"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1396,
+                        879,
+                        23,
+                        45
+                    ],
+                    "name": "cyclist"
+                }
+            ],
+            "option_chosen": "The cyclist is on the right side of the sculpture.",
+            "correct": 1
+        },
+        {
+            "question": "Is the seesaw on the left or right side of the red vehicle?",
+            "options": [
+                "The seesaw is on the right side of the red vehicle.",
+                "The seesaw is on the left side of the red vehicle."
+            ],
+            "image": "sa_53509.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "seesaw",
+                "red vehicle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2625,
+                        1002,
+                        192,
+                        76
+                    ],
+                    "name": "seesaw"
+                },
+                {
+                    "bbox": [
+                        2388,
+                        835,
+                        80,
+                        46
+                    ],
+                    "name": "red vehicle"
+                }
+            ],
+            "option_chosen": "The seesaw is on the left side of the red vehicle.",
+            "correct": 0
+        },
+        {
+            "question": "Is the green surfboard on the left or right side of the purple umbrella?",
+            "options": [
+                "The green surfboard is on the left side of the purple umbrella.",
+                "The green surfboard is on the right side of the purple umbrella."
+            ],
+            "image": "sa_29022.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "green surfboard",
+                "purple umbrella"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        634,
+                        606,
+                        38,
+                        31
+                    ],
+                    "name": "green surfboard"
+                },
+                {
+                    "bbox": [
+                        1746,
+                        786,
+                        69,
+                        48
+                    ],
+                    "name": "purple umbrella"
+                }
+            ],
+            "option_chosen": "The green surfboard is on the left side of the purple umbrella.",
+            "correct": 1
+        },
+        {
+            "question": "Is the red car on the left or right side of the police car?",
+            "options": [
+                "The red car is on the left side of the police car.",
+                "The red car is on the right side of the police car."
+            ],
+            "image": "sa_19421.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "red car",
+                "police car"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1353,
+                        1069,
+                        24,
+                        18
+                    ],
+                    "name": "red car"
+                },
+                {
+                    "bbox": [
+                        1621,
+                        1080,
+                        90,
+                        37
+                    ],
+                    "name": "police car"
+                }
+            ],
+            "option_chosen": "The red car is on the left side of the police car.",
+            "correct": 1
+        },
+        {
+            "question": "Is the switch on the left or right side of the towel?",
+            "options": [
+                "The switch is on the right side of the towel.",
+                "The switch is on the left side of the towel."
+            ],
+            "image": "sa_62287.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "towel",
+                "switch"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        339,
+                        1062,
+                        147,
+                        219
+                    ],
+                    "name": "towel"
+                },
+                {
+                    "bbox": [
+                        776,
+                        890,
+                        35,
+                        51
+                    ],
+                    "name": "switch"
+                }
+            ],
+            "option_chosen": "The switch is on the right side of the towel.",
+            "correct": 1
+        },
+        {
+            "question": "Is the trash can on the left or right side of the baby carriage?",
+            "options": [
+                "The trash can is on the right side of the baby carriage.",
+                "The trash can is on the left side of the baby carriage."
+            ],
+            "image": "sa_61121.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "baby carriage",
+                "trash can"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1268,
+                        929,
+                        35,
+                        37
+                    ],
+                    "name": "baby carriage"
+                },
+                {
+                    "bbox": [
+                        1529,
+                        935,
+                        32,
+                        35
+                    ],
+                    "name": "trash can"
+                }
+            ],
+            "option_chosen": "The trash can is on the right side of the baby carriage.",
+            "correct": 1
+        },
+        {
+            "question": "Is the telephone on the left or right side of the hand lamp?",
+            "options": [
+                "The telephone is on the right side of the hand lamp.",
+                "The telephone is on the left side of the hand lamp."
+            ],
+            "image": "sa_69962.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "hand lamp",
+                "telephone"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1478,
+                        386,
+                        63,
+                        121
+                    ],
+                    "name": "hand lamp"
+                },
+                {
+                    "bbox": [
+                        1778,
+                        323,
+                        150,
+                        135
+                    ],
+                    "name": "telephone"
+                }
+            ],
+            "option_chosen": "The telephone is on the right side of the hand lamp.",
+            "correct": 1
+        },
+        {
+            "question": "Is the slide on the left or right side of the life buoy?",
+            "options": [
+                "The slide is on the right side of the life buoy.",
+                "The slide is on the left side of the life buoy."
+            ],
+            "image": "sa_77731.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "slide",
+                "life buoy"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1107,
+                        693,
+                        282,
+                        149
+                    ],
+                    "name": "slide"
+                },
+                {
+                    "bbox": [
+                        401,
+                        738,
+                        30,
+                        35
+                    ],
+                    "name": "life buoy"
+                }
+            ],
+            "option_chosen": "The slide is on the right side of the life buoy.",
+            "correct": 1
+        },
+        {
+            "question": "Is the sky wheel on the left or right side of the person on the horse?",
+            "options": [
+                "The sky wheel is on the right side of the person on the horse.",
+                "The sky wheel is on the left side of the person on the horse."
+            ],
+            "image": "sa_7626.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "sky wheel",
+                "person on the horse"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2970,
+                        869,
+                        71,
+                        116
+                    ],
+                    "name": "sky wheel"
+                },
+                {
+                    "bbox": [
+                        2515,
+                        1021,
+                        19,
+                        24
+                    ],
+                    "name": "person on the horse"
+                }
+            ],
+            "option_chosen": "The sky wheel is on the right side of the person on the horse.",
+            "correct": 1
+        },
+        {
+            "question": "Is the dog on the left or right side of the blue bicycle?",
+            "options": [
+                "The dog is on the right side of the blue bicycle.",
+                "The dog is on the left side of the blue bicycle."
+            ],
+            "image": "sa_69550.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog",
+                "blue bicycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        624,
+                        1229,
+                        15,
+                        21
+                    ],
+                    "name": "dog"
+                },
+                {
+                    "bbox": [
+                        569,
+                        1206,
+                        28,
+                        47
+                    ],
+                    "name": "blue bicycle"
+                }
+            ],
+            "option_chosen": "The dog is on the right side of the blue bicycle.",
+            "correct": 1
+        },
+        {
+            "question": "Is the bucket on the left or right side of the plunger?",
+            "options": [
+                "The bucket is on the right side of the plunger.",
+                "The bucket is on the left side of the plunger."
+            ],
+            "image": "sa_56362.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bucket",
+                "plunger"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        254,
+                        2150,
+                        70,
+                        92
+                    ],
+                    "name": "bucket"
+                },
+                {
+                    "bbox": [
+                        193,
+                        2140,
+                        27,
+                        88
+                    ],
+                    "name": "plunger"
+                }
+            ],
+            "option_chosen": "The bucket is on the left side of the plunger.",
+            "correct": 0
+        },
+        {
+            "question": "Is the shopping cart on the left or right side of the dog?",
+            "options": [
+                "The shopping cart is on the left side of the dog.",
+                "The shopping cart is on the right side of the dog."
+            ],
+            "image": "sa_59351.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "shopping cart",
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1518,
+                        1015,
+                        70,
+                        70
+                    ],
+                    "name": "shopping cart"
+                },
+                {
+                    "bbox": [
+                        1676,
+                        1047,
+                        52,
+                        47
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The shopping cart is on the left side of the dog.",
+            "correct": 1
+        },
+        {
+            "question": "Is the pillar box on the left or right side of the man with the cane?",
+            "options": [
+                "The pillar box is on the right side of the man with the cane.",
+                "The pillar box is on the left side of the man with the cane."
+            ],
+            "image": "sa_58331.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "pillar box",
+                "man with the cane"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2069,
+                        1127,
+                        44,
+                        83
+                    ],
+                    "name": "pillar box"
+                },
+                {
+                    "bbox": [
+                        1701,
+                        1136,
+                        70,
+                        161
+                    ],
+                    "name": "man with the cane"
+                }
+            ],
+            "option_chosen": "The pillar box is on the right side of the man with the cane.",
+            "correct": 1
+        },
+        {
+            "question": "Is the wheelchair on the left or right side of the lamp post?",
+            "options": [
+                "The wheelchair is on the left side of the lamp post.",
+                "The wheelchair is on the right side of the lamp post."
+            ],
+            "image": "sa_23298.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "wheelchair"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        169,
+                        1048,
+                        26,
+                        27
+                    ],
+                    "name": "wheelchair"
+                }
+            ],
+            "option_chosen": "The wheelchair is on the left side of the lamp post.",
+            "correct": 1
+        },
+        {
+            "question": "Is the motorcyclist on the left or right side of the truck?",
+            "options": [
+                "The motorcyclist is on the left side of the truck.",
+                "The motorcyclist is on the right side of the truck."
+            ],
+            "image": "sa_64142.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "motorcyclist"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        194,
+                        700,
+                        25,
+                        40
+                    ],
+                    "name": "motorcyclist"
+                }
+            ],
+            "option_chosen": "The motorcyclist is on the left side of the truck.",
+            "correct": 1
+        },
+        {
+            "question": "Is the man with yellow cap on the left or right side of the lamp post?",
+            "options": [
+                "The man with yellow cap is on the left side of the lamp post.",
+                "The man with yellow cap is on the right side of the lamp post."
+            ],
+            "image": "sa_30441.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "man with yellow cap"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        26,
+                        1355,
+                        39,
+                        121
+                    ],
+                    "name": "man with yellow cap"
+                }
+            ],
+            "option_chosen": "The man with yellow cap is on the left side of the lamp post.",
+            "correct": 1
+        },
+        {
+            "question": "Is the yellow trash can on the left or right side of the motorcycle?",
+            "options": [
+                "The yellow trash can is on the right side of the motorcycle.",
+                "The yellow trash can is on the left side of the motorcycle."
+            ],
+            "image": "sa_3053.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "yellow trash can",
+                "motorcycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1065,
+                        1169,
+                        71,
+                        119
+                    ],
+                    "name": "yellow trash can"
+                },
+                {
+                    "bbox": [
+                        517,
+                        1158,
+                        96,
+                        93
+                    ],
+                    "name": "motorcycle"
+                }
+            ],
+            "option_chosen": "The yellow trash can is on the right side of the motorcycle.",
+            "correct": 1
+        },
+        {
+            "question": "Is the blue bench on the left or right side of the green door?",
+            "options": [
+                "The blue bench is on the left side of the green door.",
+                "The blue bench is on the right side of the green door."
+            ],
+            "image": "sa_80084.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "blue bench"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        578,
+                        1001,
+                        95,
+                        96
+                    ],
+                    "name": "blue bench"
+                }
+            ],
+            "option_chosen": "The blue bench is on the left side of the green door.",
+            "correct": 1
+        },
+        {
+            "question": "Is the bucket on the left or right side of the cyclist?",
+            "options": [
+                "The bucket is on the right side of the cyclist.",
+                "The bucket is on the left side of the cyclist."
+            ],
+            "image": "sa_86732.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bucket",
+                "cyclist"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1904,
+                        906,
+                        46,
+                        54
+                    ],
+                    "name": "bucket"
+                },
+                {
+                    "bbox": [
+                        882,
+                        899,
+                        22,
+                        62
+                    ],
+                    "name": "cyclist"
+                }
+            ],
+            "option_chosen": "The bucket is on the right side of the cyclist.",
+            "correct": 1
+        },
+        {
+            "question": "Is the baby carriage on the left or right side of the cone?",
+            "options": [
+                "The baby carriage is on the right side of the cone.",
+                "The baby carriage is on the left side of the cone."
+            ],
+            "image": "sa_24971.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "baby carriage",
+                "cone"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        451,
+                        1180,
+                        27,
+                        20
+                    ],
+                    "name": "baby carriage"
+                },
+                {
+                    "bbox": [
+                        313,
+                        1189,
+                        10,
+                        15
+                    ],
+                    "name": "cone"
+                }
+            ],
+            "option_chosen": "The baby carriage is on the right side of the cone.",
+            "correct": 1
+        },
+        {
+            "question": "Is the blue bottle on the left or right side of the carton?",
+            "options": [
+                "The blue bottle is on the left side of the carton.",
+                "The blue bottle is on the right side of the carton."
+            ],
+            "image": "sa_45802.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "blue bottle",
+                "carton"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        39,
+                        967,
+                        23,
+                        53
+                    ],
+                    "name": "blue bottle"
+                },
+                {
+                    "bbox": [
+                        82,
+                        976,
+                        62,
+                        38
+                    ],
+                    "name": "carton"
+                }
+            ],
+            "option_chosen": "The blue bottle is on the left side of the carton.",
+            "correct": 1
+        },
+        {
+            "question": "Is the pillar box on the left or right side of the telephone booth?",
+            "options": [
+                "The pillar box is on the right side of the telephone booth.",
+                "The pillar box is on the left side of the telephone booth."
+            ],
+            "image": "sa_62783.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "telephone booth",
+                "pillar box"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        532,
+                        1033,
+                        43,
+                        99
+                    ],
+                    "name": "telephone booth"
+                },
+                {
+                    "bbox": [
+                        794,
+                        1073,
+                        24,
+                        57
+                    ],
+                    "name": "pillar box"
+                }
+            ],
+            "option_chosen": "The pillar box is on the right side of the telephone booth.",
+            "correct": 1
+        },
+        {
+            "question": "Is the motorcycle on the left or right side of the street?",
+            "options": [
+                "The motorcycle is on the left side of the street.",
+                "The motorcycle is on the right side of the street."
+            ],
+            "image": "sa_57960.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "motorcycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1324,
+                        1416,
+                        32,
+                        40
+                    ],
+                    "name": "motorcycle"
+                }
+            ],
+            "option_chosen": "The motorcycle is on the right side of the street.",
+            "correct": 0
+        },
+        {
+            "question": "Is the cyclist on the left or right side of the woman's handbag?",
+            "options": [
+                "The cyclist is on the left side of the woman's handbag.",
+                "The cyclist is on the right side of the woman's handbag."
+            ],
+            "image": "sa_23098.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "cyclist",
+                "woman's handbag"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1040,
+                        971,
+                        28,
+                        41
+                    ],
+                    "name": "cyclist"
+                },
+                {
+                    "bbox": [
+                        1974,
+                        1002,
+                        21,
+                        24
+                    ],
+                    "name": "woman's handbag"
+                }
+            ],
+            "option_chosen": "The cyclist is on the left side of the woman's handbag.",
+            "correct": 1
+        },
+        {
+            "question": "Is the green handbag on the left or right side of the blue umbrella?",
+            "options": [
+                "The green handbag is on the left side of the blue umbrella.",
+                "The green handbag is on the right side of the blue umbrella."
+            ],
+            "image": "sa_6887.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "green handbag",
+                "blue umbrella"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        629,
+                        962,
+                        38,
+                        50
+                    ],
+                    "name": "green handbag"
+                },
+                {
+                    "bbox": [
+                        1465,
+                        872,
+                        113,
+                        81
+                    ],
+                    "name": "blue umbrella"
+                }
+            ],
+            "option_chosen": "The green handbag is on the left side of the blue umbrella.",
+            "correct": 1
+        },
+        {
+            "question": "Is the dog on the left or right side of the bicycle?",
+            "options": [
+                "The dog is on the right side of the bicycle.",
+                "The dog is on the left side of the bicycle."
+            ],
+            "image": "sa_3796.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog",
+                "bicycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        847,
+                        1051,
+                        59,
+                        88
+                    ],
+                    "name": "dog"
+                },
+                {
+                    "bbox": [
+                        239,
+                        787,
+                        67,
+                        72
+                    ],
+                    "name": "bicycle"
+                }
+            ],
+            "option_chosen": "The dog is on the right side of the bicycle.",
+            "correct": 1
+        },
+        {
+            "question": "Is the blue mask on the left or right side of the black mask?",
+            "options": [
+                "The blue mask is on the left side of the black mask.",
+                "The blue mask is on the right side of the black mask."
+            ],
+            "image": "sa_7621.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "blue mask",
+                "black mask"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        702,
+                        387,
+                        71,
+                        101
+                    ],
+                    "name": "blue mask"
+                },
+                {
+                    "bbox": [
+                        1457,
+                        409,
+                        86,
+                        60
+                    ],
+                    "name": "black mask"
+                }
+            ],
+            "option_chosen": "The blue mask is on the left side of the black mask.",
+            "correct": 1
+        },
+        {
+            "question": "Is the orange luggage on the left or right side of the purple umbrella?",
+            "options": [
+                "The orange luggage is on the right side of the purple umbrella.",
+                "The orange luggage is on the left side of the purple umbrella."
+            ],
+            "image": "sa_5593.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "orange luggage",
+                "purple umbrella"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1347,
+                        1303,
+                        46,
+                        129
+                    ],
+                    "name": "orange luggage"
+                },
+                {
+                    "bbox": [
+                        164,
+                        1199,
+                        103,
+                        44
+                    ],
+                    "name": "purple umbrella"
+                }
+            ],
+            "option_chosen": "The orange luggage is on the right side of the purple umbrella.",
+            "correct": 1
+        },
+        {
+            "question": "Is the red vehicle on the left or right side of the sculpture?",
+            "options": [
+                "The red vehicle is on the right side of the sculpture.",
+                "The red vehicle is on the left side of the sculpture."
+            ],
+            "image": "sa_5465.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "red vehicle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1909,
+                        610,
+                        99,
+                        33
+                    ],
+                    "name": "red vehicle"
+                }
+            ],
+            "option_chosen": "The red vehicle is on the right side of the sculpture.",
+            "correct": 1
+        },
+        {
+            "question": "Is the white chair on the left or right side of the street?",
+            "options": [
+                "The white chair is on the right side of the street.",
+                "The white chair is on the left side of the street."
+            ],
+            "image": "sa_78272.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "white chair"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1901,
+                        1187,
+                        92,
+                        110
+                    ],
+                    "name": "white chair"
+                }
+            ],
+            "option_chosen": "The white chair is on the right side of the street.",
+            "correct": 1
+        },
+        {
+            "question": "Is the kid with black shirt on the left or right side of the kid with blue shirt?",
+            "options": [
+                "The kid with black shirt is on the left side of the kid with blue shirt.",
+                "The kid with black shirt is on the right side of the kid with blue shirt."
+            ],
+            "image": "sa_4953.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "kid with black shirt",
+                "kid with blue shirt"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1195,
+                        717,
+                        33,
+                        73
+                    ],
+                    "name": "kid with black shirt"
+                },
+                {
+                    "bbox": [
+                        1244,
+                        746,
+                        29,
+                        82
+                    ],
+                    "name": "kid with blue shirt"
+                }
+            ],
+            "option_chosen": "The kid with black shirt is on the left side of the kid with blue shirt.",
+            "correct": 1
+        },
+        {
+            "question": "Is the red balloon above or below the white balloon?",
+            "options": [
+                "The red balloon is below the white balloon.",
+                "The red balloon is above the white balloon."
+            ],
+            "image": "sa_46221.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "red balloon",
+                "white balloon"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1593,
+                        759,
+                        24,
+                        18
+                    ],
+                    "name": "red balloon"
+                },
+                {
+                    "bbox": [
+                        1558,
+                        714,
+                        21,
+                        23
+                    ],
+                    "name": "white balloon"
+                }
+            ],
+            "option_chosen": "The red balloon is above the white balloon.",
+            "correct": 0
+        },
+        {
+            "question": "Is the person with white trousers on the left or right side of the person in blue?",
+            "options": [
+                "The person with white trousers is on the left side of the person in blue.",
+                "The person with white trousers is on the right side of the person in blue."
+            ],
+            "image": "sa_69634.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "person in blue",
+                "person with white trousers"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        308,
+                        381,
+                        22,
+                        33
+                    ],
+                    "name": "person in blue"
+                },
+                {
+                    "bbox": [
+                        208,
+                        400,
+                        23,
+                        50
+                    ],
+                    "name": "person with white trousers"
+                }
+            ],
+            "option_chosen": "The person with white trousers is on the left side of the person in blue.",
+            "correct": 1
+        },
+        {
+            "question": "Is the soccer ball on the left or right side of the long bench?",
+            "options": [
+                "The soccer ball is on the left side of the long bench.",
+                "The soccer ball is on the right side of the long bench."
+            ],
+            "image": "sa_49792.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "soccer ball"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1054,
+                        1004,
+                        15,
+                        15
+                    ],
+                    "name": "soccer ball"
+                }
+            ],
+            "option_chosen": "The soccer ball is on the left side of the long bench.",
+            "correct": 1
+        },
+        {
+            "question": "Is the silver vehicle on the left or right side of the red vehicle?",
+            "options": [
+                "The silver vehicle is on the left side of the red vehicle.",
+                "The silver vehicle is on the right side of the red vehicle."
+            ],
+            "image": "sa_34291.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "silver vehicle",
+                "red vehicle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        83,
+                        89,
+                        88,
+                        40
+                    ],
+                    "name": "silver vehicle"
+                },
+                {
+                    "bbox": [
+                        631,
+                        16,
+                        90,
+                        38
+                    ],
+                    "name": "red vehicle"
+                }
+            ],
+            "option_chosen": "The silver vehicle is on the left side of the red vehicle.",
+            "correct": 1
+        },
+        {
+            "question": "Is the bell above or below the clock?",
+            "options": [
+                "The bell is below the clock.",
+                "The bell is above the clock."
+            ],
+            "image": "sa_28639.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "bell",
+                "clock"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        942,
+                        660,
+                        36,
+                        72
+                    ],
+                    "name": "bell"
+                },
+                {
+                    "bbox": [
+                        921,
+                        493,
+                        63,
+                        48
+                    ],
+                    "name": "clock"
+                }
+            ],
+            "option_chosen": "The bell is above the clock.",
+            "correct": 0
+        },
+        {
+            "question": "Which one is closer to the camera, the black vehicle or the silver vehicle?",
+            "options": [
+                "The black vehicle is closer to the camera.",
+                "The silver vehicle is closer to the camera."
+            ],
+            "image": "sa_6531.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "black vehicle",
+                "silver vehicle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1391,
+                        749,
+                        58,
+                        50
+                    ],
+                    "name": "black vehicle"
+                },
+                {
+                    "bbox": [
+                        1463,
+                        712,
+                        74,
+                        39
+                    ],
+                    "name": "silver vehicle"
+                }
+            ],
+            "option_chosen": "The black vehicle is closer to the camera.",
+            "correct": 1
+        },
+        {
+            "question": "Is the green bucket on the left or right side of the red tent?",
+            "options": [
+                "The green bucket is on the left side of the red tent.",
+                "The green bucket is on the right side of the red tent."
+            ],
+            "image": "sa_87051.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "green bucket"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        46,
+                        1039,
+                        55,
+                        45
+                    ],
+                    "name": "green bucket"
+                }
+            ],
+            "option_chosen": "The green bucket is on the left side of the red tent.",
+            "correct": 1
+        },
+        {
+            "question": "Is the blue luggage on the left or right side of the bus?",
+            "options": [
+                "The blue luggage is on the right side of the bus.",
+                "The blue luggage is on the left side of the bus."
+            ],
+            "image": "sa_83235.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "blue luggage"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2012,
+                        909,
+                        62,
+                        47
+                    ],
+                    "name": "blue luggage"
+                }
+            ],
+            "option_chosen": "The blue luggage is on the right side of the bus.",
+            "correct": 1
+        },
+        {
+            "question": "Is the dog on the left or right side of the golden tower?",
+            "options": [
+                "The dog is on the left side of the golden tower.",
+                "The dog is on the right side of the golden tower."
+            ],
+            "image": "sa_31586.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        641,
+                        901,
+                        21,
+                        32
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The dog is on the left side of the golden tower.",
+            "correct": 1
+        },
+        {
+            "question": "Is the woman with a backpack on the left or right side of the person with a beanie?",
+            "options": [
+                "The woman with a backpack is on the left side of the person with a beanie.",
+                "The woman with a backpack is on the right side of the person with a beanie."
+            ],
+            "image": "sa_24464.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "woman with a backpack",
+                "person with a beanie"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1151,
+                        1305,
+                        28,
+                        29
+                    ],
+                    "name": "woman with a backpack"
+                },
+                {
+                    "bbox": [
+                        1938,
+                        1275,
+                        26,
+                        35
+                    ],
+                    "name": "person with a beanie"
+                }
+            ],
+            "option_chosen": "The woman with a backpack is on the left side of the person with a beanie.",
+            "correct": 1
+        },
+        {
+            "question": "Is the red backpack on the left or right side of the clock?",
+            "options": [
+                "The red backpack is on the right side of the clock.",
+                "The red backpack is on the left side of the clock."
+            ],
+            "image": "sa_4137.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "red backpack",
+                "clock"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1922,
+                        1011,
+                        64,
+                        77
+                    ],
+                    "name": "red backpack"
+                },
+                {
+                    "bbox": [
+                        1035,
+                        692,
+                        71,
+                        62
+                    ],
+                    "name": "clock"
+                }
+            ],
+            "option_chosen": "The red backpack is on the right side of the clock.",
+            "correct": 1
+        },
+        {
+            "question": "Is the umbrella on the left or right side of the traffic light?",
+            "options": [
+                "The umbrella is on the right side of the traffic light.",
+                "The umbrella is on the left side of the traffic light."
+            ],
+            "image": "sa_10313.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "umbrella",
+                "traffic light"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1772,
+                        1152,
+                        144,
+                        100
+                    ],
+                    "name": "umbrella"
+                },
+                {
+                    "bbox": [
+                        1479,
+                        984,
+                        42,
+                        103
+                    ],
+                    "name": "traffic light"
+                }
+            ],
+            "option_chosen": "The umbrella is on the right side of the traffic light.",
+            "correct": 1
+        },
+        {
+            "question": "Is the red chair on the left or right side of the road?",
+            "options": [
+                "The red chair is on the right side of the road.",
+                "The red chair is on the left side of the road."
+            ],
+            "image": "sa_25678.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "red chair"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1456,
+                        983,
+                        17,
+                        24
+                    ],
+                    "name": "red chair"
+                }
+            ],
+            "option_chosen": "The red chair is on the right side of the road.",
+            "correct": 1
+        },
+        {
+            "question": "Is the man with green shorts on the left or right side of the blue boat?",
+            "options": [
+                "The man with green shorts is on the left side of the blue boat.",
+                "The man with green shorts is on the right side of the blue boat."
+            ],
+            "image": "sa_31038.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "man with green shorts"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        366,
+                        248,
+                        26,
+                        61
+                    ],
+                    "name": "man with green shorts"
+                }
+            ],
+            "option_chosen": "The man with green shorts is on the left side of the blue boat.",
+            "correct": 1
+        },
+        {
+            "question": "Is the vehicle on the left or right side of the blue umbrella?",
+            "options": [
+                "The vehicle is on the left side of the blue umbrella.",
+                "The vehicle is on the right side of the blue umbrella."
+            ],
+            "image": "sa_40977.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "vehicle",
+                "blue umbrella"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        627,
+                        707,
+                        41,
+                        18
+                    ],
+                    "name": "vehicle"
+                },
+                {
+                    "bbox": [
+                        989,
+                        806,
+                        23,
+                        27
+                    ],
+                    "name": "blue umbrella"
+                }
+            ],
+            "option_chosen": "The vehicle is on the left side of the blue umbrella.",
+            "correct": 1
+        },
+        {
+            "question": "Is the blue truck on the left or right side of the white vehicle?",
+            "options": [
+                "The blue truck is on the right side of the white vehicle.",
+                "The blue truck is on the left side of the white vehicle."
+            ],
+            "image": "sa_23264.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "blue truck",
+                "white vehicle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1429,
+                        688,
+                        83,
+                        35
+                    ],
+                    "name": "blue truck"
+                },
+                {
+                    "bbox": [
+                        1193,
+                        717,
+                        80,
+                        30
+                    ],
+                    "name": "white vehicle"
+                }
+            ],
+            "option_chosen": "The blue truck is on the right side of the white vehicle.",
+            "correct": 1
+        },
+        {
+            "question": "Is the street lamp on the left or right side of the blue van?",
+            "options": [
+                "The street lamp is on the left side of the blue van.",
+                "The street lamp is on the right side of the blue van."
+            ],
+            "image": "sa_42676.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "street lamp",
+                "blue van"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        932,
+                        802,
+                        23,
+                        197
+                    ],
+                    "name": "street lamp"
+                },
+                {
+                    "bbox": [
+                        1688,
+                        888,
+                        49,
+                        31
+                    ],
+                    "name": "blue van"
+                }
+            ],
+            "option_chosen": "The street lamp is on the left side of the blue van.",
+            "correct": 1
+        },
+        {
+            "question": "Is the white truck on the left or right side of the red truck?",
+            "options": [
+                "The white truck is on the right side of the red truck.",
+                "The white truck is on the left side of the red truck."
+            ],
+            "image": "sa_65804.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "white truck",
+                "red truck"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2638,
+                        618,
+                        33,
+                        18
+                    ],
+                    "name": "white truck"
+                },
+                {
+                    "bbox": [
+                        114,
+                        736,
+                        54,
+                        22
+                    ],
+                    "name": "red truck"
+                }
+            ],
+            "option_chosen": "The white truck is on the left side of the red truck.",
+            "correct": 0
+        },
+        {
+            "question": "Which one is closer to the camera, the water bottle or the vehicle?",
+            "options": [
+                "The water bottle is closer to the camera.",
+                "The vehicle is closer to the camera."
+            ],
+            "image": "sa_3222.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "water bottle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        297,
+                        885,
+                        41,
+                        87
+                    ],
+                    "name": "water bottle"
+                }
+            ],
+            "option_chosen": "The water bottle is closer to the camera.",
+            "correct": 1
+        },
+        {
+            "question": "Is the drum on the left or right side of the yellow balloon?",
+            "options": [
+                "The drum is on the left side of the yellow balloon.",
+                "The drum is on the right side of the yellow balloon."
+            ],
+            "image": "sa_7228.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "drum"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        136,
+                        835,
+                        91,
+                        80
+                    ],
+                    "name": "drum"
+                }
+            ],
+            "option_chosen": "The drum is on the left side of the yellow balloon.",
+            "correct": 1
+        },
+        {
+            "question": "Is the yellow car on the left or right side of the pool?",
+            "options": [
+                "The yellow car is on the left side of the pool.",
+                "The yellow car is on the right side of the pool."
+            ],
+            "image": "sa_65606.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "yellow car"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        824,
+                        1208,
+                        32,
+                        26
+                    ],
+                    "name": "yellow car"
+                }
+            ],
+            "option_chosen": "The yellow car is on the left side of the pool.",
+            "correct": 1
+        },
+        {
+            "question": "Is the volleyball on the left or right side of the man with white cap?",
+            "options": [
+                "The volleyball is on the left side of the man with white cap.",
+                "The volleyball is on the right side of the man with white cap."
+            ],
+            "image": "sa_53377.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "volleyball",
+                "man with white cap"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1417,
+                        820,
+                        23,
+                        22
+                    ],
+                    "name": "volleyball"
+                },
+                {
+                    "bbox": [
+                        1510,
+                        666,
+                        66,
+                        176
+                    ],
+                    "name": "man with white cap"
+                }
+            ],
+            "option_chosen": "The volleyball is on the left side of the man with white cap.",
+            "correct": 1
+        },
+        {
+            "question": "Is the bowl on the left or right side of the faucet?",
+            "options": [
+                "The bowl is on the right side of the faucet.",
+                "The bowl is on the left side of the faucet."
+            ],
+            "image": "sa_51681.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "faucet",
+                "bowl"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        636,
+                        619,
+                        75,
+                        91
+                    ],
+                    "name": "faucet"
+                },
+                {
+                    "bbox": [
+                        734,
+                        656,
+                        95,
+                        42
+                    ],
+                    "name": "bowl"
+                }
+            ],
+            "option_chosen": "The bowl is on the right side of the faucet.",
+            "correct": 1
+        },
+        {
+            "question": "Is the telephone booth on the left or right side of the yellow van?",
+            "options": [
+                "The telephone booth is on the right side of the yellow van.",
+                "The telephone booth is on the left side of the yellow van."
+            ],
+            "image": "sa_34785.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "yellow van",
+                "telephone booth"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        904,
+                        1165,
+                        45,
+                        46
+                    ],
+                    "name": "yellow van"
+                },
+                {
+                    "bbox": [
+                        1014,
+                        1195,
+                        23,
+                        51
+                    ],
+                    "name": "telephone booth"
+                }
+            ],
+            "option_chosen": "The telephone booth is on the right side of the yellow van.",
+            "correct": 1
+        },
+        {
+            "question": "Is the shark doll above or below the banana doll?",
+            "options": [
+                "The shark doll is above the banana doll.",
+                "The shark doll is below the banana doll."
+            ],
+            "image": "sa_52228.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "shark doll",
+                "banana doll"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1484,
+                        57,
+                        208,
+                        125
+                    ],
+                    "name": "shark doll"
+                },
+                {
+                    "bbox": [
+                        1515,
+                        254,
+                        47,
+                        96
+                    ],
+                    "name": "banana doll"
+                }
+            ],
+            "option_chosen": "The shark doll is above the banana doll.",
+            "correct": 1
+        },
+        {
+            "question": "Is the dog on the left or right side of the crosswalk?",
+            "options": [
+                "The dog is on the right side of the crosswalk.",
+                "The dog is on the left side of the crosswalk."
+            ],
+            "image": "sa_5613.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        2136,
+                        1099,
+                        76,
+                        51
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The dog is on the right side of the crosswalk.",
+            "correct": 1
+        },
+        {
+            "question": "Is the dog on the left or right side of the river?",
+            "options": [
+                "The dog is on the right side of the river.",
+                "The dog is on the left side of the river."
+            ],
+            "image": "sa_24031.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1850,
+                        702,
+                        19,
+                        35
+                    ],
+                    "name": "dog"
+                }
+            ],
+            "option_chosen": "The dog is on the right side of the river.",
+            "correct": 1
+        },
+        {
+            "question": "Is the scooter on the left or right side of the cyclist?",
+            "options": [
+                "The scooter is on the right side of the cyclist.",
+                "The scooter is on the left side of the cyclist."
+            ],
+            "image": "sa_33280.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "scooter",
+                "cyclist"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        3535,
+                        763,
+                        62,
+                        114
+                    ],
+                    "name": "scooter"
+                },
+                {
+                    "bbox": [
+                        487,
+                        763,
+                        46,
+                        82
+                    ],
+                    "name": "cyclist"
+                }
+            ],
+            "option_chosen": "The scooter is on the right side of the cyclist.",
+            "correct": 1
+        },
+        {
+            "question": "Is the shovel on the left or right side of the house?",
+            "options": [
+                "The shovel is on the right side of the house.",
+                "The shovel is on the left side of the house."
+            ],
+            "image": "sa_31784.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "shovel"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1487,
+                        939,
+                        125,
+                        271
+                    ],
+                    "name": "shovel"
+                }
+            ],
+            "option_chosen": "The shovel is on the right side of the house.",
+            "correct": 1
+        },
+        {
+            "question": "Is the keyboard on the left or right side of the guitar?",
+            "options": [
+                "The keyboard is on the left side of the guitar.",
+                "The keyboard is on the right side of the guitar."
+            ],
+            "image": "sa_61594.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "keyboard",
+                "guitar"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1259,
+                        751,
+                        90,
+                        15
+                    ],
+                    "name": "keyboard"
+                },
+                {
+                    "bbox": [
+                        1445,
+                        734,
+                        36,
+                        70
+                    ],
+                    "name": "guitar"
+                }
+            ],
+            "option_chosen": "The keyboard is on the left side of the guitar.",
+            "correct": 1
+        },
+        {
+            "question": "Is the yellow umbrella on the left or right side of the pink umbrella?",
+            "options": [
+                "The yellow umbrella is on the left side of the pink umbrella.",
+                "The yellow umbrella is on the right side of the pink umbrella."
+            ],
+            "image": "sa_40555.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "yellow umbrella",
+                "pink umbrella"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1166,
+                        1060,
+                        33,
+                        31
+                    ],
+                    "name": "yellow umbrella"
+                },
+                {
+                    "bbox": [
+                        1227,
+                        986,
+                        31,
+                        28
+                    ],
+                    "name": "pink umbrella"
+                }
+            ],
+            "option_chosen": "The yellow umbrella is on the left side of the pink umbrella.",
+            "correct": 1
+        },
+        {
+            "question": "Is the motorcycle on the left or right side of the dog?",
+            "options": [
+                "The motorcycle is on the left side of the dog.",
+                "The motorcycle is on the right side of the dog."
+            ],
+            "image": "sa_6183.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog",
+                "motorcycle"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1455,
+                        1302,
+                        117,
+                        77
+                    ],
+                    "name": "dog"
+                },
+                {
+                    "bbox": [
+                        684,
+                        945,
+                        150,
+                        110
+                    ],
+                    "name": "motorcycle"
+                }
+            ],
+            "option_chosen": "The motorcycle is on the left side of the dog.",
+            "correct": 1
+        },
+        {
+            "question": "Is the red suitcase on the left or right side of the red stool?",
+            "options": [
+                "The red suitcase is on the left side of the red stool.",
+                "The red suitcase is on the right side of the red stool."
+            ],
+            "image": "sa_57152.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "red stool",
+                "red suitcase"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        671,
+                        978,
+                        20,
+                        25
+                    ],
+                    "name": "red stool"
+                },
+                {
+                    "bbox": [
+                        570,
+                        980,
+                        26,
+                        29
+                    ],
+                    "name": "red suitcase"
+                }
+            ],
+            "option_chosen": "The red suitcase is on the left side of the red stool.",
+            "correct": 1
+        },
+        {
+            "question": "Is the baby carriage on the left or right side of the cyclist?",
+            "options": [
+                "The baby carriage is on the right side of the cyclist.",
+                "The baby carriage is on the left side of the cyclist."
+            ],
+            "image": "sa_64257.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "cyclist",
+                "baby carriage"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        678,
+                        870,
+                        32,
+                        42
+                    ],
+                    "name": "cyclist"
+                },
+                {
+                    "bbox": [
+                        1819,
+                        868,
+                        44,
+                        26
+                    ],
+                    "name": "baby carriage"
+                }
+            ],
+            "option_chosen": "The baby carriage is on the right side of the cyclist.",
+            "correct": 1
+        },
+        {
+            "question": "Is the small red car on the left or right side of the baby carriage?",
+            "options": [
+                "The small red car is on the left side of the baby carriage.",
+                "The small red car is on the right side of the baby carriage."
+            ],
+            "image": "sa_23575.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "small red car",
+                "baby carriage"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        675,
+                        959,
+                        50,
+                        28
+                    ],
+                    "name": "small red car"
+                },
+                {
+                    "bbox": [
+                        837,
+                        954,
+                        39,
+                        51
+                    ],
+                    "name": "baby carriage"
+                }
+            ],
+            "option_chosen": "The small red car is on the left side of the baby carriage.",
+            "correct": 1
+        },
+        {
+            "question": "Is the dog on the left or right side of the scooter?",
+            "options": [
+                "The dog is on the left side of the scooter.",
+                "The dog is on the right side of the scooter."
+            ],
+            "image": "sa_3194.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "dog",
+                "scooter"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        875,
+                        1231,
+                        161,
+                        112
+                    ],
+                    "name": "dog"
+                },
+                {
+                    "bbox": [
+                        1723,
+                        916,
+                        97,
+                        97
+                    ],
+                    "name": "scooter"
+                }
+            ],
+            "option_chosen": "The dog is on the left side of the scooter.",
+            "correct": 1
+        },
+        {
+            "question": "Is the soccer ball on the left or right side of the water dispenser?",
+            "options": [
+                "The soccer ball is on the right side of the water dispenser.",
+                "The soccer ball is on the left side of the water dispenser."
+            ],
+            "image": "sa_40188.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "soccer ball",
+                "water dispenser"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1344,
+                        942,
+                        19,
+                        20
+                    ],
+                    "name": "soccer ball"
+                },
+                {
+                    "bbox": [
+                        763,
+                        766,
+                        20,
+                        59
+                    ],
+                    "name": "water dispenser"
+                }
+            ],
+            "option_chosen": "The soccer ball is on the right side of the water dispenser.",
+            "correct": 1
+        },
+        {
+            "question": "Is the green statue on the left or right side of the white statue?",
+            "options": [
+                "The green statue is on the left side of the white statue.",
+                "The green statue is on the right side of the white statue."
+            ],
+            "image": "sa_64554.jpg",
+            "prediction_freeform": "no prediction needed, the object labels are correct",
+            "missing_objects": [
+                "white statue",
+                "green statue"
+            ],
+            "search_result": [
+                {
+                    "bbox": [
+                        1209,
+                        1053,
+                        28,
+                        83
+                    ],
+                    "name": "white statue"
+                },
+                {
+                    "bbox": [
+                        35,
+                        1078,
+                        21,
+                        55
+                    ],
+                    "name": "green statue"
+                }
+            ],
+            "option_chosen": "The green statue is on the left side of the white statue.",
+            "correct": 1
+        }
+    ]
+}
