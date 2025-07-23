@@ -110,9 +110,68 @@ def bounding_boxes_comparison(json_file_correct, json_file_new, what_kind='iou',
 
 
 
-def bounding_boxes_different_missing_comparison_raw(json_file_correct, json_file_new, raw_or_recall='raw', threshold=0.5):
+def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new, raw_or_recall='raw', what_kind='iou', threshold=0.5):
     json_correct = open_json_file(json_file_correct)
     json_new = open_json_file(json_file_new)
+    overall_count, overall_box_count, overall_value, overall_recall_total, overall_precision_total = 0, 0, 0, 0, 0
+    for i in json_new:
+        specific_count, specific_box_count, specific_value, specific_recall_total, specific_precision_total = 0, 0, 0, 0, 0
+        for idx, new_eval in enumerate(json_new[i]):
+            individual_total_value, true_positive, false_positive, false_negative = 0, 0, 0, 0
+            correct_eval = json_correct[i][idx]
+            new_boxes = new_eval['bounding_boxes']
+            correct_boxes = correct_eval['bounding_boxes']
+            tracking_list = [0] * len(new_boxes)  # list of zeroes for every slot in the new_boxes
+            for i in range(len(correct_boxes)):
+                correct_box = correct_boxes[i]
+                judge_value = -1
+                judge_index = -1
+                for j in range(len(new_boxes)):
+                    new_box = new_boxes[j]
+                    temp_judge_value = 0
+                    if what_kind == 'iou':
+                        temp_judge_value = iou(new_box, correct_box)
+                    else:
+                        temp_judge_value = iou(new_box, correct_box)
+                    if temp_judge_value > judge_value:
+                        judge_value = temp_judge_value
+                        judge_index = j
+                tracking_list[judge_index] = 1
+
+                if judge_value < threshold:
+                    false_negative += 1
+                else:
+                    true_positive += 1
+                individual_total_value += judge_value
+            empty_count = tracking_list.count(0)
+            specific_box_count += len(new_boxes)
+            false_positive += empty_count - true_positive
+            individual_precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) > 0 else 0
+            individual_recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) > 0 else 0
+            specific_value += individual_total_value / len(new_boxes) if len(new_boxes) > 0 else 0
+            specific_precision_total += individual_precision
+            specific_recall_total += individual_recall
+            specific_count += 1
+        overall_count += specific_count
+        overall_box_count += specific_box_count
+        overall_value += specific_value
+        print(f"Bounding boxes for {i}:")
+        if raw_or_recall == 'recall':
+            print(f"Precision percentage: {specific_precision_total / specific_count * 100 if specific_count > 0 else 0}%")
+            print(f"Recall percentage: {specific_recall_total / specific_count * 100 if specific_count > 0 else 0}%")
+        else:
+            # if raw_or_recall == 'raw':
+            print(f"Average value percentage: {specific_value / specific_box_count if specific_box_count > 0 else 0}%")
+        overall_precision_total += specific_precision_total
+        overall_recall_total += specific_recall_total
+    print(f"Overall bounding boxes:")
+    if raw_or_recall == 'recall':
+        print(f"Precision percentage: {overall_precision_total / overall_count * 100 if overall_count > 0 else 0}%")
+        print(f"Recall percentage: {overall_recall_total / overall_count * 100 if overall_count > 0 else 0}%")
+    else:
+        # if raw_or_recall == 'raw':
+        print(f"Average value percentage: {overall_value / overall_box_count if overall_box_count > 0 else 0}%")
+    
 def final_results_correct_comparison(json_file_new):
     json_new = open_json_file(json_file_new)
     overall_count = 0
