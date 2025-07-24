@@ -13,12 +13,15 @@ def open_json_file(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
 
-def normal_run_test():
-    pass
-def normal_run_missing_test():
-    pass
-def normal_run_missing_bbox_test():
-    pass
+def normal_run_test(how = "full"):
+    if how == "full":
+        final_results_correct_comparison("general_jsons/eval_results_initial_seal_testing.json")
+    if how == "missing":
+        final_results_correct_comparison("general_jsons/eval_results_correct_missing_object_labels.json")
+    if how == "missing_bbox":
+        final_results_correct_comparison("general_jsons/eval_results_correct_bounding_boxes.json")
+    if how == "from_paper":
+        final_results_correct_comparison("general_jsons/eval_result_from_paper.json")
 
 def missing_objects_comparison(json_file_correct, json_file_new):
     json_correct = open_json_file(json_file_correct)
@@ -108,8 +111,6 @@ def bounding_boxes_comparison(json_file_correct, json_file_new, what_kind='iou',
         # if raw_or_recall == 'raw':
         print(f"Average value percentage: {overall_value / overall_box_count if overall_box_count > 0 else 0}%")
 
-
-
 def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new, raw_or_recall='raw', what_kind='iou', threshold=0.5):
     json_correct = open_json_file(json_file_correct)
     json_new = open_json_file(json_file_new)
@@ -184,16 +185,18 @@ def final_results_correct_comparison(json_file_new):
                 specific_correct += 1
                 overall_correct += 1
             specific_count += 1
-            overall_count += specific_count
+        overall_count += specific_count
         print(f"Correct percentage for {i}: {specific_correct / specific_count * 100 if specific_count > 0 else 0}%")
     print(f"Overall correct percentage: {overall_correct / overall_count * 100 if overall_count > 0 else 0}%")
 
 
 if __name__ == "__main__":
-    test_type = "normal_full_run"
+    test_type = "normal_run_missing_bbox"
     if test_type == "normal_run_full":
-        normal_run_test()
+        normal_run_test("full")
     elif test_type == "normal_run_missing":
-        normal_run_missing_test()
+        normal_run_test("missing")
     elif test_type == "normal_run_missing_bbox":
-        normal_run_missing_bbox_test()
+        normal_run_test("missing_bbox")
+    elif test_type == "from_paper":
+        normal_run_test("from_paper")
