@@ -193,7 +193,7 @@ def final_results_correct_comparison(json_file_new):
 
 
 if __name__ == "__main__":
-    test_type = "bbox_unequal_missing"
+    test_type = "normal_run_missing"
     if test_type == "normal_run_full":
         normal_run_test("full")
     elif test_type == "normal_run_missing":
