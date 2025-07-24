@@ -120,11 +120,13 @@ def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new
         for idx, new_eval in enumerate(json_new[i]):
             individual_total_value, true_positive, false_positive, false_negative = 0, 0, 0, 0
             correct_eval = json_correct[i][idx]
-            new_boxes = new_eval['bounding_boxes']
-            correct_boxes = correct_eval['bounding_boxes']
+            new_search_results = new_eval['search_result']
+            correct_search_results = correct_eval['search_result']
+            new_boxes = [j["bbox"] for j in new_search_results]  # create a list of bounding boxes from search results
+            correct_boxes = [j["bbox"] for j in correct_search_results]  # create a list of bounding boxes from search results
             tracking_list = [0] * len(new_boxes)  # list of zeroes for every slot in the new_boxes
-            for i in range(len(correct_boxes)):
-                correct_box = correct_boxes[i]
+            for k in range(len(correct_boxes)):
+                correct_box = correct_boxes[k]
                 judge_value = -1
                 judge_index = -1
                 for j in range(len(new_boxes)):
@@ -191,7 +193,7 @@ def final_results_correct_comparison(json_file_new):
 
 
 if __name__ == "__main__":
-    test_type = "normal_run_missing_bbox"
+    test_type = "bbox_unequal_missing"
     if test_type == "normal_run_full":
         normal_run_test("full")
     elif test_type == "normal_run_missing":
@@ -200,3 +202,9 @@ if __name__ == "__main__":
         normal_run_test("missing_bbox")
     elif test_type == "from_paper":
         normal_run_test("from_paper")
+    elif test_type == "bbox_unequal_missing":
+        bounding_boxes_different_missing_comparison(
+            "general_jsons/eval_results_correct_bounding_boxes.json",
+            "general_jsons/eval_results_correct_bounding_boxes.json",
+            raw_or_recall='raw', what_kind='iou', threshold=0.5
+        )

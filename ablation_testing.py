@@ -47,7 +47,7 @@ for i in json_files:
         plt.plot(x_axis_list, direct_attributes_list, label="Direct Attributes")
         plt.xlabel("Ablation Step")
         plt.ylabel("Percentage Correct")
-        plt.title("Hyperparameter Ablation Results")
+        plt.title("Hyperparameter Ablation Results on " + name.replace("_", " ").capitalize())
         plt.legend()
         save_path = os.path.join("hyperparameter_plots", f"{name}_ablation_results.png")
         plt.savefig(save_path)
