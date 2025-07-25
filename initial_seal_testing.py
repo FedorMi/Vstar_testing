@@ -38,13 +38,13 @@ def missing_objects_comparison(json_file_correct, json_file_new):
                     break
             new_missing = new_eval['missing_objects']
             correct_missing = correct_eval['missing_objects']
-            for i in new_missing:
-                if i in correct_missing:
+            for missing in new_missing:
+                if missing in correct_missing:
                     true_positive += 1
-                if i not in correct_missing:
+                if missing not in correct_missing:
                     false_positive += 1
-            for i in correct_missing:
-                if i not in new_missing:
+            for missing in correct_missing:
+                if missing not in new_missing:
                     false_negative += 1
             # compute individual recall and precision
             individual_precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) > 0 else 0
@@ -81,9 +81,12 @@ def bounding_boxes_comparison(json_file_correct, json_file_new, what_kind='iou',
             new_boxes = [j["bbox"] for j in new_search_results]  # create a list of bounding boxes from search results
             correct_boxes = [j["bbox"] for j in correct_search_results]  # create a list of bounding boxes from search results
             
-            for i in range(len(new_boxes)):
-                new_box = new_boxes[i]
-                correct_box = correct_boxes[i]
+            for k in range(len(new_search_results)):
+                new_box = new_search_results[k]["bbox"]
+                for look in correct_search_results:
+                    if look["name"] == new_search_results[k]["name"]:
+                        correct_box = look["bbox"]
+                        break
                 judge_value = 0
                 if what_kind == 'iou':
                     judge_value = iou(new_box, correct_box)
@@ -112,7 +115,7 @@ def bounding_boxes_comparison(json_file_correct, json_file_new, what_kind='iou',
             print(f"Recall percentage: {specific_recall_total / specific_count * 100 if specific_count > 0 else 0}%")
         else:
             # if raw_or_recall == 'raw':
-            print(f"Average value percentage: {specific_value / specific_box_count if specific_box_count > 0 else 0}%")
+            print(f"Average value percentage: {specific_value / specific_box_count* 100 if specific_box_count > 0 else 0}%")
         overall_precision_total += specific_precision_total
         overall_recall_total += specific_recall_total
     print(f"Overall bounding boxes:")
@@ -121,7 +124,7 @@ def bounding_boxes_comparison(json_file_correct, json_file_new, what_kind='iou',
         print(f"Recall percentage: {overall_recall_total / overall_count * 100 if overall_count > 0 else 0}%")
     else:
         # if raw_or_recall == 'raw':
-        print(f"Average value percentage: {overall_value / overall_box_count if overall_box_count > 0 else 0}%")
+        print(f"Average value percentage: {overall_value / overall_box_count* 100 if overall_box_count > 0 else 0}%")
 
 def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new, raw_or_recall='raw', what_kind='iou', threshold=0.5):
     json_correct = open_json_file(json_file_correct)
@@ -146,8 +149,8 @@ def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new
                 correct_box = correct_boxes[k]
                 judge_value = -1
                 judge_index = -1
-                for j in range(len(new_boxes)):
-                    new_box = new_boxes[j]
+                for d in range(len(new_boxes)):
+                    new_box = new_boxes[d]
                     temp_judge_value = 0
                     if what_kind == 'iou':
                         temp_judge_value = iou(new_box, correct_box)
@@ -155,8 +158,9 @@ def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new
                         temp_judge_value = iou(new_box, correct_box)
                     if temp_judge_value > judge_value:
                         judge_value = temp_judge_value
-                        judge_index = j
-                tracking_list[judge_index] = 1
+                        judge_index = d
+                if len(new_boxes) > 0:
+                    tracking_list[judge_index] = 1
 
                 if judge_value < threshold:
                     false_negative += 1
@@ -181,7 +185,7 @@ def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new
             print(f"Recall percentage: {specific_recall_total / specific_count * 100 if specific_count > 0 else 0}%")
         else:
             # if raw_or_recall == 'raw':
-            print(f"Average value percentage: {specific_value / specific_box_count if specific_box_count > 0 else 0}%")
+            print(f"Average value percentage: {specific_value / specific_box_count * 100 if specific_box_count > 0 else 0}%")
         overall_precision_total += specific_precision_total
         overall_recall_total += specific_recall_total
     print(f"Overall bounding boxes:")
@@ -190,8 +194,8 @@ def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new
         print(f"Recall percentage: {overall_recall_total / overall_count * 100 if overall_count > 0 else 0}%")
     else:
         # if raw_or_recall == 'raw':
-        print(f"Average value percentage: {overall_value / overall_box_count if overall_box_count > 0 else 0}%")
-    
+        print(f"Average value percentage: {overall_value / overall_box_count * 100 if overall_box_count > 0 else 0}%")
+
 def final_results_correct_comparison(json_file_new):
     json_new = open_json_file(json_file_new)
     overall_count = 0
@@ -210,7 +214,7 @@ def final_results_correct_comparison(json_file_new):
 
 
 if __name__ == "__main__":
-    test_type = "normal_run_missing"
+    test_type = "bbox_equal_missing"
     if test_type == "normal_run_full":
         normal_run_test("full")
     elif test_type == "normal_run_missing":
