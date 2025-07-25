@@ -3,6 +3,7 @@ import json
 from ollama import chat, ResponseError, pull
 from PIL import Image
 from tqdm import tqdm
+from IVM_test_boxes import main_normal
 
 def process_image(image_path, question_text):
     # Process image with the specified model
@@ -34,8 +35,9 @@ def compare_results(label, result):
     return result.strip().upper() == label.strip().upper()
 
 def main():
+    main_normal()
     questions_file = 'test_questions.jsonl'
-    outputter_folder = 'outputter'
+    outputter_folder = 'ivm_image_results'
     
     direct_attributes_correct = 0
     direct_attributes_total = 0

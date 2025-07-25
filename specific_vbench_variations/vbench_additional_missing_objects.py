@@ -203,7 +203,7 @@ def eval_model(args, amount_irrelevant_objects = 0):
                 missing_objects = [missing_object.strip() for missing_object in missing_objects]
             irrelevant_objects_list = ["tree", "house", "sky", "river", "road", "car", "grass", "cloud", "mountain", "building"]
             if amount_irrelevant_objects > 0:
-                irrelevant_objects_list = irrelevant_objects_list[:amount_irrelevant_objects]
+                missing_objects += irrelevant_objects_list[:amount_irrelevant_objects]
             search_result = []
             if len(missing_objects) > 0:
                 # visual search
@@ -243,11 +243,7 @@ def eval_model(args, amount_irrelevant_objects = 0):
                 else:
                     images_long = [False]
                     objects_long = [False]*len(object_names)
-                object_crops = []
-                for bbox in bboxs:
-                    object_crop = vqa_llm.get_object_crop(image, bbox, patch_scale=1.2)
-                    object_crops.append(object_crop)
-                object_crops = torch.stack(object_crops, 0)
+                
                 image, left, top = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
                 bbox_list = []
                 for bbox in bboxs:
@@ -263,7 +259,15 @@ def eval_model(args, amount_irrelevant_objects = 0):
                     else:
                         cur_focus_msg = cur_focus_msg +'.'
                 question_with_focus = cur_focus_msg+"\n"+question
-                option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
+                object_crops = []
+                for bbox in bboxs:
+                    object_crop = vqa_llm.get_object_crop(image, bbox, patch_scale=1.2)
+                    object_crops.append(object_crop)
+                if len(object_crops) > 0:
+                    object_crops = torch.stack(object_crops, 0)
+                    option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
+                else:
+                    option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
             else:
                 option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
 
@@ -299,7 +303,7 @@ if __name__ == "__main__":
     parser.add_argument("--minimum_size", default=224, type=int, help="minimum sub-image size for the termination of search")
 
     args = parser.parse_args()
-    spread = range(1, 11)
+    spread = range(0, 11)
     total_results = {}
     for i in spread:
         result = eval_model(args, i)

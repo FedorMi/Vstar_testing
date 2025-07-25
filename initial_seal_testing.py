@@ -31,7 +31,11 @@ def missing_objects_comparison(json_file_correct, json_file_new):
         specific_count, specific_recall_total, specific_precision_total = 0, 0, 0
         for idx, new_eval in enumerate(json_new[i]):
             true_positive, false_positive, false_negative = 0, 0, 0
-            correct_eval = json_correct[i][idx]
+            correct_eval = None
+            for foun in json_correct[i]:
+                if foun["image"] == new_eval["image"]:
+                    correct_eval = foun
+                    break
             new_missing = new_eval['missing_objects']
             correct_missing = correct_eval['missing_objects']
             for i in new_missing:
@@ -66,9 +70,17 @@ def bounding_boxes_comparison(json_file_correct, json_file_new, what_kind='iou',
         specific_count, specific_box_count, specific_value, specific_recall_total, specific_precision_total = 0, 0, 0, 0, 0
         for idx, new_eval in enumerate(json_new[i]):
             individual_total_value, true_positive, false_positive, false_negative = 0, 0, 0, 0
-            correct_eval = json_correct[i][idx]
-            new_boxes = new_eval['bounding_boxes']
-            correct_boxes = correct_eval['bounding_boxes']
+            correct_eval = None
+            for foun in json_correct[i]:
+                if foun["image"] == new_eval["image"]:
+                    correct_eval = foun
+                    break
+            #correct_eval = json_correct[i][idx]
+            new_search_results = new_eval['search_result']
+            correct_search_results = correct_eval['search_result']
+            new_boxes = [j["bbox"] for j in new_search_results]  # create a list of bounding boxes from search results
+            correct_boxes = [j["bbox"] for j in correct_search_results]  # create a list of bounding boxes from search results
+            
             for i in range(len(new_boxes)):
                 new_box = new_boxes[i]
                 correct_box = correct_boxes[i]
@@ -119,7 +131,12 @@ def bounding_boxes_different_missing_comparison(json_file_correct, json_file_new
         specific_count, specific_box_count, specific_value, specific_recall_total, specific_precision_total = 0, 0, 0, 0, 0
         for idx, new_eval in enumerate(json_new[i]):
             individual_total_value, true_positive, false_positive, false_negative = 0, 0, 0, 0
-            correct_eval = json_correct[i][idx]
+            correct_eval = None
+            for foun in json_correct[i]:
+                if foun["image"] == new_eval["image"]:
+                    correct_eval = foun
+                    break
+            #correct_eval = json_correct[i][idx]
             new_search_results = new_eval['search_result']
             correct_search_results = correct_eval['search_result']
             new_boxes = [j["bbox"] for j in new_search_results]  # create a list of bounding boxes from search results
@@ -205,6 +222,17 @@ if __name__ == "__main__":
     elif test_type == "bbox_unequal_missing":
         bounding_boxes_different_missing_comparison(
             "general_jsons/eval_results_correct_bounding_boxes.json",
-            "general_jsons/eval_results_correct_bounding_boxes.json",
+            "general_jsons/eval_results_initial_seal_testing.json",
             raw_or_recall='raw', what_kind='iou', threshold=0.5
+        )
+    elif test_type == "bbox_equal_missing":
+        bounding_boxes_comparison(
+            "general_jsons/eval_results_correct_bounding_boxes.json",
+            "general_jsons/eval_results_correct_missing_object_labels.json",
+            raw_or_recall='raw', what_kind='iou', threshold=0.5
+        )
+    elif test_type == "missing_objects":
+        missing_objects_comparison(
+            "general_jsons/eval_results_correct_missing_object_labels.json",
+            "general_jsons/eval_results_initial_seal_testing.json"
         )
