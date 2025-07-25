@@ -72,140 +72,89 @@ def process_image_with_quadrants(image, model, text_prompt, box_threshold, text_
         all_logits.extend(logits)
     return all_boxes, all_phrases, all_logits
 
-def main():
+def main(with_quadrants=False):
 
     # Load the GroundingDINO model
     model = load_model(
         "groundingdino/config/GroundingDINO_SwinT_OGC.py", 
         "weights/groundingdino_swint_ogc.pth"
     )
-    direct_attributes_list = []
-    relative_position_list = []
-
-    for test_type in ['direct_attributes', 'relative_position']:
-        folder = os.path.join("vbench", test_type)
-        if test_type == 'direct_attributes':
-            direct_attributes_list = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
-        else:
-            relative_position_list = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
 
     # Modify the loop for direct_attributes_list
-    for i in tqdm.tqdm(direct_attributes_list):
-        # Define input image and parameters
-        location = os.path.join("vbench", "direct_attributes")
-        image_path = os.path.join(location, i)
-        json_path = os.path.join(location, i.split(".")[0] + ".json")
+    test_types = ["direct_attributes", "relative_position"]
+    for test_type in test_types:
+        folder = os.path.join("vbench", test_type)
+        attribute_list = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
+        for i in attribute_list:
+            # Define input image and parameters
+            location = os.path.join("vbench", test_type)
+            image_path = os.path.join(location, i)
+            json_path = os.path.join(location, i.split(".")[0] + ".json")
 
-        #open json file
-        with open(json_path, "r") as f:
-            data = json.load(f)
-        #extract missing objects
-        target_objects = data["target_object"]
-        #extract target object names
-        text_prompt = ""
-        for j in target_objects:
-            #append to text prompt
-            text_prompt += j + " . "
-        box_threshold = 0.35
-        text_threshold = 0.25
+            #open json file
+            with open(json_path, "r") as f:
+                data = json.load(f)
+            #extract missing objects
+            target_objects = data["target_object"]
+            #extract target object names
+            text_prompt = ""
+            for j in target_objects:
+                #append to text prompt
+                text_prompt += j + " . "
+            box_threshold = 0.35
+            text_threshold = 0.25
 
-        # Load the image
-        image_source, image = load_image(image_path)
+            # Load the image
+            image_source, image = load_image(image_path)
 
-        # Run prediction
-        boxes, logits, phrases = predict(
-            model=model,
-            image=image,
-            caption=text_prompt,
-            box_threshold=box_threshold,
-            text_threshold=text_threshold
-        )
-        print(boxes.shape)
-        print(logits.shape)
+            # Run prediction
+            boxes, logits, phrases = predict(
+                model=model,
+                image=image,
+                caption=text_prompt,
+                box_threshold=box_threshold,
+                text_threshold=text_threshold
+            )
+            print(boxes.shape)
+            print(logits.shape)
+            if with_quadrants:
+                quadrant_boxes, quadrant_phrases, quadrant_logits = process_image_with_quadrants(
+                    image=image,
+                    model=model,
+                    text_prompt=text_prompt,
+                    box_threshold=box_threshold,
+                    text_threshold=text_threshold
+                    )
+            
+            total_boxes = boxes
+            total_logits = logits
+            if with_quadrants:
+                for box in quadrant_boxes:
+                    #make box shape instead of torch.Size([4]) be torch.Size([1, 4])
+                    total_boxes = torch.cat([total_boxes, box.unsqueeze(0)], dim=0)
+                for logit in quadrant_logits:
+                    print(logit)
+                    total_logits = torch.cat([total_logits, logit.unsqueeze(0)], dim=0)
+            total_phrases = []
+            total_phrases.extend(phrases)
+            if with_quadrants:
+                total_phrases.extend(quadrant_phrases)
 
-        quadrant_boxes, quadrant_phrases, quadrant_logits = process_image_with_quadrants(
-            image=image,
-            model=model,
-            text_prompt=text_prompt,
-            box_threshold=box_threshold,
-            text_threshold=text_threshold)
-        
-        total_boxes = boxes
-        total_logits = logits
+            # Annotate the image with predictions
+            annotated_frame = annotate(
+                image_source=image_source,
+                boxes=total_boxes,
+                logits=total_logits,
+                phrases=total_phrases
+            )
 
-        for box in quadrant_boxes:
-            #make box shape instead of torch.Size([4]) be torch.Size([1, 4])
-            total_boxes = torch.cat([total_boxes, box.unsqueeze(0)], dim=0)
-        for logit in quadrant_logits:
-            print(logit)
-            total_logits = torch.cat([total_logits, logit.unsqueeze(0)], dim=0)
-        total_phrases = []
-        total_phrases.extend(phrases)
-        total_phrases.extend(quadrant_phrases)
+            # Save the annotated image
+            output_path = os.path.join("output", test_type, i)
+            cv2.imwrite(output_path, annotated_frame)
+            print(f"Annotated image saved as '{i}'")
 
-        # Annotate the image with predictions
-        annotated_frame = annotate(
-            image_source=image_source,
-            boxes=total_boxes,
-            logits=total_logits,
-            phrases=total_phrases
-        )
-
-        # Save the annotated image
-        output_path = os.path.join("output", "direct_attributes", i)
-        cv2.imwrite(output_path, annotated_frame)
-        print(f"Annotated image saved as '{i}'")
-
-        # Save the JSON file with scaled boxes
-        save_json(output_path, total_boxes, total_phrases, image_source.shape)
-
-    # Modify the loop for relative_position_list
-    for i in tqdm.tqdm(relative_position_list):
-        location = os.path.join("vbench", "relative_position")
-        # Define input image and parameters
-        image_path = os.path.join(location, i)
-        json_path = os.path.join(location, i.split(".")[0] + ".json")
-
-        #open json file
-        with open(json_path, "r") as f:
-            data = json.load(f)
-        #extract missing objects
-        target_objects = data["target_object"]
-        #extract target object names
-        text_prompt = ""
-        for j in target_objects:
-            #append to text prompt
-            text_prompt += j + " . "
-        box_threshold = 0.35
-        text_threshold = 0.25
-
-        # Load the image
-        image_source, image = load_image(image_path)
-
-        # Run prediction
-        boxes, logits, phrases = predict(
-            model=model,
-            image=image,
-            caption=text_prompt,
-            box_threshold=box_threshold,
-            text_threshold=text_threshold
-        )
-
-        # Annotate the image with predictions
-        annotated_frame = annotate(
-            image_source=image_source, 
-            boxes=boxes, 
-            logits=logits, 
-            phrases=phrases
-        )
-
-        # Save the annotated image
-        output_path = os.path.join("output", "relative_position", i)
-        cv2.imwrite(output_path, annotated_frame)
-        print(f"Annotated image saved as '{i}'")
-
-        # Save the JSON file with scaled boxes
-        save_json(output_path, boxes, phrases, image_source.shape)
+            # Save the JSON file with scaled boxes
+            save_json(output_path, total_boxes, total_phrases, image_source.shape)
 
 if __name__ == "__main__":
     main()
