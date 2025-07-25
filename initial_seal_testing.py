@@ -231,6 +231,31 @@ if __name__ == "__main__":
             "general_jsons/eval_results_correct_missing_object_labels.json",
             raw_or_recall='raw', what_kind='iou', threshold=0.5
         )
+    elif test_type == "bbox_unequal_missing_recall":
+        bounding_boxes_different_missing_comparison(
+            "general_jsons/eval_results_correct_bounding_boxes.json",
+            "general_jsons/eval_results_initial_seal_testing.json",
+            raw_or_recall='recall', what_kind='iou', threshold=0.5
+        )
+    elif test_type == "bbox_equal_missing_recall":
+        bounding_boxes_comparison(
+            "general_jsons/eval_results_correct_bounding_boxes.json",
+            "general_jsons/eval_results_correct_missing_object_labels.json",
+            raw_or_recall='recall', what_kind='iou', threshold=0.5
+        )
+    elif test_type == "bbox_unequal_missing_any_recall":
+        bounding_boxes_different_missing_comparison(
+            "general_jsons/eval_results_correct_bounding_boxes.json",
+            "general_jsons/eval_results_initial_seal_testing.json",
+            raw_or_recall='recall', what_kind='iou', threshold=0.0001
+        )
+    elif test_type == "bbox_equal_missing_any_recall":
+        bounding_boxes_comparison(
+            "general_jsons/eval_results_correct_bounding_boxes.json",
+            "general_jsons/eval_results_correct_missing_object_labels.json",
+            raw_or_recall='recall', what_kind='iou', threshold=0.0001
+        )
+    
     elif test_type == "missing_objects":
         missing_objects_comparison(
             "general_jsons/eval_results_correct_missing_object_labels.json",
