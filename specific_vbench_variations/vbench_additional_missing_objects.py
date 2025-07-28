@@ -291,7 +291,7 @@ def eval_model(args, amount_irrelevant_objects = 0):
 
     return results
 
-def eval_model_choose(args):
+def eval_model_choose(args, amount_irrelevant_objects = 0):
     # init VQA LLM
     vqa_llm = VQA_LLM(args)
     # init VSM
