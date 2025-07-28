@@ -52,8 +52,6 @@ def main_test():
     ckpt_path = os.path.join("pytorch_model", "IVM-V1.0.bin") # your model path here
     model = initialize_and_check_model(ckpt_path, low_gpu_memory=False)
     #model = load(ckpt_path, low_gpu_memory = False)
-    from PIL import Image
-    data_origin = load_json("eval_result.json")
     test_types = ["relative_position", "direct_attributes"]
     for test_type in test_types:
         folder = os.path.join("vbench", test_type)
