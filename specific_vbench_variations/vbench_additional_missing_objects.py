@@ -358,7 +358,8 @@ def eval_model_choose(args, amount_irrelevant_objects = 0):
                         
             missing_objects = temp_missing_objects
             # predict the multiple-choice option
-            options = annotation['options']
+            options = missing_objects
+            question = "Which of the object is relevant to the question: " + question
             image = Image.open(image_path).convert('RGB')
             if len(missing_objects) > 0:
                 object_names = [_['name'] for _ in search_result]
