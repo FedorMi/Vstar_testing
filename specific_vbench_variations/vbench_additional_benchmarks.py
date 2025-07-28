@@ -278,6 +278,161 @@ def eval_model(args, benchmark_folder="vbench"):
 
     return results
 
+def eval_model_choose(args, benchmark_folder="vbench"):
+    # init VQA LLM
+    vqa_llm = VQA_LLM(args)
+    # init VSM
+    vsm_args = parse_args({})
+    vsm_args.version = args.vsm_model_path
+    vsm = VSM(vsm_args)
+
+    results = {}
+    per_type_acc = defaultdict(list)
+    all_acc = []
+
+    missing_objects_msg = "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear:"
+    focus_msg = "Additional visual information to focus on: "
+    for test_type in ['direct_attributes', 'relative_position', 'object_existence', 'object_choice']:
+        results[test_type] = []
+        folder = os.path.join(benchmark_folder, test_type)
+        image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
+        for image_file in tqdm(image_files):
+            result_single_sample = {}
+            image_path = os.path.join(folder, image_file)
+            annotation_path = image_path.split('.')[0] + '.json'
+            image = Image.open(image_path).convert('RGB')
+            annotation = json.load(open(annotation_path))
+            image, _, _ = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
+            
+            question = annotation['question']
+            # generate free-form response to check whether visual search needs to be activated
+            prediction = vqa_llm.free_form_inference(image, question)
+            missing_objects = []
+            if missing_objects_msg in prediction:
+                missing_objects = prediction.split(missing_objects_msg)[-1]
+                if missing_objects.endswith('.'):
+                    missing_objects = missing_objects[:-1]
+                missing_objects = missing_objects.split(',')
+                missing_objects = [missing_object.strip() for missing_object in missing_objects]
+
+            search_result = []
+            if len(missing_objects) > 0:
+                # visual search
+                for object_name in missing_objects:
+                    image = Image.open(image_path).convert('RGB')
+                    smallest_size = max(int(np.ceil(min(image.width, image.height)/args.minimum_size_scale)), args.minimum_size)
+                    final_step, path_length, search_successful, all_valid_boxes = visual_search(vsm, image, object_name, target_bbox=None, smallest_size=smallest_size)
+                    if all_valid_boxes is not None:
+                        # might exist multiple target instances
+                        for search_bbox in all_valid_boxes:
+                            search_final_patch = final_step['bbox']
+                            search_bbox[0] += search_final_patch[0]
+                            search_bbox[1] += search_final_patch[1]
+                            search_result.append({'bbox':search_bbox.tolist(),'name':object_name})
+                    else:
+                        search_bbox = final_step['detection_result']
+                        search_final_patch = final_step['bbox']
+                        search_bbox[0] += search_final_patch[0]
+                        search_bbox[1] += search_final_patch[1]
+                        search_result.append({'bbox':search_bbox.tolist(),'name':object_name})
+            # predict the multiple-choice option
+            question = "Which of the objects are relevant to the question: " + question
+            options = missing_objects
+            image = Image.open(image_path).convert('RGB')
+            if len(missing_objects) > 0:
+                object_names = [_['name'] for _ in search_result]
+                bboxs = deepcopy([_['bbox'] for _ in search_result])
+                if len(object_names) <= 2:
+                    images_long = [False]
+                    objects_long = [True]*len(object_names)
+                else:
+                    images_long = [False]
+                    objects_long = [False]*len(object_names)
+                object_crops = []
+                for bbox in bboxs:
+                    object_crop = vqa_llm.get_object_crop(image, bbox, patch_scale=1.2)
+                    object_crops.append(object_crop)
+                object_crops = torch.stack(object_crops, 0)
+                image, left, top = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
+                bbox_list = []
+                for bbox in bboxs:
+                    bbox[0] += left
+                    bbox[1] += top
+                    bbox_list.append(bbox)
+                bbox_list = [normalize_bbox(bbox, image.width, image.height) for bbox in bbox_list]
+                cur_focus_msg = focus_msg
+                for i, (object_name, bbox) in enumerate(zip(object_names, bbox_list)):
+                    cur_focus_msg = cur_focus_msg + "{} <object> at location [{:.3f},{:.3f},{:.3f},{:.3f}]".format(object_name, bbox[0], bbox[1], bbox[2], bbox[3])
+                    if i != len(bbox_list)-1:
+                        cur_focus_msg = cur_focus_msg+"; "
+                    else:
+                        cur_focus_msg = cur_focus_msg +'.'
+                question_with_focus = cur_focus_msg+"\n"+question
+                option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
+            
+                question = annotation['question']
+                options = annotation['options']
+                image = Image.open(image_path).convert('RGB')
+                missing_objects = [missing_objects[option_chosen]]
+                object_names = []
+                bboxs = deepcopy([])
+                for search_res in search_result:
+                    if search_res['name'] == missing_objects[0]:
+                        object_names.append(search_res['name'])
+                        bboxs.append(search_res['bbox'])
+                if len(object_names) <= 2:
+                    images_long = [False]
+                    objects_long = [True]*len(object_names)
+                else:
+                    images_long = [False]
+                    objects_long = [False]*len(object_names)
+                object_crops = []
+                for bbox in bboxs:
+                    object_crop = vqa_llm.get_object_crop(image, bbox, patch_scale=1.2)
+                    object_crops.append(object_crop)
+                object_crops = torch.stack(object_crops, 0)
+                image, left, top = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
+                bbox_list = []
+                for bbox in bboxs:
+                    bbox[0] += left
+                    bbox[1] += top
+                    bbox_list.append(bbox)
+                bbox_list = [normalize_bbox(bbox, image.width, image.height) for bbox in bbox_list]
+                cur_focus_msg = focus_msg
+                for i, (object_name, bbox) in enumerate(zip(object_names, bbox_list)):
+                    cur_focus_msg = cur_focus_msg + "{} <object> at location [{:.3f},{:.3f},{:.3f},{:.3f}]".format(object_name, bbox[0], bbox[1], bbox[2], bbox[3])
+                    if i != len(bbox_list)-1:
+                        cur_focus_msg = cur_focus_msg+"; "
+                    else:
+                        cur_focus_msg = cur_focus_msg +'.'
+                question_with_focus = cur_focus_msg+"\n"+question
+                option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
+            else:
+                question = annotation['question']
+                options = annotation['options']
+                image = Image.open(image_path).convert('RGB')
+                option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
+
+            correct = 1 if option_chosen==0 else 0
+            per_type_acc[test_type].append(correct)
+            all_acc.append(correct)
+
+            result_single_sample['question'] = question
+            result_single_sample['options'] = options
+            result_single_sample['image'] = image_file
+            result_single_sample['prediction_freeform'] = prediction
+            result_single_sample['missing_objects'] = missing_objects
+            result_single_sample['search_result'] = search_result    
+            result_single_sample['option_chosen'] = option_chosen
+            result_single_sample['correct'] = correct
+            results[test_type].append(result_single_sample)
+
+        print(test_type, np.mean(per_type_acc[test_type]))
+
+    print(np.mean(all_acc))
+
+    return results
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--vqa-model-path", type=str, default="craigwu/seal_vqa_7b")
