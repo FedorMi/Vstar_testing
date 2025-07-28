@@ -79,7 +79,7 @@ def main_test():
             result = temp_image * mask + temp_temp * (1 - mask)
             # Convert the result to an image and save it
             output_image = Image.fromarray((result).astype(np.uint8))
-            output_path = os.path.join("conversion_related", "direct_attributes", i)
+            output_path = os.path.join("ivm_image_results_related", test_type, i)
             output_image.save(output_path) # specify your output directory and file name
             print("image",i,"done")
 if __name__ == "__main__":
