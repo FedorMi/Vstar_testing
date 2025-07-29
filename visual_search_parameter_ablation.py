@@ -423,9 +423,7 @@ class Prioritize:
 
     def __lt__(self, other):
         return self.priority < other.priority
-def visual_search_queue(vsm_args, vsm, image, target_object_name, current_patch, search_path, queue,  smallest_size=224, confidence_high=0.5, target_cue_threshold=6.0, target_cue_threshold_decay=0.7, target_cue_threshold_minimum=3.0):
-    smallest_size = vsm_args.minimum_size
-    confidence_low = vsm_args.confidence_low
+def visual_search_queue(vsm_args, vsm, image, target_object_name, current_patch, search_path, queue, smallest_size=224, confidence_high=0.5, target_cue_threshold=6.0, target_cue_threshold_decay=0.7, target_cue_threshold_minimum=3.0):
     target_cue_threshold = vsm_args.target_cue_threshold
     target_cue_threshold_decay = vsm_args.target_cue_threshold_decay
     target_cue_threshold_minimum = vsm_args.target_cue_threshold_minimum

@@ -45,6 +45,7 @@ def optimize_prompt_ollama(model_fn: Callable[[str, Any], Any], model_name:str, 
     text_loss = tg.TextLoss(loss_system_prompt)
         
     for _ in range(steps):
+        losses = []
         for k in range(len(input_set)):
             optimizer.zero_grad()
             inp = input_set[k]
@@ -62,13 +63,14 @@ def optimize_prompt_ollama(model_fn: Callable[[str, Any], Any], model_name:str, 
             #feedback = f"Prompt Template To Improve: {prompt.value}\nInput: {inp}\nExpected: {expected}\nModel Output: {model_output}"
             feedback = f"Prompt Template To Improve: {prompt.value}\nExpected: {expected}\nModel Output: {model_output}"
             feedback_text = feedback
+            print(f"Feedback Text: {feedback_text}")
             elge = tg.Variable(feedback_text, requires_grad=True, role_description="feedback for prompt")
-            text_loss(elge)
             loss = text_loss(elge)
-            loss.backward()
-            optimizer.step()
-            print("Final optimized prompt:", prompt.value)
-            break
+            losses.append(loss)
+        total_loss = tg.sum(losses)
+        print(f"Loss: {total_loss}")
+        total_loss.backward()
+        optimizer.step()
     print("Final optimized prompt:", prompt.value)
 
     return prompt.value
