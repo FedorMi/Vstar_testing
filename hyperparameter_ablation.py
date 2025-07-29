@@ -250,11 +250,6 @@ def eval_model(args, parameter_name, parameter_value, parameter_value_optional=N
                 else:
                     images_long = [False]
                     objects_long = [False]*len(object_names)
-                object_crops = []
-                for bbox in bboxs:
-                    object_crop = vqa_llm.get_object_crop(image, bbox, patch_scale=patch_scale)
-                    object_crops.append(object_crop)
-                object_crops = torch.stack(object_crops, 0)
                 image, left, top = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
                 bbox_list = []
                 for bbox in bboxs:
@@ -270,7 +265,15 @@ def eval_model(args, parameter_name, parameter_value, parameter_value_optional=N
                     else:
                         cur_focus_msg = cur_focus_msg +'.'
                 question_with_focus = cur_focus_msg+"\n"+question
-                option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
+                object_crops = []
+                for bbox in bboxs:
+                    object_crop = vqa_llm.get_object_crop(image, bbox, patch_scale=patch_scale)
+                    object_crops.append(object_crop)
+                if len(object_crops) > 0:
+                    object_crops = torch.stack(object_crops, 0)
+                    option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
+                else:
+                    option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
             else:
                 option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
 
