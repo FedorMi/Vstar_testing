@@ -133,7 +133,7 @@ def optimize_prompt_ollama_two(model_fn: Callable[[str, Any], Any], model_name:s
 
     return prompt.value
 
-def optimize_prompt_ollama_final_vqa(model_fn: Callable[[str, Any], Any], model_name:str, initial_prompt: str, input_set: List[Any], image_input_set: List[Any], expected_output_set: List[Any], steps: int = 3, image_or_full: str = "image"):
+def optimize_prompt_ollama_image_first(model_fn: Callable[[str, Any], Any], model_name:str, initial_prompt: str, input_set: List[Any], image_input_set: List[Any], expected_output_set: List[Any], steps: int = 3):
     """
     Optimizes a prompt for a model function using textgrad and LMStudio so that the model's outputs on input_set match expected_output_set.
     Args:
@@ -146,7 +146,7 @@ def optimize_prompt_ollama_final_vqa(model_fn: Callable[[str, Any], Any], model_
         The optimized prompt string.
     """
     client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
-    engine = ChatExternalClient(client=client, model_string='ifioravanti/neuralbeagle14-7b:7b')
+    engine = ChatExternalClient(client=client, model_string='llava:34b')
 
 
     assert len(input_set) == len(expected_output_set), "Input and output sets must be the same length."
@@ -157,15 +157,17 @@ def optimize_prompt_ollama_final_vqa(model_fn: Callable[[str, Any], Any], model_
     optimizer = tg.TGD(parameters=[prompt])
 
     # System prompt for feedback-based loss
-    loss_system_prompt = tg.Variable(
-        """You are a helpful assistant. Evaluate the model's output for the given input and expected output in the context of the prompt template. Provide concise feedback on how well the output matches the expectation, and suggest improvements for only the prompt template. Do not solve the task yourself, do not create a new prompt template yourself, only provide feedback on how to improve the prompt template to present the input values better.""",
-        requires_grad=False,
-        role_description="system prompt for feedback loss"
-    )
+    #loss_system_prompt = tg.Variable(
+    #    """You are a helpful assistant. Evaluate the model's output for the given input and expected output in the context of the prompt template. Provide concise feedback on how well the output matches the expectation, and suggest improvements for only the prompt template. Do not solve the task yourself, do not create a new prompt template yourself, only provide feedback on how to improve the prompt template to present the input values better.""",
+    #    requires_grad=False,
+    #    role_description="system prompt for feedback loss"
+    #)
     loss_fn = ImageQALoss(
-    evaluation_instruction="Does this seem like a complete and good answer for the image? Criticize heavily.",
-    # engine="claude-3-5-sonnet-20240620"
-    engine="gpt-4o",
+    evaluation_instruction="""Evaluate the model's output for the given input and expected output in the context of the prompt template.
+      Provide concise feedback on how well the output matches the expectation, and suggest improvements for only the prompt template. 
+      Do not solve the task yourself, do not create a new prompt template yourself, 
+      only provide feedback on how to improve the prompt template to present the input values better.""",
+    engine=engine,
 )
         
     for _ in range(steps):
@@ -180,10 +182,10 @@ def optimize_prompt_ollama_final_vqa(model_fn: Callable[[str, Any], Any], model_
             if inp == expected:
                 continue
             #feedback = f"Prompt Template To Improve: {prompt.value}\nInput: {inp}\nExpected: {expected}\nModel Output: {model_output}"
-            feedback = f"Prompt Template To Improve: {prompt.value}\nInput: {inp}\nExpected: {expected}\nModel Output: {model_output}"
-            feedback_text = feedback
-            print(f"Feedback Text: {feedback_text}")
-            question_variable = tg.Variable(inp, requires_grad=False, role_description="input question")
+            #feedback = f"Prompt Template To Improve: {prompt.value}\nInput: {inp}\nExpected: {expected}\nModel Output: {model_output}"
+            #feedback_text = feedback
+            #print(f"Feedback Text: {feedback_text}")
+            question_variable = tg.Variable(prompt.value + " " + inp, requires_grad=False, role_description="input question")
             image_variable = tg.Variable(img, requires_grad=False, role_description="input image")
             response = tg.Variable(model_output, requires_grad=False, role_description="model response")
             loss = loss_fn(question=question_variable, image=image_variable, response=response)
