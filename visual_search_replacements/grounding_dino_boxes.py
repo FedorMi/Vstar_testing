@@ -98,9 +98,10 @@ def main(with_quadrants=False):
             target_objects = data["target_object"]
             #extract target object names
             text_prompt = ""
-            for j in target_objects:
+            for j in range(len(target_objects)-1):
                 #append to text prompt
-                text_prompt += j + " . "
+                text_prompt += target_objects[j] + " . "
+            text_prompt += target_objects[-1]  # Add the last object without a trailing period
             box_threshold = 0.35
             text_threshold = 0.25
 
