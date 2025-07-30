@@ -1,5 +1,5 @@
 import ollama
-from object_recall_grad_descent_ollama import optimize_prompt_ollama, optimize_prompt_ollama_two
+from object_recall_grad_descent_ollama import optimize_prompt_ollama, optimize_prompt_ollama_two, optimize_prompt_ollama_last_call, optimize_prompt_ollama_image_first
 import json
 import os
 from ollama import chat, ResponseError, pull 
