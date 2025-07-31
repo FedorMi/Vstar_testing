@@ -28,7 +28,7 @@ from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
 vqa_llm = None
 vsm = None
 
-def get_missing_object_labels_correct(image, question, missing_objects_msg, annotation):
+def get_missing_object_labels_correct(annotation):
     return annotation['target_object'], "no prediction needed, the object labels are correct"
 
 def get_bounding_boxes_seal(missing_objects, image_path, args, annotation, prompt_template):
@@ -231,44 +231,73 @@ def test_missing_objects(prompt_template,with_image=True, model_name="llava:34b"
     return recall
             
 
-def test_bounding_boxes_iou():
-    # init VQA LLM
-    vqa_llm = VQA_LLM(args)
-    # init VSM
-    vsm_args = parse_args({})
-    vsm_args.version = args.vsm_model_path
-    vsm = VSM(vsm_args)
-
-    results = {}
-    per_type_acc = defaultdict(list)
-    all_acc = []
-
-    missing_objects_msg = "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear:"
-    focus_msg = "Additional visual information to focus on: "
+def test_bounding_boxes_iou(prompt_template):
+    if vsm is None:
+        vsm_args = parse_args({})
+        vsm_args.version = args.vsm_model_path
+        vsm = VSM(vsm_args)
+    iou_total = 0
+    count = 0
     for test_type in ['direct_attributes', 'relative_position']:
-        results[test_type] = []
         folder = os.path.join(args.benchmark_folder, test_type)
         image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
         for image_file in tqdm(image_files):
-            result_single_sample = {}
+            correct_data = json.load(open("eval_results_correct_bounding_boxes.json", 'r'))
             image_path = os.path.join(folder, image_file)
             annotation_path = image_path.split('.')[0] + '.json'
             image = Image.open(image_path).convert('RGB')
             annotation = json.load(open(annotation_path))
             image, _, _ = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
-            
             question = annotation['question']
-def test_bounding_boxes_final_result():
-    pass
+            missing_objects = get_missing_object_labels_correct(annotation)
+            search_result = get_bounding_boxes_seal(missing_objects, image_path, args, annotation, prompt_template)
+            correct_search_result = correct_data["search_result"]
+            for i in search_result:
+                missing_label = i["name"]
+                missing_bbox = i["bbox"]
+                for j in range(len(correct_search_result)):
+                    if correct_search_result[j]["name"] == missing_label:
+                        correct_bbox = correct_search_result[j]["bbox"]
+                        iou_total += iou(missing_bbox, correct_bbox)
+                        break
+            count += len(search_result)
+    return iou_total / count if count > 0 else 0
+        
+
+def test_bounding_boxes_final_result(prompt_template):
+    if vsm is None:
+        vsm_args = parse_args({})
+        vsm_args.version = args.vsm_model_path
+        vsm = VSM(vsm_args)
+    count= 0
+    correct_total = 0
+    focus_msg = "Additional visual information to focus on: "
+    for test_type in ['direct_attributes', 'relative_position']:
+        folder = os.path.join(args.benchmark_folder, test_type)
+        image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
+        for image_file in tqdm(image_files):
+            image_path = os.path.join(folder, image_file)
+            annotation_path = image_path.split('.')[0] + '.json'
+            image = Image.open(image_path).convert('RGB')
+            annotation = json.load(open(annotation_path))
+            image, _, _ = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
+            question = annotation['question']
+            missing_objects = get_missing_object_labels_correct(annotation)
+            search_result = get_bounding_boxes_seal(missing_objects, image_path, args, annotation, prompt_template)
+            correct, _, _ = get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
+            correct_total += correct
+            count += 1
+    return correct_total / count if count > 0 else 0
+
 def test_final_call(prompt_template):
     # init VQA LLM
     if vqa_llm is None:
         vqa_llm = VQA_LLM(args)
-    results = {}
     focus_msg = "Additional visual information to focus on: "
     initial_json = json.load(open('eval_results_initial_seal_testing.json', 'r'))
+    count= 0
+    correct_total = 0
     for test_type in ['direct_attributes', 'relative_position']:
-        results[test_type] = []
         folder = os.path.join(args.benchmark_folder, test_type)
         image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
         initial_type_data = initial_json[test_type]
@@ -284,7 +313,10 @@ def test_final_call(prompt_template):
             question = annotation['question']
             missing_objects = initial_image_data['missing_objects']
             search_result = initial_image_data['search_result']
-            get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
+            correct, _, _ = get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
+            correct_total += correct
+            count += 1
+    return correct_total / count if count > 0 else 0
 
 def main_test_objects(initial_prompt, with_image):
     # open the eval_result_correct_objects.json file
