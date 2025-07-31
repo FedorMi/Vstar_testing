@@ -196,14 +196,12 @@ def eval_model(args):
     per_type_acc = defaultdict(list)
     all_acc = []
 
-    missing_objects_msg = "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear:"
     focus_msg = "Additional visual information to focus on: "
     for test_type in ['direct_attributes', 'relative_position']:
         results[test_type] = []
-        kolder = os.path.join("dino", test_type)
+        dino_folder = os.path.join(args.dino_folder, test_type)
         folder = os.path.join(args.benchmark_folder, test_type)
         image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
-        json_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
         for image_file in tqdm(image_files):
             print(image_file)
             bolder = os.path.join("testing_images", image_file.split('.')[0])
@@ -213,17 +211,12 @@ def eval_model(args):
             annotation_path = image_path.split('.')[0] + '.json'
             image = Image.open(image_path).convert('RGB')
             annotation = json.load(open(annotation_path))
-            dino_path = os.path.join(kolder, image_file.split('.')[0] + '.json')
+            dino_path = os.path.join(dino_folder, image_file.split('.')[0] + '.json')
             image, _, _ = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
             
             question = annotation['question']
-
-            # Generate bounding boxes for all objects in the image
-            # This is a placeholder, replace with actual object detection code
-
             # generate free-form response to check whether visual search needs to be activated
             prediction = vqa_llm.free_form_inference(image, question)
-            json_path = os.path.join(folder, image_file.split('.')[0]+'.json')
             with open(dino_path, 'r') as f:
                 json_data = json.load(f)
             missing_objects = json_data['missing_objects']
@@ -233,27 +226,6 @@ def eval_model(args):
                 for bbox_idx, object_name in enumerate(missing_objects):
                     image = Image.open(image_path).convert('RGB')
                     search_result.append({'bbox':json_data["boxes"][bbox_idx],'name':object_name})
-                
-                if False:
-                    add_objects_list = ["Tree", "Water", "Sky", "Ground"]
-                    for object_name in add_objects_list:
-                        image = Image.open(image_path).convert('RGB')
-                        smallest_size = max(int(np.ceil(min(image.width, image.height)/args.minimum_size_scale)), args.minimum_size)
-                        final_step, path_length, search_successful, all_valid_boxes = visual_search(vsm, image, object_name, target_bbox=None, smallest_size=smallest_size)
-                        if all_valid_boxes is not None:
-                            # might exist multiple target instances
-                            for search_bbox in all_valid_boxes:
-                                search_final_patch = final_step['bbox']
-                                search_bbox[0] += search_final_patch[0]
-                                search_bbox[1] += search_final_patch[1]
-                                search_result.append({'bbox':search_bbox.tolist(),'name':object_name})
-                        else:
-                            search_bbox = final_step['detection_result']
-                            search_final_patch = final_step['bbox']
-                            search_bbox[0] += search_final_patch[0]
-                            search_bbox[1] += search_final_patch[1]
-                            search_result.append({'bbox':search_bbox.tolist(),'name':object_name})
-                        missing_objects.append(object_name)
             # predict the multiple-choice option
             #options = annotation['options']
             options = annotation['options']
@@ -318,9 +290,10 @@ if __name__ == "__main__":
     parser.add_argument("--vqa-model-path", type=str, default="craigwu/seal_vqa_7b")
     parser.add_argument("--vqa-model-base", type=str, default=None)
     parser.add_argument("--conv_type", default="v1", type=str,)
-    parser.add_argument("--benchmark-folder", type=str, default="vstar_bench")
+    parser.add_argument("--benchmark-folder", type=str, default="vbench")
+    parser.add_argument("--dino-folder", type=str, default="dino_normal_output")
     parser.add_argument("--vsm-model-path", type=str, default="craigwu/seal_vsm_7b")
-    parser.add_argument("--output-path", type=str, default="eval_result.json")
+    parser.add_argument("--output-path", type=str, default="eval_result_dino_normal.json")
     parser.add_argument("--minimum_size_scale", default=4.0, type=float, help="minimum sub-image scale for the termination of search")
     parser.add_argument("--minimum_size", default=224, type=int, help="minimum sub-image size for the termination of search")
 

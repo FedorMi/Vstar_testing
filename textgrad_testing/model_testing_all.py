@@ -28,6 +28,77 @@ from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
 vqa_llm = None
 vsm = None
 
+def get_missing_object_labels_correct(image, question, missing_objects_msg, annotation):
+    return annotation['target_object'], "no prediction needed, the object labels are correct"
+
+def get_bounding_boxes_seal(missing_objects, image_path, args, annotation, prompt_template):
+    search_result = []
+    if len(missing_objects) > 0:
+        # visual search
+        for object_name in missing_objects:
+            image = Image.open(image_path).convert('RGB')
+            smallest_size = max(int(np.ceil(min(image.width, image.height)/args.minimum_size_scale)), args.minimum_size)
+            final_step, path_length, search_successful, all_valid_boxes = visual_search(vsm, image, object_name, target_bbox=None, smallest_size=smallest_size)
+            if all_valid_boxes is not None:
+                # might exist multiple target instances
+                for search_bbox in all_valid_boxes:
+                    search_final_patch = final_step['bbox']
+                    search_bbox[0] += search_final_patch[0]
+                    search_bbox[1] += search_final_patch[1]
+                    search_result.append({'bbox':search_bbox.tolist(),'name':object_name})
+            else:
+                search_bbox = final_step['detection_result']
+                search_final_patch = final_step['bbox']
+                search_bbox[0] += search_final_patch[0]
+                search_bbox[1] += search_final_patch[1]
+                search_result.append({'bbox':search_bbox.tolist(),'name':object_name})
+    return search_result
+
+def get_bounding_boxes_correct(missing_objects, image_path, args, annotation):
+    search_result = []
+    for idx, object_name in enumerate(missing_objects):
+        search_result.append({'bbox': annotation['bbox'][idx], 'name': object_name})
+    return search_result
+
+def get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template):
+    # predict the multiple-choice option
+    options = annotation['options']
+    image = Image.open(image_path).convert('RGB')
+    if len(missing_objects) > 0:
+        object_names = [_['name'] for _ in search_result]
+        bboxs = deepcopy([_['bbox'] for _ in search_result])
+        if len(object_names) <= 2:
+            images_long = [False]
+            objects_long = [True]*len(object_names)
+        else:
+            images_long = [False]
+            objects_long = [False]*len(object_names)
+        object_crops = []
+        for bbox in bboxs:
+            object_crop = vqa_llm.get_object_crop(image, bbox, patch_scale=1.2)
+            object_crops.append(object_crop)
+        object_crops = torch.stack(object_crops, 0)
+        image, left, top = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
+        bbox_list = []
+        for bbox in bboxs:
+            bbox[0] += left
+            bbox[1] += top
+            bbox_list.append(bbox)
+        bbox_list = [normalize_bbox(bbox, image.width, image.height) for bbox in bbox_list]
+        cur_focus_msg = focus_msg
+        for i, (object_name, bbox) in enumerate(zip(object_names, bbox_list)):
+            cur_focus_msg = cur_focus_msg + "{} <object> at location [{:.3f},{:.3f},{:.3f},{:.3f}]".format(object_name, bbox[0], bbox[1], bbox[2], bbox[3])
+            if i != len(bbox_list)-1:
+                cur_focus_msg = cur_focus_msg+"; "
+            else:
+                cur_focus_msg = cur_focus_msg +'.'
+        question_with_focus = cur_focus_msg+"\n"+question
+        option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
+    else:
+        option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
+    correct = 1 if option_chosen==0 else 0
+    return correct, options, options[option_chosen]
+
 def iou(bbox1, bbox2):
     x1 = max(bbox1[0], bbox2[0])
     y1 = max(bbox1[1], bbox2[1])
@@ -130,6 +201,90 @@ def call_ollama_model(model_name: str, prompt: str, input:str):
     elif model_name == "deepseek-r1:32b":
         result = handle_deepseek_response(temp_result)
     return result
+
+def test_missing_objects(prompt_template,with_image=True, model_name="llava:34b"):
+    true_positive = 0
+    count = 0
+    for test_type in ['direct_attributes', 'relative_position']:
+        folder = os.path.join("vbench", test_type)
+        image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
+        for image_file in tqdm(image_files):
+            image_path = os.path.join(folder, image_file)
+            annotation_path = image_path.split('.')[0] + '.json'
+            annotation = json.load(open(annotation_path))
+            question = annotation['question']
+            real_missing_objects = annotation['target_object']
+            result = []
+            if with_image:
+                result = call_ollama_model_image(model_name, prompt_template, question, image_file)
+            else:
+                result = call_ollama_model(model_name, prompt_template, question)
+            not_found = False
+            for i in real_missing_objects:
+                if i not in result:
+                    not_found = True
+                    break
+            if not not_found:
+                true_positive += 1
+            count += 1
+    recall = true_positive / count if count > 0 else 0
+    return recall
+            
+
+def test_bounding_boxes_iou():
+    # init VQA LLM
+    vqa_llm = VQA_LLM(args)
+    # init VSM
+    vsm_args = parse_args({})
+    vsm_args.version = args.vsm_model_path
+    vsm = VSM(vsm_args)
+
+    results = {}
+    per_type_acc = defaultdict(list)
+    all_acc = []
+
+    missing_objects_msg = "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear:"
+    focus_msg = "Additional visual information to focus on: "
+    for test_type in ['direct_attributes', 'relative_position']:
+        results[test_type] = []
+        folder = os.path.join(args.benchmark_folder, test_type)
+        image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
+        for image_file in tqdm(image_files):
+            result_single_sample = {}
+            image_path = os.path.join(folder, image_file)
+            annotation_path = image_path.split('.')[0] + '.json'
+            image = Image.open(image_path).convert('RGB')
+            annotation = json.load(open(annotation_path))
+            image, _, _ = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
+            
+            question = annotation['question']
+def test_bounding_boxes_final_result():
+    pass
+def test_final_call(prompt_template):
+    # init VQA LLM
+    if vqa_llm is None:
+        vqa_llm = VQA_LLM(args)
+    results = {}
+    focus_msg = "Additional visual information to focus on: "
+    initial_json = json.load(open('eval_results_initial_seal_testing.json', 'r'))
+    for test_type in ['direct_attributes', 'relative_position']:
+        results[test_type] = []
+        folder = os.path.join(args.benchmark_folder, test_type)
+        image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
+        initial_type_data = initial_json[test_type]
+        for image_file in tqdm(image_files):
+            initial_image_data = {}
+            for i in initial_type_data:
+                if i['image'] == image_file:
+                    initial_image_data = i
+                    break
+            image_path = os.path.join(folder, image_file)
+            annotation_path = image_path.split('.')[0] + '.json'
+            annotation = json.load(open(annotation_path))
+            question = annotation['question']
+            missing_objects = initial_image_data['missing_objects']
+            search_result = initial_image_data['search_result']
+            get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
 
 def main_test_objects(initial_prompt, with_image):
     # open the eval_result_correct_objects.json file

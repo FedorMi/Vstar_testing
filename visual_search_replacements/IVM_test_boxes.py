@@ -65,7 +65,7 @@ def forward_batch_intermediate(
     return result
 
 def main_normal():
-    ckpt_path = os.path.join("pytorch_model", "IVM-V1.0.bin") # your model path here
+    ckpt_path = os.path.join("IVM", "IVM-V1.0.bin") # your model path here
     model = load(ckpt_path, low_gpu_memory = False)
 
     test_types = ["relative_position", "direct_attributes"]
@@ -89,7 +89,7 @@ def main_normal():
             print("image",i,"done")
 
 def main_test():
-    ckpt_path = os.path.join("pytorch_model", "IVM-V1.0.bin") # your model path here
+    ckpt_path = os.path.join("IVM", "IVM-V1.0.bin") # your model path here
     model = initialize_and_check_model(ckpt_path, low_gpu_memory=False)
     #model = load(ckpt_path, low_gpu_memory = False)
     test_types = ["relative_position", "direct_attributes"]
