@@ -60,6 +60,7 @@ def forward_batch_intermediate(
             processed_image = processed_image[y_min:y_max+1, x_min:x_max+1]
         except:
             print("Warning, unable to crop a sample, reserve whole image")
+            return processed_image, ori_image, mask, temp, 0, ori_size[0], 0, ori_size[1]
         result.append(processed_image)
         return processed_image, ori_image, mask, temp, x_min, x_max, y_min, y_max
     return result
