@@ -1,0 +1,199 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    91    0     0  100    91      0    453 --:--:-- --:--:-- --:--:--   452100    91    0     0  100    91      0     75  0:00:01  0:00:01 --:--:--    75100    91    0     0  100    91      0     41  0:00:02  0:00:02 --:--:--    41100    91    0     0  100    91      0     28  0:00:03  0:00:03 --:--:--    28100    91    0     0  100    91      0     21  0:00:04  0:00:04 --:--:--    21100    91    0     0  100    91      0     17  0:00:05  0:00:05 --:--:--     0100    91    0     0  100    91      0     14  0:00:06  0:00:06 --:--:--     0100    91    0     0  100    91      0     12  0:00:07  0:00:07 --:--:--     0100    91    0     0  100    91      0     11  0:00:08  0:00:08 --:--:--     0100    91    0     0  100    91      0      9  0:00:10  0:00:09  0:00:01     0100    91    0     0  100    91      0      8  0:00:11  0:00:10  0:00:01     0100    91    0     0  100    91      0      8  0:00:11  0:00:11 --:--:--     0100    91    0     0  100    91      0      7  0:00:13  0:00:12  0:00:01     0100    91    0     0  100    91      0      6  0:00:15  0:00:13  0:00:02     0100    91    0     0  100    91      0      6  0:00:15  0:00:14  0:00:01     0100    91    0     0  100    91      0      5  0:00:18  0:00:15  0:00:03     0100    91    0     0  100    91      0      5  0:00:18  0:00:16  0:00:02     0100    91    0     0  100    91      0      5  0:00:18  0:00:17  0:00:01     0100    91    0     0  100    91      0      4  0:00:22  0:00:18  0:00:04     0100    91    0     0  100    91      0      4  0:00:22  0:00:19  0:00:03     0100    91    0     0  100    91      0      4  0:00:22  0:00:20  0:00:02     0100    91    0     0  100    91      0      4  0:00:22  0:00:21  0:00:01     0100    91    0     0  100    91      0      4  0:00:22  0:00:22 --:--:--     0100    91    0     0  100    91      0      3  0:00:30  0:00:23  0:00:07     0100    91    0     0  100    91      0      3  0:00:30  0:00:24  0:00:06     0100    91    0     0  100    91      0      3  0:00:30  0:00:25  0:00:05     0100    91    0     0  100    91      0      3  0:00:30  0:00:26  0:00:04     0100    91    0     0  100    91      0      3  0:00:30  0:00:27  0:00:03     0100    91    0     0  100    91      0      3  0:00:30  0:00:28  0:00:02     0100    91    0     0  100    91      0      3  0:00:30  0:00:29  0:00:01     0100    91    0     0  100    91      0      3  0:00:30  0:00:30 --:--:--     0100    91    0     0  100    91      0      2  0:00:45  0:00:31  0:00:14     0100    91    0     0  100    91      0      2  0:00:45  0:00:32  0:00:13     0100    91    0     0  100    91      0      2  0:00:45  0:00:33  0:00:12     0100    91    0     0  100    91      0      2  0:00:45  0:00:34  0:00:11     0100    91    0     0  100    91      0      2  0:00:45  0:00:35  0:00:10     0100    91    0     0  100    91      0      2  0:00:45  0:00:36  0:00:09     0100    91    0     0  100    91      0      2  0:00:45  0:00:37  0:00:08     0100    91    0     0  100    91      0      2  0:00:45  0:00:38  0:00:07     0100    91    0     0  100    91      0      2  0:00:45  0:00:39  0:00:06     0100    91    0     0  100    91      0      2  0:00:45  0:00:40  0:00:05     0100    91    0     0  100    91      0      2  0:00:45  0:00:41  0:00:04     0100   462  100   371  100    91      8      2  0:00:46  0:00:41  0:00:05    81
+{"id":"chatcmpl-305","object":"chat.completion","created":1754055383,"model":"deepseek-r1:32b","system_fingerprint":"fp_ollama","choices":[{"index":0,"message":{"role":"assistant","content":"\u003cthink\u003e\n\n\u003c/think\u003e\n\nHello! How can I assist you today? 😊"},"finish_reason":"stop"}],"usage":{"prompt_tokens":5,"completion_tokens":16,"total_tokens":21}}
+Processing questions:   0%|          | 0/191 [00:00<?, ?it/s]Processing questions:   1%|          | 1/191 [00:40<2:08:43, 40.65s/it]Processing questions:   1%|          | 2/191 [00:41<54:18, 17.24s/it]  Processing questions:   2%|▏         | 3/191 [00:42<30:25,  9.71s/it]Processing questions:   2%|▏         | 4/191 [00:43<19:15,  6.18s/it]Processing questions:   3%|▎         | 5/191 [00:43<13:06,  4.23s/it]Processing questions:   3%|▎         | 6/191 [00:44<09:25,  3.06s/it]Processing questions:   4%|▎         | 7/191 [00:45<07:07,  2.33s/it]Processing questions:   4%|▍         | 8/191 [00:46<05:35,  1.83s/it]Processing questions:   5%|▍         | 9/191 [00:46<04:32,  1.50s/it]Processing questions:   5%|▌         | 10/191 [00:47<03:49,  1.27s/it]Processing questions:   6%|▌         | 11/191 [00:48<03:19,  1.11s/it]Processing questions:   6%|▋         | 12/191 [00:49<02:59,  1.00s/it]Processing questions:   7%|▋         | 13/191 [00:49<02:45,  1.08it/s]Processing questions:   7%|▋         | 14/191 [00:50<02:38,  1.12it/s]Processing questions:   8%|▊         | 15/191 [00:51<02:30,  1.17it/s]Processing questions:   8%|▊         | 16/191 [00:52<02:27,  1.19it/s]Processing questions:   9%|▉         | 17/191 [00:53<02:22,  1.22it/s]Processing questions:   9%|▉         | 18/191 [00:53<02:20,  1.23it/s]Processing questions:  10%|▉         | 19/191 [00:54<02:19,  1.23it/s]Processing questions:  10%|█         | 20/191 [00:55<02:16,  1.26it/s]Processing questions:  11%|█         | 21/191 [00:56<02:13,  1.27it/s]Processing questions:  12%|█▏        | 22/191 [00:57<02:14,  1.26it/s]Processing questions:  12%|█▏        | 23/191 [00:57<02:13,  1.25it/s]Processing questions:  13%|█▎        | 24/191 [00:58<02:12,  1.26it/s]Processing questions:  13%|█▎        | 25/191 [00:59<02:17,  1.20it/s]Processing questions:  14%|█▎        | 26/191 [01:00<02:16,  1.20it/s]Processing questions:  14%|█▍        | 27/191 [01:01<02:11,  1.24it/s]Processing questions:  15%|█▍        | 28/191 [01:01<02:12,  1.23it/s]Processing questions:  15%|█▌        | 29/191 [01:02<02:08,  1.26it/s]Processing questions:  16%|█▌        | 30/191 [01:03<02:05,  1.28it/s]Processing questions:  16%|█▌        | 31/191 [01:04<02:04,  1.28it/s]Processing questions:  17%|█▋        | 32/191 [01:05<02:07,  1.25it/s]Processing questions:  17%|█▋        | 33/191 [01:05<02:05,  1.26it/s]Processing questions:  18%|█▊        | 34/191 [01:06<02:02,  1.28it/s]Processing questions:  18%|█▊        | 35/191 [01:07<02:02,  1.27it/s]Processing questions:  19%|█▉        | 36/191 [01:08<02:01,  1.28it/s]Processing questions:  19%|█▉        | 37/191 [01:08<01:59,  1.29it/s]Processing questions:  20%|█▉        | 38/191 [01:09<02:01,  1.25it/s]Processing questions:  20%|██        | 39/191 [01:10<01:59,  1.27it/s]Processing questions:  21%|██        | 40/191 [01:11<01:57,  1.28it/s]Processing questions:  21%|██▏       | 41/191 [01:12<01:54,  1.31it/s]Processing questions:  22%|██▏       | 42/191 [01:12<01:53,  1.31it/s]Processing questions:  23%|██▎       | 43/191 [01:13<01:52,  1.32it/s]Processing questions:  23%|██▎       | 44/191 [01:14<01:55,  1.28it/s]Processing questions:  24%|██▎       | 45/191 [01:15<01:53,  1.28it/s]Processing questions:  24%|██▍       | 46/191 [01:15<01:54,  1.27it/s]Processing questions:  25%|██▍       | 47/191 [01:16<01:55,  1.25it/s]Processing questions:  25%|██▌       | 48/191 [01:17<01:55,  1.24it/s]Processing questions:  26%|██▌       | 49/191 [01:18<01:54,  1.24it/s]Processing questions:  26%|██▌       | 50/191 [01:19<01:55,  1.22it/s]Processing questions:  27%|██▋       | 51/191 [01:20<01:53,  1.23it/s]Processing questions:  27%|██▋       | 52/191 [01:20<01:53,  1.23it/s]Processing questions:  28%|██▊       | 53/191 [01:21<01:50,  1.24it/s]Processing questions:  28%|██▊       | 54/191 [01:22<01:51,  1.23it/s]Processing questions:  29%|██▉       | 55/191 [01:23<01:50,  1.23it/s]Processing questions:  29%|██▉       | 56/191 [01:24<01:49,  1.24it/s]Processing questions:  30%|██▉       | 57/191 [01:24<01:48,  1.23it/s]Processing questions:  30%|███       | 58/191 [01:25<01:45,  1.27it/s]Processing questions:  31%|███       | 59/191 [01:26<01:42,  1.29it/s]Processing questions:  31%|███▏      | 60/191 [01:27<01:42,  1.28it/s]Processing questions:  32%|███▏      | 61/191 [01:28<01:44,  1.25it/s]Processing questions:  32%|███▏      | 62/191 [01:28<01:41,  1.27it/s]Processing questions:  33%|███▎      | 63/191 [01:29<01:43,  1.24it/s]Processing questions:  34%|███▎      | 64/191 [01:30<01:40,  1.27it/s]Processing questions:  34%|███▍      | 65/191 [01:31<01:37,  1.29it/s]Processing questions:  35%|███▍      | 66/191 [01:31<01:36,  1.30it/s]Processing questions:  35%|███▌      | 67/191 [01:32<01:35,  1.30it/s]Processing questions:  36%|███▌      | 68/191 [01:33<01:34,  1.31it/s]Processing questions:  36%|███▌      | 69/191 [01:34<01:33,  1.31it/s]Processing questions:  37%|███▋      | 70/191 [01:35<01:34,  1.29it/s]Processing questions:  37%|███▋      | 71/191 [01:35<01:33,  1.28it/s]Processing questions:  38%|███▊      | 72/191 [01:36<01:32,  1.28it/s]Processing questions:  38%|███▊      | 73/191 [01:37<01:33,  1.26it/s]Processing questions:  39%|███▊      | 74/191 [01:38<01:33,  1.25it/s]Processing questions:  39%|███▉      | 75/191 [01:39<01:33,  1.24it/s]Processing questions:  40%|███▉      | 76/191 [01:39<01:32,  1.24it/s]Processing questions:  40%|████      | 77/191 [01:40<01:32,  1.24it/s]Processing questions:  41%|████      | 78/191 [01:41<01:30,  1.25it/s]Processing questions:  41%|████▏     | 79/191 [01:42<01:29,  1.25it/s]Processing questions:  42%|████▏     | 80/191 [01:42<01:26,  1.28it/s]Processing questions:  42%|████▏     | 81/191 [01:43<01:27,  1.25it/s]Processing questions:  43%|████▎     | 82/191 [01:44<01:25,  1.27it/s]Processing questions:  43%|████▎     | 83/191 [01:45<01:25,  1.26it/s]Processing questions:  44%|████▍     | 84/191 [01:46<01:26,  1.24it/s]Processing questions:  45%|████▍     | 85/191 [01:47<01:26,  1.22it/s]Processing questions:  45%|████▌     | 86/191 [01:47<01:24,  1.25it/s]Processing questions:  46%|████▌     | 87/191 [01:48<01:23,  1.24it/s]Processing questions:  46%|████▌     | 88/191 [01:49<01:24,  1.23it/s]Processing questions:  47%|████▋     | 89/191 [01:50<01:22,  1.24it/s]Processing questions:  47%|████▋     | 90/191 [01:51<01:22,  1.23it/s]Processing questions:  48%|████▊     | 91/191 [01:51<01:19,  1.26it/s]Processing questions:  48%|████▊     | 92/191 [01:52<01:17,  1.27it/s]Processing questions:  49%|████▊     | 93/191 [01:53<01:16,  1.29it/s]Processing questions:  49%|████▉     | 94/191 [01:54<01:16,  1.27it/s]Processing questions:  50%|████▉     | 95/191 [01:54<01:14,  1.29it/s]Processing questions:  50%|█████     | 96/191 [01:55<01:13,  1.28it/s]Processing questions:  51%|█████     | 97/191 [01:56<01:14,  1.27it/s]Processing questions:  51%|█████▏    | 98/191 [01:57<01:12,  1.29it/s]Processing questions:  52%|█████▏    | 99/191 [01:58<01:11,  1.29it/s]Processing questions:  52%|█████▏    | 100/191 [01:58<01:11,  1.27it/s]Processing questions:  53%|█████▎    | 101/191 [01:59<01:09,  1.29it/s]Processing questions:  53%|█████▎    | 102/191 [02:00<01:10,  1.25it/s]Processing questions:  54%|█████▍    | 103/191 [02:01<01:10,  1.25it/s]Processing questions:  54%|█████▍    | 104/191 [02:02<01:10,  1.23it/s]Processing questions:  55%|█████▍    | 105/191 [02:02<01:09,  1.24it/s]Processing questions:  55%|█████▌    | 106/191 [02:03<01:07,  1.27it/s]Processing questions:  56%|█████▌    | 107/191 [02:04<01:06,  1.27it/s]Processing questions:  57%|█████▋    | 108/191 [02:05<01:04,  1.28it/s]Processing questions:  57%|█████▋    | 109/191 [02:05<01:04,  1.27it/s]Processing questions:  58%|█████▊    | 110/191 [02:06<01:04,  1.26it/s]Processing questions:  58%|█████▊    | 111/191 [02:07<01:03,  1.26it/s]Processing questions:  59%|█████▊    | 112/191 [02:08<01:02,  1.26it/s]Processing questions:  59%|█████▉    | 113/191 [02:09<01:02,  1.25it/s]Processing questions:  60%|█████▉    | 114/191 [02:10<01:01,  1.24it/s]Processing questions:  60%|██████    | 115/191 [02:10<01:03,  1.20it/s]Processing questions:  61%|██████    | 116/191 [02:11<01:01,  1.22it/s]Processing questions:  61%|██████▏   | 117/191 [02:12<01:00,  1.23it/s]Processing questions:  62%|██████▏   | 118/191 [02:13<00:59,  1.23it/s]Processing questions:  62%|██████▏   | 119/191 [02:14<00:58,  1.24it/s]Processing questions:  63%|██████▎   | 120/191 [02:14<00:56,  1.26it/s]Processing questions:  63%|██████▎   | 121/191 [02:15<00:56,  1.25it/s]Processing questions:  64%|██████▍   | 122/191 [02:16<00:54,  1.26it/s]Processing questions:  64%|██████▍   | 123/191 [02:17<00:52,  1.29it/s]Processing questions:  65%|██████▍   | 124/191 [02:17<00:51,  1.29it/s]Processing questions:  65%|██████▌   | 125/191 [02:18<00:51,  1.29it/s]Processing questions:  66%|██████▌   | 126/191 [02:19<00:51,  1.27it/s]Processing questions:  66%|██████▋   | 127/191 [02:20<00:49,  1.30it/s]Processing questions:  67%|██████▋   | 128/191 [02:21<00:50,  1.25it/s]Processing questions:  68%|██████▊   | 129/191 [02:21<00:48,  1.27it/s]Processing questions:  68%|██████▊   | 130/191 [02:22<00:48,  1.26it/s]Processing questions:  69%|██████▊   | 131/191 [02:23<00:47,  1.26it/s]Processing questions:  69%|██████▉   | 132/191 [02:24<00:46,  1.27it/s]Processing questions:  70%|██████▉   | 133/191 [02:25<00:45,  1.27it/s]Processing questions:  70%|███████   | 134/191 [02:25<00:45,  1.26it/s]Processing questions:  71%|███████   | 135/191 [02:26<00:44,  1.24it/s]Processing questions:  71%|███████   | 136/191 [02:27<00:44,  1.24it/s]Processing questions:  72%|███████▏  | 137/191 [02:28<00:42,  1.26it/s]Processing questions:  72%|███████▏  | 138/191 [02:29<00:41,  1.28it/s]Processing questions:  73%|███████▎  | 139/191 [02:29<00:40,  1.29it/s]Processing questions:  73%|███████▎  | 140/191 [02:30<00:39,  1.31it/s]Processing questions:  74%|███████▍  | 141/191 [02:31<00:39,  1.28it/s]Processing questions:  74%|███████▍  | 142/191 [02:32<00:39,  1.25it/s]Processing questions:  75%|███████▍  | 143/191 [02:32<00:37,  1.28it/s]Processing questions:  75%|███████▌  | 144/191 [02:33<00:37,  1.26it/s]Processing questions:  76%|███████▌  | 145/191 [02:34<00:36,  1.26it/s]Processing questions:  76%|███████▋  | 146/191 [02:35<00:35,  1.26it/s]Processing questions:  77%|███████▋  | 147/191 [02:36<00:36,  1.22it/s]Processing questions:  77%|███████▋  | 148/191 [02:37<00:35,  1.22it/s]Processing questions:  78%|███████▊  | 149/191 [02:37<00:34,  1.23it/s]Processing questions:  79%|███████▊  | 150/191 [02:38<00:32,  1.26it/s]Processing questions:  79%|███████▉  | 151/191 [02:39<00:31,  1.25it/s]Processing questions:  80%|███████▉  | 152/191 [02:40<00:30,  1.27it/s]Processing questions:  80%|████████  | 153/191 [02:40<00:30,  1.26it/s]Processing questions:  81%|████████  | 154/191 [02:41<00:30,  1.23it/s]Processing questions:  81%|████████  | 155/191 [02:42<00:29,  1.22it/s]Processing questions:  82%|████████▏ | 156/191 [02:43<00:28,  1.23it/s]Processing questions:  82%|████████▏ | 157/191 [02:44<00:27,  1.23it/s]Processing questions:  83%|████████▎ | 158/191 [02:45<00:26,  1.24it/s]Processing questions:  83%|████████▎ | 159/191 [02:45<00:25,  1.24it/s]Processing questions:  84%|████████▍ | 160/191 [02:46<00:24,  1.25it/s]Processing questions:  84%|████████▍ | 161/191 [02:47<00:24,  1.25it/s]Processing questions:  85%|████████▍ | 162/191 [02:48<00:23,  1.23it/s]Processing questions:  85%|████████▌ | 163/191 [02:49<00:22,  1.22it/s]Processing questions:  86%|████████▌ | 164/191 [02:49<00:21,  1.24it/s]Processing questions:  86%|████████▋ | 165/191 [02:50<00:20,  1.26it/s]Processing questions:  87%|████████▋ | 166/191 [02:51<00:19,  1.28it/s]Processing questions:  87%|████████▋ | 167/191 [02:52<00:19,  1.21it/s]Processing questions:  88%|████████▊ | 168/191 [02:53<00:18,  1.22it/s]Processing questions:  88%|████████▊ | 169/191 [02:53<00:17,  1.23it/s]Processing questions:  89%|████████▉ | 170/191 [02:54<00:16,  1.25it/s]Processing questions:  90%|████████▉ | 171/191 [02:55<00:15,  1.28it/s]Processing questions:  90%|█████████ | 172/191 [02:56<00:14,  1.27it/s]Processing questions:  91%|█████████ | 173/191 [02:57<00:14,  1.25it/s]Processing questions:  91%|█████████ | 174/191 [02:57<00:13,  1.26it/s]Processing questions:  92%|█████████▏| 175/191 [02:58<00:13,  1.16it/s]Processing questions:  92%|█████████▏| 176/191 [02:59<00:12,  1.19it/s]Processing questions:  93%|█████████▎| 177/191 [03:00<00:11,  1.22it/s]Processing questions:  93%|█████████▎| 178/191 [03:01<00:10,  1.23it/s]Processing questions:  94%|█████████▎| 179/191 [03:02<00:09,  1.26it/s]Processing questions:  94%|█████████▍| 180/191 [03:02<00:08,  1.24it/s]Processing questions:  95%|█████████▍| 181/191 [03:03<00:08,  1.24it/s]Processing questions:  95%|█████████▌| 182/191 [03:04<00:07,  1.23it/s]Processing questions:  96%|█████████▌| 183/191 [03:05<00:06,  1.24it/s]Processing questions:  96%|█████████▋| 184/191 [03:06<00:05,  1.25it/s]Processing questions:  97%|█████████▋| 185/191 [03:06<00:04,  1.21it/s]Processing questions:  97%|█████████▋| 186/191 [03:07<00:04,  1.22it/s]Processing questions:  98%|█████████▊| 187/191 [03:08<00:03,  1.25it/s]Processing questions:  98%|█████████▊| 188/191 [03:09<00:02,  1.27it/s]Processing questions:  99%|█████████▉| 189/191 [03:10<00:01,  1.28it/s]Processing questions:  99%|█████████▉| 190/191 [03:10<00:00,  1.26it/s]Processing questions: 100%|██████████| 191/191 [03:11<00:00,  1.27it/s]Processing questions: 100%|██████████| 191/191 [03:11<00:00,  1.00s/it]
+Image: direct_attributes/sa_4690.jpg, Correct: True
+Image: direct_attributes/sa_86101.jpg, Correct: True
+Image: direct_attributes/sa_10997.jpg, Correct: True
+Image: direct_attributes/sa_40973.jpg, Correct: True
+Image: direct_attributes/sa_33579.jpg, Correct: True
+Image: direct_attributes/sa_3568.jpg, Correct: True
+Image: direct_attributes/sa_9019.jpg, Correct: True
+Image: direct_attributes/sa_33492.jpg, Correct: True
+Image: direct_attributes/sa_44097.jpg, Correct: True
+Image: direct_attributes/sa_39518.jpg, Correct: True
+Image: direct_attributes/sa_7428.jpg, Correct: True
+Image: direct_attributes/sa_5413.jpg, Correct: True
+Image: direct_attributes/sa_4460.jpg, Correct: True
+Image: direct_attributes/sa_50442.jpg, Correct: True
+Image: direct_attributes/sa_37675.jpg, Correct: True
+Image: direct_attributes/sa_24546.jpg, Correct: False
+Image: direct_attributes/sa_17.jpg, Correct: True
+Image: direct_attributes/sa_9230.jpg, Correct: True
+Image: direct_attributes/sa_9611.jpg, Correct: False
+Image: direct_attributes/sa_50451.jpg, Correct: True
+Image: direct_attributes/sa_65370.jpg, Correct: True
+Image: direct_attributes/sa_47397.jpg, Correct: False
+Image: direct_attributes/sa_10919.jpg, Correct: False
+Image: direct_attributes/sa_26968.jpg, Correct: False
+Image: direct_attributes/sa_38155.jpg, Correct: True
+Image: direct_attributes/sa_28073.jpg, Correct: False
+Image: direct_attributes/sa_5387.jpg, Correct: True
+Image: direct_attributes/sa_23893.jpg, Correct: False
+Image: direct_attributes/sa_7018.jpg, Correct: True
+Image: direct_attributes/sa_6965.jpg, Correct: True
+Image: direct_attributes/sa_52155.jpg, Correct: True
+Image: direct_attributes/sa_30034.jpg, Correct: False
+Image: direct_attributes/sa_5674.jpg, Correct: True
+Image: direct_attributes/sa_5346.jpg, Correct: True
+Image: direct_attributes/sa_39678.jpg, Correct: False
+Image: direct_attributes/sa_11528.jpg, Correct: True
+Image: direct_attributes/sa_4988.jpg, Correct: True
+Image: direct_attributes/sa_16306.jpg, Correct: False
+Image: direct_attributes/sa_6422.jpg, Correct: True
+Image: direct_attributes/sa_56573.jpg, Correct: True
+Image: direct_attributes/sa_4658.jpg, Correct: True
+Image: direct_attributes/sa_13337.jpg, Correct: False
+Image: direct_attributes/sa_10204.jpg, Correct: True
+Image: direct_attributes/sa_43391.jpg, Correct: False
+Image: direct_attributes/sa_65476.jpg, Correct: False
+Image: direct_attributes/sa_42562.jpg, Correct: False
+Image: direct_attributes/sa_30411.jpg, Correct: False
+Image: direct_attributes/sa_10415.jpg, Correct: True
+Image: direct_attributes/sa_79105.jpg, Correct: False
+Image: direct_attributes/sa_29744.jpg, Correct: False
+Image: direct_attributes/sa_80352.jpg, Correct: True
+Image: direct_attributes/sa_25212.jpg, Correct: False
+Image: direct_attributes/sa_19483.jpg, Correct: True
+Image: direct_attributes/sa_7081.jpg, Correct: True
+Image: direct_attributes/sa_35748.jpg, Correct: False
+Image: direct_attributes/sa_59482.jpg, Correct: False
+Image: direct_attributes/sa_25835.jpg, Correct: False
+Image: direct_attributes/sa_30179.jpg, Correct: False
+Image: direct_attributes/sa_25219.jpg, Correct: True
+Image: direct_attributes/sa_38195.jpg, Correct: True
+Image: direct_attributes/sa_20519.jpg, Correct: False
+Image: direct_attributes/sa_717.jpg, Correct: False
+Image: direct_attributes/sa_66699.jpg, Correct: True
+Image: direct_attributes/sa_4020.jpg, Correct: True
+Image: direct_attributes/sa_10225.jpg, Correct: True
+Image: direct_attributes/sa_80880.jpg, Correct: True
+Image: direct_attributes/sa_84131.jpg, Correct: True
+Image: direct_attributes/sa_30935.jpg, Correct: True
+Image: direct_attributes/sa_10033.jpg, Correct: True
+Image: direct_attributes/sa_10720.jpg, Correct: False
+Image: direct_attributes/sa_38610.jpg, Correct: True
+Image: direct_attributes/sa_10701.jpg, Correct: True
+Image: direct_attributes/sa_19272.jpg, Correct: False
+Image: direct_attributes/sa_7347.jpg, Correct: False
+Image: direct_attributes/sa_64897.jpg, Correct: False
+Image: direct_attributes/sa_28392.jpg, Correct: True
+Image: direct_attributes/sa_60786.jpg, Correct: False
+Image: direct_attributes/sa_63876.jpg, Correct: True
+Image: direct_attributes/sa_16854.jpg, Correct: False
+Image: direct_attributes/sa_7065.jpg, Correct: True
+Image: direct_attributes/sa_55722.jpg, Correct: False
+Image: direct_attributes/sa_26085.jpg, Correct: True
+Image: direct_attributes/sa_66657.jpg, Correct: False
+Image: direct_attributes/sa_31511.jpg, Correct: False
+Image: direct_attributes/sa_68625.jpg, Correct: True
+Image: direct_attributes/sa_34040.jpg, Correct: True
+Image: direct_attributes/sa_29509.jpg, Correct: True
+Image: direct_attributes/sa_41908.jpg, Correct: False
+Image: direct_attributes/sa_7429.jpg, Correct: True
+Image: direct_attributes/sa_55332.jpg, Correct: False
+Image: direct_attributes/sa_17108.jpg, Correct: True
+Image: direct_attributes/sa_4203.jpg, Correct: True
+Image: direct_attributes/sa_16825.jpg, Correct: True
+Image: direct_attributes/sa_42585.jpg, Correct: False
+Image: direct_attributes/sa_9877.jpg, Correct: True
+Image: direct_attributes/sa_11405.jpg, Correct: False
+Image: direct_attributes/sa_66471.jpg, Correct: True
+Image: direct_attributes/sa_11290.jpg, Correct: True
+Image: direct_attributes/sa_5281.jpg, Correct: False
+Image: direct_attributes/sa_59664.jpg, Correct: True
+Image: direct_attributes/sa_38669.jpg, Correct: True
+Image: direct_attributes/sa_27986.jpg, Correct: True
+Image: direct_attributes/sa_86882.jpg, Correct: True
+Image: direct_attributes/sa_70112.jpg, Correct: True
+Image: direct_attributes/sa_7668.jpg, Correct: False
+Image: direct_attributes/sa_7609.jpg, Correct: False
+Image: direct_attributes/sa_11370.jpg, Correct: False
+Image: direct_attributes/sa_1244.jpg, Correct: True
+Image: direct_attributes/sa_51837.jpg, Correct: False
+Image: direct_attributes/sa_58805.jpg, Correct: False
+Image: direct_attributes/sa_31451.jpg, Correct: False
+Image: direct_attributes/sa_10885.jpg, Correct: True
+Image: direct_attributes/sa_7683.jpg, Correct: False
+Image: direct_attributes/sa_9957.jpg, Correct: True
+Image: direct_attributes/sa_10052.jpg, Correct: True
+Image: relative_position/sa_69962.jpg, Correct: True
+Image: relative_position/sa_19421.jpg, Correct: False
+Image: relative_position/sa_7228.jpg, Correct: True
+Image: relative_position/sa_6183.jpg, Correct: True
+Image: relative_position/sa_41869.jpg, Correct: False
+Image: relative_position/sa_79349.jpg, Correct: True
+Image: relative_position/sa_4137.jpg, Correct: True
+Image: relative_position/sa_28639.jpg, Correct: True
+Image: relative_position/sa_5593.jpg, Correct: True
+Image: relative_position/sa_31586.jpg, Correct: True
+Image: relative_position/sa_52228.jpg, Correct: False
+Image: relative_position/sa_61121.jpg, Correct: False
+Image: relative_position/sa_53509.jpg, Correct: False
+Image: relative_position/sa_10313.jpg, Correct: True
+Image: relative_position/sa_23098.jpg, Correct: False
+Image: relative_position/sa_7826.jpg, Correct: False
+Image: relative_position/sa_25747.jpg, Correct: False
+Image: relative_position/sa_40188.jpg, Correct: True
+Image: relative_position/sa_3194.jpg, Correct: False
+Image: relative_position/sa_5156.jpg, Correct: False
+Image: relative_position/sa_69634.jpg, Correct: True
+Image: relative_position/sa_24031.jpg, Correct: True
+Image: relative_position/sa_80084.jpg, Correct: True
+Image: relative_position/sa_3796.jpg, Correct: False
+Image: relative_position/sa_23264.jpg, Correct: True
+Image: relative_position/sa_56362.jpg, Correct: False
+Image: relative_position/sa_64554.jpg, Correct: True
+Image: relative_position/sa_31038.jpg, Correct: True
+Image: relative_position/sa_30441.jpg, Correct: True
+Image: relative_position/sa_6887.jpg, Correct: True
+Image: relative_position/sa_59351.jpg, Correct: True
+Image: relative_position/sa_62287.jpg, Correct: False
+Image: relative_position/sa_34291.jpg, Correct: False
+Image: relative_position/sa_31784.jpg, Correct: True
+Image: relative_position/sa_3053.jpg, Correct: False
+Image: relative_position/sa_36787.jpg, Correct: False
+Image: relative_position/sa_25678.jpg, Correct: True
+Image: relative_position/sa_51681.jpg, Correct: False
+Image: relative_position/sa_65804.jpg, Correct: False
+Image: relative_position/sa_62783.jpg, Correct: True
+Image: relative_position/sa_64142.jpg, Correct: False
+Image: relative_position/sa_24971.jpg, Correct: False
+Image: relative_position/sa_7626.jpg, Correct: False
+Image: relative_position/sa_58331.jpg, Correct: True
+Image: relative_position/sa_57960.jpg, Correct: True
+Image: relative_position/sa_83235.jpg, Correct: False
+Image: relative_position/sa_23575.jpg, Correct: False
+Image: relative_position/sa_24464.jpg, Correct: True
+Image: relative_position/sa_4953.jpg, Correct: True
+Image: relative_position/sa_65606.jpg, Correct: True
+Image: relative_position/sa_87051.jpg, Correct: True
+Image: relative_position/sa_45802.jpg, Correct: True
+Image: relative_position/sa_23298.jpg, Correct: True
+Image: relative_position/sa_69550.jpg, Correct: True
+Image: relative_position/sa_61594.jpg, Correct: True
+Image: relative_position/sa_5613.jpg, Correct: False
+Image: relative_position/sa_40977.jpg, Correct: True
+Image: relative_position/sa_79958.jpg, Correct: True
+Image: relative_position/sa_5465.jpg, Correct: True
+Image: relative_position/sa_77731.jpg, Correct: False
+Image: relative_position/sa_29022.jpg, Correct: True
+Image: relative_position/sa_71151.jpg, Correct: True
+Image: relative_position/sa_49792.jpg, Correct: True
+Image: relative_position/sa_64257.jpg, Correct: False
+Image: relative_position/sa_86732.jpg, Correct: False
+Image: relative_position/sa_34785.jpg, Correct: False
+Image: relative_position/sa_46221.jpg, Correct: False
+Image: relative_position/sa_6531.jpg, Correct: True
+Image: relative_position/sa_3222.jpg, Correct: True
+Image: relative_position/sa_33280.jpg, Correct: False
+Image: relative_position/sa_53377.jpg, Correct: True
+Image: relative_position/sa_7621.jpg, Correct: True
+Image: relative_position/sa_42676.jpg, Correct: True
+Image: relative_position/sa_40555.jpg, Correct: False
+Image: relative_position/sa_57152.jpg, Correct: True
+Image: relative_position/sa_78272.jpg, Correct: False
+Direct Attributes: 70/115 (60.87%)
+Relative Position: 44/76 (57.89%)
+Overall: 114/191 (59.69%)
