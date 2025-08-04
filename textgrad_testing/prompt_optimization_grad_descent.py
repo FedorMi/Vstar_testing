@@ -1,6 +1,5 @@
 import os
 import json
-import tqdm
 import torch
 import random
 import argparse
@@ -14,10 +13,13 @@ from typing import Callable, List, Any
 from copy import deepcopy
 from openai import OpenAI
 from PIL import Image
+from tqdm import tqdm
 
 from textgrad.engine.local_model_openai_api import ChatExternalClient  # (not needed anymore)
 from textgrad.autograd import MultimodalLLMCall
 from textgrad.loss import ImageQALoss
+#from textgrad.tasks.base import DataLoader
+from torch.utils.data import DataLoader, Dataset
 
 from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
 from visual_search import parse_args, VSM, visual_search
@@ -31,6 +33,16 @@ vsm = None
 vsm_model_path = "craigwu/seal_vsm_7b"
 minimum_size_scale = 4.0
 minimum_size = 224
+
+class MyDataset(Dataset):
+    def __init__(self, file_list):
+        self.files = file_list
+
+    def __getitem__(self, index):
+        return self.files[index]
+    
+    def __len__(self):
+        return len(self.files)
 
 def iou(bbox1, bbox2):
     x1 = max(bbox1[0], bbox2[0])
@@ -53,9 +65,9 @@ def handle_llava_response(response: str):
             out.append(i.strip())
         return out
 
-def call_ollama_model_image(model_name: str, prompt: str, input: str, image_name: str):
+def call_ollama_model_image(model_name: str, prompt: str, input: str, image_name: str, test_type: str):
     #image_path = "sa_17.jpg"
-    path = os.path.join("vbench", "direct_attributes", image_name)
+    path = os.path.join("vbench", test_type, image_name)
     # Read the image content
     with open(path, 'rb') as image_file:
         image_data = image_file.read()
@@ -217,7 +229,7 @@ def test_missing_objects(prompt_template, evaluation_set,with_image=True, model_
         real_missing_objects = annotation['target_object']
         result = []
         if with_image:
-            result = call_ollama_model_image(model_name, prompt_template, question, image_file)
+            result = call_ollama_model_image(model_name, prompt_template, question, image_file, test_type)
         else:
             result = call_ollama_model(model_name, prompt_template, question)
         not_found = False
@@ -350,10 +362,8 @@ def textgrad_prompt_optimization(eval_func, data_set):
     set_seed(42)
 
     client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
-    engine = ChatExternalClient(client=client, model_string='llama:70b')
-    
-    llm_api_eval = engine
-    tg.set_backward_engine(llm_api_eval, override=True)
+    engine = ChatExternalClient(client=client, model_string='llama3:70b')
+    tg.set_backward_engine(engine, override=True)
 
     # Load the data and the evaluation function
     train_fraction = 0.7
@@ -364,7 +374,8 @@ def textgrad_prompt_optimization(eval_func, data_set):
     test_len = len(data_set) - train_len - val_len
     train_set, val_set, test_set = random_split(data_set, [train_len, val_len, test_len])
     #train_set, val_set, test_set, eval_fn = load_task("BBH_object_counting", evaluation_api=llm_api_eval)
-    train_loader = tg.tasks.DataLoader(train_set, batch_size=3, shuffle=True)
+    data_set_train = MyDataset(train_set)
+    train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
 
     print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
     STARTING_SYSTEM_PROMPT = "here is prompt template"
@@ -373,7 +384,7 @@ def textgrad_prompt_optimization(eval_func, data_set):
                                 requires_grad=True,
                                 role_description="structured system prompt to a somewhat capable language model that specifies the behavior and strategies for the QA task")
 
-    optimizer = tg.TextualGradientDescent(engine=llm_api_eval, parameters=[system_prompt])
+    optimizer = tg.TGD(engine=engine, parameters=[system_prompt])
 
     results = {"test_acc": [], "prompt": [], "validation_acc": []}
 
@@ -384,7 +395,8 @@ def textgrad_prompt_optimization(eval_func, data_set):
     results["validation_acc"].append(eval_func(system_prompt.value, val_set))
     results["prompt"].append(system_prompt.get_value())
     for epoch in range(3):
-        for steps, (batch_x, batch_y) in enumerate((pbar := tqdm(train_loader, position=0))):
+        for steps, batch_x in enumerate((pbar := tqdm(train_loader, position=0))):
+            print(batch_x)
             pbar.set_description(f"Training step {steps}. Epoch {epoch}")
             optimizer.zero_grad()
             losses = []
@@ -395,8 +407,8 @@ def textgrad_prompt_optimization(eval_func, data_set):
                 if len(batch_x) % training_divisions != 0 and div_num == training_divisions - 1:
                     mini_batch_len = len(batch_x) - mini_batch_len * (training_divisions - 1)
                 curr_batch_x = batch_x[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
-                curr_batch_y = batch_y[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
-                eval_output_variable = tg.Variable(eval_func(system_prompt.value, curr_batch_x), requires_grad=False, role_description="evaluation of mini-batch results")
+                #curr_batch_y = batch_y[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
+                eval_output_variable = tg.Variable(str(eval_func(system_prompt.value, curr_batch_x)), requires_grad=False, role_description="evaluation of mini-batch results")
                 losses.append(eval_output_variable)
             total_loss = tg.sum(losses)
             total_loss.backward()
@@ -416,7 +428,7 @@ if __name__ == "__main__":
     for test_type in ['direct_attributes', 'relative_position']:
         folder = os.path.join("vbench", test_type)
         image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
-        for image_file in tqdm(image_files):
+        for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
     textgrad_prompt_optimization(test_missing_objects, data_set)
