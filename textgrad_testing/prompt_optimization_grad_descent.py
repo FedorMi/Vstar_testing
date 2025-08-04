@@ -362,7 +362,7 @@ def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_fun
         val_performance = previous_performance
     results["validation_acc"].append(val_performance)
 
-def textgrad_prompt_optimization(eval_func, data_set):
+def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str):
     set_seed(42)
 
     client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
@@ -382,9 +382,9 @@ def textgrad_prompt_optimization(eval_func, data_set):
     train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
 
     print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
-    STARTING_SYSTEM_PROMPT = "here is prompt template"
+
     # Testing the 0-shot performance of the evaluation engine
-    system_prompt = tg.Variable(STARTING_SYSTEM_PROMPT, 
+    system_prompt = tg.Variable(starting_prompt, 
                                 requires_grad=True,
                                 role_description="structured system prompt to a somewhat capable language model that specifies the behavior and strategies for the QA task")
 
