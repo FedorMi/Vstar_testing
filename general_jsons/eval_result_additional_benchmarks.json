@@ -1,0 +1,1949 @@
+{
+    "vbench_additions": {
+        "direct_attributes": [
+            {
+                "question": "What color is the egg?",
+                "options": [
+                    "The egg is Brown.",
+                    "The egg is White.",
+                    "The egg is Blue.",
+                    "The egg is Green."
+                ],
+                "image": "fa_7.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: egg.",
+                "missing_objects": [
+                    "egg"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1032.890625,
+                            2351.3525390625,
+                            434.6875,
+                            235.576171875
+                        ],
+                        "name": "egg"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the construction crane?",
+                "options": [
+                    "The construction crane is orange.",
+                    "The construction crane is blue.",
+                    "The construction crane is purple.",
+                    "The construction crane is green."
+                ],
+                "image": "fa_1.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: construction crane.",
+                "missing_objects": [
+                    "construction crane"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            207.03125,
+                            2581.0546875,
+                            167.96875,
+                            416.015625
+                        ],
+                        "name": "construction crane"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the basket on the bike?",
+                "options": [
+                    "The basket on the bike is Orange.",
+                    "The basket on the bike is Blue.",
+                    "The basket on the bike is Green.",
+                    "The basket on the bike is Pink."
+                ],
+                "image": "fa_9.jpg",
+                "prediction_freeform": "The basket on the bike is yellow.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 3,
+                "correct": 0
+            },
+            {
+                "question": "What is the color of the 'STRAITS TRADING' text on the central building?",
+                "options": [
+                    "The 'STRAITS TRADING' text is red.",
+                    "The 'STRAITS TRADING' text is blue.",
+                    "The 'STRAITS TRADING' text is white.",
+                    "The 'STRAITS TRADING' text is green."
+                ],
+                "image": "fa_5.jpg",
+                "prediction_freeform": "The color of the 'STRAITS TRADING' text on the central building is green.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 3,
+                "correct": 0
+            },
+            {
+                "question": "What is the color of the sign?",
+                "options": [
+                    "The sign is white.",
+                    "The sign is blue.",
+                    "The sign is green.",
+                    "The sign is yellow."
+                ],
+                "image": "fa_4.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: sign.",
+                "missing_objects": [
+                    "sign"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            5960.0927734375,
+                            2988.5556640625,
+                            129.392578125,
+                            103.701171875
+                        ],
+                        "name": "sign"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What is the color of the blinkers of the car?",
+                "options": [
+                    "The blinkers of the car are pink.",
+                    "The blinkers of the car are blue.",
+                    "The blinkers of the car are orange.",
+                    "The blinkers of the car are green."
+                ],
+                "image": "fa_2.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: car.",
+                "missing_objects": [
+                    "car"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2979.140625,
+                            3061.96875,
+                            422.15625,
+                            359.8125
+                        ],
+                        "name": "car"
+                    }
+                ],
+                "option_chosen": 2,
+                "correct": 0
+            },
+            {
+                "question": "What color is the product label on the shaker?",
+                "options": [
+                    "The product label on the shaker is Green.",
+                    "The product label on the shaker is Red.",
+                    "The product label on the shaker is Blue.",
+                    "The product label on the shaker is Yellow."
+                ],
+                "image": "fa_8.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: shaker.",
+                "missing_objects": [
+                    "shaker"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2589.11328125,
+                            4185.8203125,
+                            83.9453125,
+                            318.046875
+                        ],
+                        "name": "shaker"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the road sign?",
+                "options": [
+                    "The road sign is Blue.",
+                    "The road sign is Red.",
+                    "The road sign is Green.",
+                    "The road sign is Yellow."
+                ],
+                "image": "fa_10.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: road sign.",
+                "missing_objects": [
+                    "road sign"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2705.56640625,
+                            1901.123046875,
+                            295.8984375,
+                            80.56640625
+                        ],
+                        "name": "road sign"
+                    }
+                ],
+                "option_chosen": 3,
+                "correct": 0
+            },
+            {
+                "question": "What is the color of the flowers in the clay pot?",
+                "options": [
+                    "The flowers in the clay pot are brown.",
+                    "The flowers in the clay pot are yellow.",
+                    "The flowers in the clay pot are red.",
+                    "The flowers in the clay pot are blue."
+                ],
+                "image": "fa_3.jpg",
+                "prediction_freeform": "The color of the flowers in the clay pot is pink.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 2,
+                "correct": 0
+            },
+            {
+                "question": "What color are the coffee beans?",
+                "options": [
+                    "The coffee beans are Brown.",
+                    "The coffee beans are Green.",
+                    "The coffee beans are Black.",
+                    "The coffee beans are White."
+                ],
+                "image": "fa_6.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: coffee beans.",
+                "missing_objects": [
+                    "coffee beans"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            4021.65478515625,
+                            1234.083984375,
+                            257.9853515625,
+                            308.30078125
+                        ],
+                        "name": "coffee beans"
+                    }
+                ],
+                "option_chosen": 2,
+                "correct": 0
+            }
+        ],
+        "relative_position": [
+            {
+                "question": "The egg is on the left or right side of the coins?",
+                "options": [
+                    "The egg is on the left side of the coins.",
+                    "The egg is on the right side of the coins."
+                ],
+                "image": "fa_7.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: egg, coins.",
+                "missing_objects": [
+                    "egg",
+                    "coins"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1032.890625,
+                            2351.3525390625,
+                            434.6875,
+                            235.576171875
+                        ],
+                        "name": "egg"
+                    },
+                    {
+                        "bbox": [
+                            3279.453125,
+                            1385.7421875,
+                            347.34375,
+                            209.12109375
+                        ],
+                        "name": "coins"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Is the construction crane on the left or right side of the woman?",
+                "options": [
+                    "The construction crane is on the right side of the woman.",
+                    "The construction crane is on the left side of the woman."
+                ],
+                "image": "fa_1.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: construction crane.",
+                "missing_objects": [
+                    "construction crane"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            207.03125,
+                            2581.0546875,
+                            167.96875,
+                            416.015625
+                        ],
+                        "name": "construction crane"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "The bike is below or above the lamp?",
+                "options": [
+                    "The bike is below the lamp.",
+                    "The bike is above the lamp."
+                ],
+                "image": "fa_9.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: lamp, bike.",
+                "missing_objects": [
+                    "lamp",
+                    "bike"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            954.4599609375,
+                            345.29296875,
+                            224.912109375,
+                            320.33203125
+                        ],
+                        "name": "lamp"
+                    },
+                    {
+                        "bbox": [
+                            1405.29296875,
+                            2580.5078125,
+                            732.6171875,
+                            1531.65625
+                        ],
+                        "name": "bike"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "The HSBC logo is above or below the bridge?",
+                "options": [
+                    "The HSBC logo is above the bridge.",
+                    "The HSBC logo is below the bridge."
+                ],
+                "image": "fa_5.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: HSBC logo.",
+                "missing_objects": [
+                    "HSBC logo"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            903.955078125,
+                            607.58984375,
+                            74.12109375,
+                            24.4453125
+                        ],
+                        "name": "HSBC logo"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is the house on the left or right side of the road sign?",
+                "options": [
+                    "The house is on the left side of the road sign.",
+                    "The house is on the right side of the road sign."
+                ],
+                "image": "fa_4.jpg",
+                "prediction_freeform": "The house is on the left side of the road sign.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is the car on the left or right side of the parking sign?",
+                "options": [
+                    "The car is on the left side of the parking sign.",
+                    "The car is on the right side of the parking sign."
+                ],
+                "image": "fa_2.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: car, parking sign.",
+                "missing_objects": [
+                    "car",
+                    "parking sign"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2979.140625,
+                            3061.96875,
+                            422.15625,
+                            359.8125
+                        ],
+                        "name": "car"
+                    },
+                    {
+                        "bbox": [
+                            1182.3046875,
+                            2345.015625,
+                            93.515625,
+                            247.59375
+                        ],
+                        "name": "parking sign"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "The napkins are below or above the lamp?",
+                "options": [
+                    "The napkins are below the lamp.",
+                    "The napkins are above the lamp."
+                ],
+                "image": "fa_8.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: napkins.",
+                "missing_objects": [
+                    "napkins"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2395.439453125,
+                            4050.15625,
+                            236.24609375,
+                            467.1875
+                        ],
+                        "name": "napkins"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "The road sign is on the left or right side of the tram?",
+                "options": [
+                    "The road sign is on the left side of the tram.",
+                    "The road sign is on the right side of the tram."
+                ],
+                "image": "fa_10.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: road sign.",
+                "missing_objects": [
+                    "road sign"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2705.56640625,
+                            1901.123046875,
+                            295.8984375,
+                            80.56640625
+                        ],
+                        "name": "road sign"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Is the wine bottle above or below the clay pot?",
+                "options": [
+                    "The wine bottle is below the clay pot.",
+                    "The wine bottle is above the clay pot."
+                ],
+                "image": "fa_3.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: wine bottle, clay pot.",
+                "missing_objects": [
+                    "wine bottle",
+                    "clay pot"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            509.4140625,
+                            1281.65625,
+                            256.921875,
+                            744.1875
+                        ],
+                        "name": "wine bottle"
+                    },
+                    {
+                        "bbox": [
+                            81.94921875,
+                            1078.751953125,
+                            59.0625,
+                            48.48046875
+                        ],
+                        "name": "clay pot"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "The sausage is above or below the coffee?",
+                "options": [
+                    "The sausage is below the coffee.",
+                    "The sausage is above the coffee."
+                ],
+                "image": "fa_6.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: sausage.",
+                "missing_objects": [
+                    "sausage"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1115.576171875,
+                            797.6181640625,
+                            166.19140625,
+                            103.060546875
+                        ],
+                        "name": "sausage"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            }
+        ],
+        "object_existence": [
+            {
+                "question": "Is there an egg on the plate?",
+                "options": [
+                    "Yes, there is an egg on the plate.",
+                    "No, there is no egg on the plate."
+                ],
+                "image": "fa_7.jpg",
+                "prediction_freeform": "Yes, there is an egg on the plate.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a construction crane among the houses?",
+                "options": [
+                    "Yes, there is a construction crane among the houses.",
+                    "No, there is no construction crane among the houses."
+                ],
+                "image": "fa_1.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: house.",
+                "missing_objects": [
+                    "house"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            3001.953125,
+                            2493.1640625,
+                            996.09375,
+                            498.046875
+                        ],
+                        "name": "house"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a motorcycle on the road?",
+                "options": [
+                    "No, there is no motorcycle on the road.",
+                    "Yes, there is a motorcycle on the road."
+                ],
+                "image": "fa_9.jpg",
+                "prediction_freeform": "Yes, there is a motorcycle parked on the road in the image.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a construction vehicle on the bridge?",
+                "options": [
+                    "No, there is no construction vehicle on the bridge.",
+                    "Yes, there is a construction vehicle on the bridge."
+                ],
+                "image": "fa_5.jpg",
+                "prediction_freeform": "Yes, there is a construction vehicle parked on the bridge.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Is there a road sign on the side of the road?",
+                "options": [
+                    "Yes, there is a road sign on the side of the road.",
+                    "No, there is no road sign on the side of the road."
+                ],
+                "image": "fa_4.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: road.",
+                "missing_objects": [
+                    "road"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            3545.1875,
+                            3430.546875,
+                            3382.8125,
+                            1156.96875
+                        ],
+                        "name": "road"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a parking sign left of the palm tree?",
+                "options": [
+                    "Yes, there is a parking sign left of the palm tree.",
+                    "No, there is no parking sign left of the palm tree."
+                ],
+                "image": "fa_2.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: parking sign left of the palm tree.",
+                "missing_objects": [
+                    "parking sign left of the palm tree"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1182.3046875,
+                            2345.015625,
+                            93.515625,
+                            247.59375
+                        ],
+                        "name": "parking sign left of the palm tree"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a plate on the table?",
+                "options": [
+                    "Yes, there is a plate on the table.",
+                    "No, there is no plate on the table."
+                ],
+                "image": "fa_8.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: table.",
+                "missing_objects": [
+                    "table"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2460.796875,
+                            4215.46875,
+                            1218.40625,
+                            1300.9375
+                        ],
+                        "name": "table"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a tram on the road?",
+                "options": [
+                    "Yes, there is a tram on the road.",
+                    "No, there is no tram on the road."
+                ],
+                "image": "fa_10.jpg",
+                "prediction_freeform": "Yes, there is a tram on the road, traveling down a street in a city.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a blue flower on a balcony?",
+                "options": [
+                    "No, there is no blue flower on the balcony.",
+                    "Yes, there is a blue flower on the balcony."
+                ],
+                "image": "fa_3.jpg",
+                "prediction_freeform": "Yes, there is a blue flower on a balcony.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Is there a sausage on the board?",
+                "options": [
+                    "Yes, there is a sausage on the board.",
+                    "No, there is no sausage on the board."
+                ],
+                "image": "fa_6.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: sausage.",
+                "missing_objects": [
+                    "sausage"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1115.576171875,
+                            797.6181640625,
+                            166.19140625,
+                            103.060546875
+                        ],
+                        "name": "sausage"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            }
+        ],
+        "object_choice": [
+            {
+                "question": "What is on the plate, an egg, a spoon, a cup, or a chair?",
+                "options": [
+                    "An egg is on the plate.",
+                    "A spoon is on the plate.",
+                    "A cup is on the plate.",
+                    "A chair is on the plate."
+                ],
+                "image": "fa_7.jpg",
+                "prediction_freeform": "There is an egg on the plate.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What is among the buildings, a construction crane, a construction truck, a helicopter or a bus?",
+                "options": [
+                    "A construction crane is among the buildings.",
+                    "A construction truck is among the buildings.",
+                    "A helicopter is among the buildings.",
+                    "A bus is among the buildings."
+                ],
+                "image": "fa_1.jpg",
+                "prediction_freeform": "A bus is among the buildings.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What is on the road, a tram, a bicycle, a car or a dog?",
+                "options": [
+                    "A bicycle is on the road.",
+                    "A tram is on the road.",
+                    "A car is on the road.",
+                    "A dog is on the road."
+                ],
+                "image": "fa_9.jpg",
+                "prediction_freeform": "A bicycle is on the road.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What is written in red letters on the middle tower, the word 'HSBC', the word 'BANK', the words 'STRAITS TRADING'?",
+                "options": [
+                    "The words 'STRAITS TRADING' are written in red letters on the middle tower.",
+                    "The word 'HSBC' is written in red letters on the middle tower.",
+                    "The word 'BANK' is written in red letters on the middle tower."
+                ],
+                "image": "fa_5.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: middle tower, bridge.",
+                "missing_objects": [
+                    "middle tower",
+                    "bridge"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1588.76953125,
+                            169.060546875,
+                            174.0234375,
+                            505.87109375
+                        ],
+                        "name": "middle tower"
+                    },
+                    {
+                        "bbox": [
+                            1651.07421875,
+                            1007.0,
+                            547.8515625,
+                            334.6875
+                        ],
+                        "name": "bridge"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "What is on the side of the road, a reindeer, a road sign, a human or a car?",
+                "options": [
+                    "A road sign is on the side of the road.",
+                    "A car is on the side of the road.",
+                    "A reindeer is on the side of the road.",
+                    "A human is on the side of the road."
+                ],
+                "image": "fa_4.jpg",
+                "prediction_freeform": "A car is on the side of the road.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "What kind of road sign is on the left of the palm tree, a turn left sign, a speed limit sign, a stop sign or a parking sign?",
+                "options": [
+                    "A parking sign is on the left of the palm tree.",
+                    "A turn left sign is on the left of the palm tree.",
+                    "A speed limit sign is on the left of the palm tree.",
+                    "A stop sign is on the left of the palm tree."
+                ],
+                "image": "fa_2.jpg",
+                "prediction_freeform": "A turn left sign is on the left of the palm tree.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "What is on the table, a cup, a spoon, a plate, or a human?",
+                "options": [
+                    "A plate is on the table.",
+                    "A cup is on the table.",
+                    "A spoon is on the table.",
+                    "A human is on the table."
+                ],
+                "image": "fa_8.jpg",
+                "prediction_freeform": "A cup is on the table.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "What is on the road, a tram, a dog, a car or a bicycle?",
+                "options": [
+                    "A tram is on the road.",
+                    "A dog is on the road.",
+                    "A car is on the road.",
+                    "A bicycle is on the road."
+                ],
+                "image": "fa_10.jpg",
+                "prediction_freeform": "A tram is on the road.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What is on the table, a laptop, a book, a wine glass or a rubic's cube?",
+                "options": [
+                    "A wine glass is on the table.",
+                    "A laptop is on the table.",
+                    "A book is on the table.",
+                    "A rubic's cube is on the table."
+                ],
+                "image": "fa_3.jpg",
+                "prediction_freeform": "A wine glass is on the table.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "What is in the glass, a sausage, coffee beans, a spoon, or a fork?",
+                "options": [
+                    "Coffee beans are in the glass.",
+                    "A sausage is in the glass.",
+                    "A spoon is in the glass.",
+                    "A fork is in the glass."
+                ],
+                "image": "fa_6.jpg",
+                "prediction_freeform": "A fork is in the glass.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 3,
+                "correct": 0
+            }
+        ]
+    },
+    "vbench_surgery": {
+        "direct_attributes": [
+            {
+                "question": "What color is the glove?",
+                "options": [
+                    "The color of the glove is blue.",
+                    "The color of the glove is purple.",
+                    "The color of the glove is green.",
+                    "The color of the glove is yellow."
+                ],
+                "image": "op_3.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: glove.",
+                "missing_objects": [
+                    "glove"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            4960.0,
+                            2740.66796875,
+                            1856.0,
+                            1365.5
+                        ],
+                        "name": "glove"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the syringe?",
+                "options": [
+                    "The color of the syringe is blue.",
+                    "The color of the syringe is purple.",
+                    "The color of the syringe is green.",
+                    "The color of the syringe is yellow."
+                ],
+                "image": "op_9.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: syringe.",
+                "missing_objects": [
+                    "syringe"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1629.8828125,
+                            4500.0,
+                            373.046875,
+                            451.171875
+                        ],
+                        "name": "syringe"
+                    }
+                ],
+                "option_chosen": 2,
+                "correct": 0
+            },
+            {
+                "question": "What color is the cloth?",
+                "options": [
+                    "The color of the cloth is blue.",
+                    "The color of the cloth is purple.",
+                    "The color of the cloth is green.",
+                    "The color of the cloth is yellow."
+                ],
+                "image": "op_5.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: cloth.",
+                "missing_objects": [
+                    "cloth"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1445.806640625,
+                            1777.19140625,
+                            1209.59765625,
+                            882.5390625
+                        ],
+                        "name": "cloth"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the glove?",
+                "options": [
+                    "The color of the glove is white.",
+                    "The color of the glove is blue.",
+                    "The color of the glove is green.",
+                    "The color of the glove is yellow."
+                ],
+                "image": "op_2.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: glove.",
+                "missing_objects": [
+                    "glove"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            475.9892578125,
+                            286.376953125,
+                            549.349609375,
+                            384.890625
+                        ],
+                        "name": "glove"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the liquid flowing through the tube?",
+                "options": [
+                    "The color of the liquid flowing through the tube is red.",
+                    "The color of the liquid flowing through the tube is blue.",
+                    "The color of the liquid flowing through the tube is green.",
+                    "The color of the liquid flowing through the tube is yellow."
+                ],
+                "image": "op_1.jpg",
+                "prediction_freeform": "The liquid flowing through the tube is red.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the glove?",
+                "options": [
+                    "The color of the glove is white.",
+                    "The color of the glove is blue.",
+                    "The color of the glove is green.",
+                    "The color of the glove is purple."
+                ],
+                "image": "op_4.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: glove.",
+                "missing_objects": [
+                    "glove"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            421.9375,
+                            215.109375,
+                            2315.75,
+                            1500.25
+                        ],
+                        "name": "glove"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the mask?",
+                "options": [
+                    "The color of the mask is white.",
+                    "The color of the mask is blue.",
+                    "The color of the mask is green.",
+                    "The color of the mask is yellow."
+                ],
+                "image": "op_6.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: mask.",
+                "missing_objects": [
+                    "mask"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            3458.49609375,
+                            902.34375,
+                            676.7578125,
+                            632.8125
+                        ],
+                        "name": "mask"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color is the bottle on the table?",
+                "options": [
+                    "The color of the bottle on the table is white.",
+                    "The color of the bottle on the table is blue.",
+                    "The color of the bottle on the table is green.",
+                    "The color of the bottle on the table is yellow."
+                ],
+                "image": "op_7.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: bottle.",
+                "missing_objects": [
+                    "bottle"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2189.1884765625,
+                            2863.96044921875,
+                            132.029296875,
+                            387.5634765625
+                        ],
+                        "name": "bottle"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What color are the handles on the scissors?",
+                "options": [
+                    "The color of the handles on the scissors is white.",
+                    "The color of the handles on the scissors is blue.",
+                    "The color of the handles on the scissors is green.",
+                    "The color of the handles on the scissors is purple."
+                ],
+                "image": "op_10.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: scissors.",
+                "missing_objects": [
+                    "scissors"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2367.1875,
+                            3170.41015625,
+                            539.0625,
+                            88.8671875
+                        ],
+                        "name": "scissors"
+                    }
+                ],
+                "option_chosen": 2,
+                "correct": 0
+            },
+            {
+                "question": "What color is the box on the table?",
+                "options": [
+                    "The color of the box on the table is red.",
+                    "The color of the box on the table is blue.",
+                    "The color of the box on the table is green.",
+                    "The color of the box on the table is purple."
+                ],
+                "image": "op_8.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: table, box.",
+                "missing_objects": [
+                    "table",
+                    "box"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1064.07421875,
+                            1600.15625,
+                            352.6171875,
+                            523.6875
+                        ],
+                        "name": "table"
+                    },
+                    {
+                        "bbox": [
+                            515.09765625,
+                            1420.3984375,
+                            192.2109375,
+                            155.859375
+                        ],
+                        "name": "box"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            }
+        ],
+        "relative_position": [
+            {
+                "question": "The yellow tool is in the hand or not in the hand?",
+                "options": [
+                    "The yellow tool is in the hand.",
+                    "The yellow tool is not in the hand."
+                ],
+                "image": "op_3.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: yellow tool.",
+                "missing_objects": [
+                    "yellow tool"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            440.0,
+                            1562.28515625,
+                            1520.0,
+                            1162.3828125
+                        ],
+                        "name": "yellow tool"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is the syringe above or below the cotton ball?",
+                "options": [
+                    "The syringe is below the cotton ball.",
+                    "The syringe is above the cotton ball."
+                ],
+                "image": "op_9.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: syringe, cotton ball.",
+                "missing_objects": [
+                    "syringe",
+                    "cotton ball"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1629.8828125,
+                            4500.0,
+                            373.046875,
+                            451.171875
+                        ],
+                        "name": "syringe"
+                    },
+                    {
+                        "bbox": [
+                            2054.6875,
+                            1104.4921875,
+                            761.71875,
+                            861.328125
+                        ],
+                        "name": "cotton ball"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "The syringe is below or above the scissors?",
+                "options": [
+                    "The syringe is above the scissors.",
+                    "The syringe is below the scissors."
+                ],
+                "image": "op_5.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: scissors, syringe.",
+                "missing_objects": [
+                    "scissors",
+                    "syringe"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            872.80517578125,
+                            2121.77099609375,
+                            268.6552734375,
+                            72.2470703125
+                        ],
+                        "name": "scissors"
+                    },
+                    {
+                        "bbox": [
+                            494.4814453125,
+                            1500.31640625,
+                            90.849609375,
+                            107.2890625
+                        ],
+                        "name": "syringe"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "The green cloth is above or below the white glove?",
+                "options": [
+                    "The green cloth is below the white glove.",
+                    "The green cloth is above the white glove."
+                ],
+                "image": "op_2.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: green cloth.",
+                "missing_objects": [
+                    "green cloth"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            233.75390625,
+                            428.0546875,
+                            125.1796875,
+                            96.140625
+                        ],
+                        "name": "green cloth"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Are the tweezers on the left or right side of the tube?",
+                "options": [
+                    "The tweezers are on the left side of the tube.",
+                    "The tweezers are on the right side of the tube."
+                ],
+                "image": "op_1.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: tweezers, tube.",
+                "missing_objects": [
+                    "tweezers",
+                    "tube"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2040.005859375,
+                            657.20703125,
+                            203.6015625,
+                            402.63671875
+                        ],
+                        "name": "tweezers"
+                    },
+                    {
+                        "bbox": [
+                            219.35546875,
+                            1331.298828125,
+                            789.6796875,
+                            662.40234375
+                        ],
+                        "name": "tube"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "The red tube is below or above the green tape?",
+                "options": [
+                    "The red tube is above the green tape.",
+                    "The red tube is below the green tape."
+                ],
+                "image": "op_4.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: red tube, green tape.",
+                "missing_objects": [
+                    "red tube",
+                    "green tape"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            3797.4375,
+                            1418.89453125,
+                            439.109375,
+                            515.7109375
+                        ],
+                        "name": "red tube"
+                    },
+                    {
+                        "bbox": [
+                            2509.546875,
+                            2115.931640625,
+                            686.875,
+                            96.5234375
+                        ],
+                        "name": "green tape"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "The orange stand is to the right or left side of the white surgical mask?",
+                "options": [
+                    "The orange stand is on the left side of the white surgical mask.",
+                    "The orange stand is on the right side of the white surgical mask."
+                ],
+                "image": "op_6.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: orange stand, white surgical mask.",
+                "missing_objects": [
+                    "orange stand",
+                    "white surgical mask"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            298.828125,
+                            898.4375,
+                            562.5,
+                            1125.0
+                        ],
+                        "name": "orange stand"
+                    },
+                    {
+                        "bbox": [
+                            3512.6953125,
+                            1009.765625,
+                            685.546875,
+                            546.875
+                        ],
+                        "name": "white surgical mask"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "The white bottle is to the right or left side of the tweezers?",
+                "options": [
+                    "The white bottle is on the left side of the tweezers.",
+                    "The white bottle is on the right side of the tweezers."
+                ],
+                "image": "op_7.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: white bottle, tweezers.",
+                "missing_objects": [
+                    "white bottle",
+                    "tweezers"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2188.742431640625,
+                            2884.0068359375,
+                            147.19482421875,
+                            390.236328125
+                        ],
+                        "name": "white bottle"
+                    },
+                    {
+                        "bbox": [
+                            85.59375,
+                            1.3359375,
+                            763.2109375,
+                            566.4375
+                        ],
+                        "name": "tweezers"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "The syringe is below or above the scissors?",
+                "options": [
+                    "The syringe is above the scissors.",
+                    "The syringe is below the scissors."
+                ],
+                "image": "op_10.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: syringe, scissors.",
+                "missing_objects": [
+                    "syringe",
+                    "scissors"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            3140.2587890625,
+                            3032.1044921875,
+                            141.357421875,
+                            61.767578125
+                        ],
+                        "name": "syringe"
+                    },
+                    {
+                        "bbox": [
+                            2367.1875,
+                            3170.41015625,
+                            539.0625,
+                            88.8671875
+                        ],
+                        "name": "scissors"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "The red box is on the left or right side of the scissors?",
+                "options": [
+                    "The red box is on the left side of the scissors.",
+                    "The red box is on the right side of the scissors."
+                ],
+                "image": "op_8.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: scissors, red box.",
+                "missing_objects": [
+                    "scissors",
+                    "red box"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1040.912109375,
+                            1425.853515625,
+                            130.67578125,
+                            78.44921875
+                        ],
+                        "name": "scissors"
+                    },
+                    {
+                        "bbox": [
+                            519.9375,
+                            1403.7734375,
+                            265.5,
+                            168.328125
+                        ],
+                        "name": "red box"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            }
+        ],
+        "object_existence": [
+            {
+                "question": "Is there a magnifying glass on the table?",
+                "options": [
+                    "No, there is no magnifying glass on the table.",
+                    "Yes, there is a magnifying glass on the table."
+                ],
+                "image": "op_3.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: table, magnifying glass.",
+                "missing_objects": [
+                    "table",
+                    "magnifying glass"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            4096.0,
+                            4105.671875,
+                            2040.0,
+                            1355.328125
+                        ],
+                        "name": "table"
+                    },
+                    {
+                        "bbox": [
+                            3116.0,
+                            2728.6669921875,
+                            984.0,
+                            581.19140625
+                        ],
+                        "name": "magnifying glass"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Is there a cotton ball on the table?",
+                "options": [
+                    "Yes, there is a cotton ball on the table.",
+                    "No, there is no cotton ball on the table."
+                ],
+                "image": "op_9.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: cotton ball.",
+                "missing_objects": [
+                    "cotton ball"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            2054.6875,
+                            1104.4921875,
+                            761.71875,
+                            861.328125
+                        ],
+                        "name": "cotton ball"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a magnifying glass on the table?",
+                "options": [
+                    "No, there is no magnifying glass on the table.",
+                    "Yes, there is a magnifying glass on the table."
+                ],
+                "image": "op_5.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: table, magnifying glass.",
+                "missing_objects": [
+                    "table",
+                    "magnifying glass"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1375.72265625,
+                            2680.521484375,
+                            1318.6171875,
+                            869.67578125
+                        ],
+                        "name": "table"
+                    },
+                    {
+                        "bbox": [
+                            988.962890625,
+                            1143.83984375,
+                            337.44140625,
+                            221.5
+                        ],
+                        "name": "magnifying glass"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Is there a glove on the hand?",
+                "options": [
+                    "Yes, there is a glove on the hand.",
+                    "No, there is no glove on the hand."
+                ],
+                "image": "op_2.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: hand.",
+                "missing_objects": [
+                    "hand"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1251.107421875,
+                            457.5263671875,
+                            254.34765625,
+                            128.759765625
+                        ],
+                        "name": "hand"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Are there tweezers being used in the image?",
+                "options": [
+                    "Yes, there are tweezers being used in the image.",
+                    "No, there are no tweezers being used in the image."
+                ],
+                "image": "op_1.jpg",
+                "prediction_freeform": "Yes, there are tweezers being used in the image, with a pair of them reaching into the open chest to grab a piece of tissue or organ.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Are there red gloves in the image?",
+                "options": [
+                    "No, there are no red gloves in the image.",
+                    "Yes, there are red gloves in the image."
+                ],
+                "image": "op_4.jpg",
+                "prediction_freeform": "Yes, the people in the image are wearing red gloves.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Is there a white surgeon mask on the face?",
+                "options": [
+                    "Yes, there is a white surgeon mask on the face.",
+                    "No, there is no white surgeon mask on the face."
+                ],
+                "image": "op_6.jpg",
+                "prediction_freeform": "Yes, there is a white surgeon mask on the face of one of the men in the image.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Is there a white bottle on the table?",
+                "options": [
+                    "Yes, there is a white bottle on the table.",
+                    "No, there is no white bottle on the table."
+                ],
+                "image": "op_7.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: table, white bottle.",
+                "missing_objects": [
+                    "table",
+                    "white bottle"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1827.0,
+                            2950.828125,
+                            1819.86328125,
+                            2416.2578125
+                        ],
+                        "name": "table"
+                    },
+                    {
+                        "bbox": [
+                            2188.742431640625,
+                            2884.0068359375,
+                            147.19482421875,
+                            390.236328125
+                        ],
+                        "name": "white bottle"
+                    }
+                ],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "Are there scissors on the table?",
+                "options": [
+                    "Yes, there are scissors on the table.",
+                    "No, there are no scissors on the table."
+                ],
+                "image": "op_10.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: table.",
+                "missing_objects": [
+                    "table"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            5267.578125,
+                            3667.96875,
+                            726.5625,
+                            328.125
+                        ],
+                        "name": "table"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "Is there a green sphere on the table?",
+                "options": [
+                    "No, there is no green sphere on the table.",
+                    "Yes, there is a green sphere on the table."
+                ],
+                "image": "op_8.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: table, green sphere.",
+                "missing_objects": [
+                    "table",
+                    "green sphere"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1064.07421875,
+                            1600.15625,
+                            352.6171875,
+                            523.6875
+                        ],
+                        "name": "table"
+                    },
+                    {
+                        "bbox": [
+                            1159.48828125,
+                            1372.7314453125,
+                            48.3984375,
+                            60.005859375
+                        ],
+                        "name": "green sphere"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            }
+        ],
+        "object_choice": [
+            {
+                "question": "what is on the table, a light, a magnifying glass, a syringe, or scissors?",
+                "options": [
+                    "The object on the table is scissors.",
+                    "The object on the table is a light.",
+                    "The object on the table is a magnifying glass.",
+                    "The object on the table is a syringe."
+                ],
+                "image": "op_3.jpg",
+                "prediction_freeform": "Scissors are on the table.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What is on the table, glasses, a bottle, a cotton ball, or a cotton swab?",
+                "options": [
+                    "The object on the table is a cotton ball.",
+                    "The object on the table is glasses.",
+                    "The object on the table is a bottle.",
+                    "The object on the table is a cotton swab."
+                ],
+                "image": "op_9.jpg",
+                "prediction_freeform": "A cotton swab is on the table.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 3,
+                "correct": 0
+            },
+            {
+                "question": "What is on the table, scissors, a light, a syringe, or a magnifying glass?",
+                "options": [
+                    "The object on the table is scissors.",
+                    "The object on the table is a light.",
+                    "The object on the table is a syringe.",
+                    "The object on the table is a magnifying glass."
+                ],
+                "image": "op_5.jpg",
+                "prediction_freeform": "A magnifying glass is on the table.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 3,
+                "correct": 0
+            },
+            {
+                "question": "What is in the hands, a syringe, a scalpel, scissors, or a light?",
+                "options": [
+                    "The object in the hands is scissors.",
+                    "The object in the hands is a syringe.",
+                    "The object in the hands is a scalpel.",
+                    "The object in the hands is a light."
+                ],
+                "image": "op_2.jpg",
+                "prediction_freeform": "A scalpel is in the hands.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 2,
+                "correct": 0
+            },
+            {
+                "question": "What is visible in the image, tweezers, a football, a car, or scissors?",
+                "options": [
+                    "The object in the image is tweezers.",
+                    "The object in the image is a football.",
+                    "The object in the image is a car.",
+                    "The object in the image is scissors."
+                ],
+                "image": "op_1.jpg",
+                "prediction_freeform": "In the image, you can see a close-up view of a human heart with a lot of tweezers in it. There is no depiction of a football, car, or scissors in this particular image.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 0,
+                "correct": 1
+            },
+            {
+                "question": "What is on the gloved hand, a syringe, a scalpel, scissors, or nothing?",
+                "options": [
+                    "There is no object on the gloved hand.",
+                    "The object on the gloved hand is a syringe.",
+                    "The object on the gloved hand is a scalpel.",
+                    "The object on the gloved hand is scissors."
+                ],
+                "image": "op_4.jpg",
+                "prediction_freeform": "There is a syringe on the gloved hand.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "What is on the wall, a light, a picture, a clock, or a scalpel?",
+                "options": [
+                    "The object on the wall is a clock.",
+                    "The object on the wall is a light.",
+                    "The object on the wall is a picture.",
+                    "The object on the wall is a scalpel."
+                ],
+                "image": "op_6.jpg",
+                "prediction_freeform": "A scalpel is on the wall.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 3,
+                "correct": 0
+            },
+            {
+                "question": "What is on the table, a glass, a bottle, glasses, or gloves?",
+                "options": [
+                    "The object on the table is a bottle.",
+                    "The object on the table is a glass.",
+                    "The object on the table is glasses.",
+                    "The object on the table is gloves."
+                ],
+                "image": "op_7.jpg",
+                "prediction_freeform": "Gloves are on the table.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 3,
+                "correct": 0
+            },
+            {
+                "question": "What is on the table, a sponge, a red box, a light or scissors?",
+                "options": [
+                    "The object on the table is scissors.",
+                    "The object on the table is a sponge.",
+                    "The object on the table is a light.",
+                    "The object on the table is a red box."
+                ],
+                "image": "op_10.jpg",
+                "prediction_freeform": "A sponge is on the table.",
+                "missing_objects": [],
+                "search_result": [],
+                "option_chosen": 1,
+                "correct": 0
+            },
+            {
+                "question": "What is on the table, a red box, a blue ball, a green figurinem, or a purple book?",
+                "options": [
+                    "The object on the table is a red box.",
+                    "The object on the table is a blue ball.",
+                    "The object on the table is a green figurine.",
+                    "The object on the table is a purple book."
+                ],
+                "image": "op_8.jpg",
+                "prediction_freeform": "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear: table, red box, blue ball, green figurinem, purple book.",
+                "missing_objects": [
+                    "table",
+                    "red box",
+                    "blue ball",
+                    "green figurinem",
+                    "purple book"
+                ],
+                "search_result": [
+                    {
+                        "bbox": [
+                            1064.07421875,
+                            1600.15625,
+                            352.6171875,
+                            523.6875
+                        ],
+                        "name": "table"
+                    },
+                    {
+                        "bbox": [
+                            519.9375,
+                            1403.7734375,
+                            265.5,
+                            168.328125
+                        ],
+                        "name": "red box"
+                    },
+                    {
+                        "bbox": [
+                            1159.48828125,
+                            1372.7314453125,
+                            48.3984375,
+                            60.005859375
+                        ],
+                        "name": "blue ball"
+                    },
+                    {
+                        "bbox": [
+                            501.9609375,
+                            1066.078125,
+                            201.890625,
+                            276.390625
+                        ],
+                        "name": "green figurinem"
+                    },
+                    {
+                        "bbox": [
+                            519.9375,
+                            1403.7734375,
+                            265.5,
+                            168.328125
+                        ],
+                        "name": "purple book"
+                    }
+                ],
+                "option_chosen": 1,
+                "correct": 0
+            }
+        ]
+    }
+}
