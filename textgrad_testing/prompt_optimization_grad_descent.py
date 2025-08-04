@@ -353,7 +353,6 @@ def textgrad_prompt_optimization(eval_func, data_set):
     engine = ChatExternalClient(client=client, model_string='llama:70b')
     
     llm_api_eval = engine
-    llm_api_test = engine
     tg.set_backward_engine(llm_api_eval, override=True)
 
     # Load the data and the evaluation function
@@ -373,7 +372,6 @@ def textgrad_prompt_optimization(eval_func, data_set):
     system_prompt = tg.Variable(STARTING_SYSTEM_PROMPT, 
                                 requires_grad=True,
                                 role_description="structured system prompt to a somewhat capable language model that specifies the behavior and strategies for the QA task")
-    model = tg.BlackboxLLM(llm_api_test, system_prompt)
 
     optimizer = tg.TextualGradientDescent(engine=llm_api_eval, parameters=[system_prompt])
 
@@ -412,3 +410,13 @@ def textgrad_prompt_optimization(eval_func, data_set):
             results["prompt"].append(system_prompt.get_value())
             if steps == 3:
                 break
+
+if __name__ == "__main__":
+    data_set = []
+    for test_type in ['direct_attributes', 'relative_position']:
+        folder = os.path.join("vbench", test_type)
+        image_files = list(filter(lambda file: '.json' not in file, os.listdir(folder)))
+        for image_file in tqdm(image_files):
+            image_path = test_type + "$" + image_file
+            data_set.append(image_path)
+    textgrad_prompt_optimization(test_missing_objects, data_set)
