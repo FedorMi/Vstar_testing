@@ -232,6 +232,10 @@ def test_missing_objects(prompt_template, evaluation_set,with_image=True, model_
             result = call_ollama_model_image(model_name, prompt_template, question, image_file, test_type)
         else:
             result = call_ollama_model(model_name, prompt_template, question)
+        print("--------------------------")
+        print("result: ", result)
+        print("real_missing_objects: ", real_missing_objects)
+        print("--------------------------")
         not_found = False
         for i in real_missing_objects:
             if i not in result:
@@ -424,6 +428,9 @@ def textgrad_prompt_optimization(eval_func, data_set):
                 break
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--experiment", type=str, default="missing")
+    args = parser.parse_args()
     data_set = []
     for test_type in ['direct_attributes', 'relative_position']:
         folder = os.path.join("vbench", test_type)
@@ -431,4 +438,16 @@ if __name__ == "__main__":
         for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
-    textgrad_prompt_optimization(test_missing_objects, data_set)
+    prompt = "You are a helpful assistant. Do not answer the question, do not write any lengthy explanations, only provide the label for the objects relevant to the question, the full object with adjectives, as mentioned in the question."
+    func_to_give = test_missing_objects
+    if args.experiment == "bbox_iou":
+        prompt = "todo"
+        func_to_give = test_bounding_boxes_iou
+    elif args.experiment == "bbox_final":
+        prompt = "todo"
+        func_to_give = test_bounding_boxes_final_result
+    elif args.experiment == "final_call":
+        prompt = "todo"
+        func_to_give = test_final_call
+
+    textgrad_prompt_optimization(func_to_give, data_set, prompt)
