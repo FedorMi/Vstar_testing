@@ -1,23 +1,28 @@
+import os
+import json
+import tqdm
+import torch
+import random
+import argparse
+import concurrent
+import numpy as np
+import textgrad as tg
+
+
+from ollama import chat, ResponseError, pull
+from typing import Callable, List, Any
+from copy import deepcopy
 from openai import OpenAI
+from PIL import Image
+
 from textgrad.engine.local_model_openai_api import ChatExternalClient  # (not needed anymore)
 from textgrad.autograd import MultimodalLLMCall
 from textgrad.loss import ImageQALoss
-import textgrad as tg
-import numpy as np
-import random
-import json
-import concurrent
-from torch.utils.data import random_split
-from visual_search import parse_args, VSM, visual_search
-from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
-from PIL import Image
-from copy import deepcopy
-import torch
-import argparse
 
-from typing import Callable, List, Any
-import os
-import tqdm
+from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
+from visual_search import parse_args, VSM, visual_search
+from torch.utils.data import random_split
+
 
 # this is a modification of the textrad prompt optimization notebook
 
@@ -328,9 +333,9 @@ def set_seed(seed):
     np.random.seed(seed)
     random.seed(seed)
 
-def run_validation_revert(system_prompt: tg.Variable, results, model, eval_fn, val_set, eval_func):
-    val_performance = np.mean(eval_func(val_set, eval_fn, model))
-    previous_performance = np.mean(results["validation_acc"][-1])
+def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_func):
+    val_performance = eval_func(system_prompt.value, val_set)
+    previous_performance = results["validation_acc"][-1]
     print("val_performance: ", val_performance)
     print("previous_performance: ", previous_performance)
     previous_prompt = results["prompt"][-1]
@@ -377,31 +382,32 @@ def textgrad_prompt_optimization(eval_func, data_set):
     #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
     #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
 
-    results["test_acc"].append(eval_func(test_set, eval_fn, model))
-    results["validation_acc"].append(eval_func(val_set, eval_fn, model))
+    results["test_acc"].append(eval_func(system_prompt.value, test_set))
+    results["validation_acc"].append(eval_func(system_prompt.value, val_set))
     results["prompt"].append(system_prompt.get_value())
     for epoch in range(3):
         for steps, (batch_x, batch_y) in enumerate((pbar := tqdm(train_loader, position=0))):
             pbar.set_description(f"Training step {steps}. Epoch {epoch}")
             optimizer.zero_grad()
             losses = []
-            for (x, y) in zip(batch_x, batch_y):
-                x = tg.Variable(x, requires_grad=False, role_description="query to the language model")
-                y = tg.Variable(y, requires_grad=False, role_description="correct answer for the query")
-                response = model(x)
-                try:
-                    eval_output_variable = eval_fn(inputs=dict(prediction=response, ground_truth_answer=y))
-                except:
-                    eval_output_variable = eval_fn([x, y, response])
+            training_divisions = 2
+            mini_batch_len = len(batch_x) // training_divisions
+            
+            for div_num  in range(training_divisions):
+                if len(batch_x) % training_divisions != 0 and div_num == training_divisions - 1:
+                    mini_batch_len = len(batch_x) - mini_batch_len * (training_divisions - 1)
+                curr_batch_x = batch_x[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
+                curr_batch_y = batch_y[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
+                eval_output_variable = tg.Variable(eval_func(system_prompt.value, curr_batch_x), requires_grad=False, role_description="evaluation of mini-batch results")
                 losses.append(eval_output_variable)
             total_loss = tg.sum(losses)
             total_loss.backward()
             optimizer.step()
             
-            run_validation_revert(system_prompt, results, model, eval_fn, val_set)
+            run_validation_revert(system_prompt, results, val_set, eval_func)
             
             print("sys prompt: ", system_prompt)
-            test_acc = eval_dataset(test_set, eval_fn, model)
+            test_acc = eval_func(system_prompt.value, test_set)
             results["test_acc"].append(test_acc)
             results["prompt"].append(system_prompt.get_value())
             if steps == 3:
