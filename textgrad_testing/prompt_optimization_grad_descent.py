@@ -177,6 +177,8 @@ def get_bounding_boxes_correct(missing_objects, image_path, annotation):
         search_result.append({'bbox': annotation['bbox'][idx], 'name': object_name})
     return search_result
 def get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template):
+    global vqa_llm
+    object_prompt = prompt_template.replace("<LABEL>", "{}").replace("<BOUNDING_BOX>", "[{:.3f},{:.3f},{:.3f},{:.3f}]")
     # predict the multiple-choice option
     options = annotation['options']
     image = Image.open(image_path).convert('RGB')
@@ -203,7 +205,10 @@ def get_multiple_choice_seal(image_path, question, search_result, annotation, mi
         bbox_list = [normalize_bbox(bbox, image.width, image.height) for bbox in bbox_list]
         cur_focus_msg = focus_msg
         for i, (object_name, bbox) in enumerate(zip(object_names, bbox_list)):
-            cur_focus_msg = cur_focus_msg + "{} <object> at location [{:.3f},{:.3f},{:.3f},{:.3f}]".format(object_name, bbox[0], bbox[1], bbox[2], bbox[3])
+            try:
+                cur_focus_msg = cur_focus_msg + object_prompt.format(object_name, bbox[0], bbox[1], bbox[2], bbox[3])
+            except Exception as e:
+                cur_focus_msg = cur_focus_msg + object_prompt + "{} [{:.3f},{:.3f},{:.3f},{:.3f}]".format(object_name, bbox[0], bbox[1], bbox[2], bbox[3])
             if i != len(bbox_list)-1:
                 cur_focus_msg = cur_focus_msg+"; "
             else:
@@ -232,10 +237,10 @@ def test_missing_objects(prompt_template, evaluation_set,with_image=True, model_
             result = call_ollama_model_image(model_name, prompt_template, question, image_file, test_type)
         else:
             result = call_ollama_model(model_name, prompt_template, question)
-        print("--------------------------")
-        print("result: ", result)
-        print("real_missing_objects: ", real_missing_objects)
-        print("--------------------------")
+        #print("--------------------------")
+        #print("result: ", result)
+        #print("real_missing_objects: ", real_missing_objects)
+        #print("--------------------------")
         not_found = False
         for i in real_missing_objects:
             if i not in result:
@@ -398,9 +403,9 @@ def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str):
     results["test_acc"].append(eval_func(system_prompt.value, test_set))
     results["validation_acc"].append(eval_func(system_prompt.value, val_set))
     results["prompt"].append(system_prompt.get_value())
-    for epoch in range(3):
+    for epoch in range(100):
         for steps, batch_x in enumerate((pbar := tqdm(train_loader, position=0))):
-            print(batch_x)
+            #print(batch_x)
             pbar.set_description(f"Training step {steps}. Epoch {epoch}")
             optimizer.zero_grad()
             losses = []
@@ -424,12 +429,12 @@ def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str):
             test_acc = eval_func(system_prompt.value, test_set)
             results["test_acc"].append(test_acc)
             results["prompt"].append(system_prompt.get_value())
-            if steps == 3:
+            if steps == 100:
                 break
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--experiment", type=str, default="missing")
+    parser.add_argument("--experiment", type=str, default="final_call")
     args = parser.parse_args()
     data_set = []
     for test_type in ['direct_attributes', 'relative_position']:
@@ -438,7 +443,7 @@ if __name__ == "__main__":
         for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
-    prompt = "You are a helpful assistant that provides the objects present in the sentence to the user. You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: "
+    prompt = "You are a helpful assistant that provides the objects present in the question to the user. You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: "
     func_to_give = test_missing_objects
     if args.experiment == "bbox_iou":
         prompt = "todo"
@@ -447,7 +452,8 @@ if __name__ == "__main__":
         prompt = "todo"
         func_to_give = test_bounding_boxes_final_result
     elif args.experiment == "final_call":
-        prompt = "todo"
+        #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
+        prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
         func_to_give = test_final_call
 
     textgrad_prompt_optimization(func_to_give, data_set, prompt)
