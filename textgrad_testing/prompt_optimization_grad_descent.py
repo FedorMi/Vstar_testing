@@ -438,7 +438,7 @@ if __name__ == "__main__":
         for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
-    prompt = "You are a helpful assistant. Do not answer the question, do not write any lengthy explanations, only provide the label for the objects relevant to the question, the full object with adjectives, as mentioned in the question."
+    prompt = "You are a helpful assistant that provides the objects present in the sentence to the user. You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: "
     func_to_give = test_missing_objects
     if args.experiment == "bbox_iou":
         prompt = "todo"
