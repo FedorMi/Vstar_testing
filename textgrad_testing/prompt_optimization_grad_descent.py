@@ -391,7 +391,7 @@ def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str):
     # Testing the 0-shot performance of the evaluation engine
     system_prompt = tg.Variable(starting_prompt, 
                                 requires_grad=True,
-                                role_description="structured system prompt to a somewhat capable language model that specifies the behavior and strategies for the QA task")
+                                role_description="prompt to the model to answer the VQA task")
 
     optimizer = tg.TGD(engine=engine, parameters=[system_prompt])
 
@@ -417,7 +417,7 @@ def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str):
                     mini_batch_len = len(batch_x) - mini_batch_len * (training_divisions - 1)
                 curr_batch_x = batch_x[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
                 #curr_batch_y = batch_y[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
-                eval_output_variable = tg.Variable(str(eval_func(system_prompt.value, curr_batch_x)), requires_grad=False, role_description="evaluation of mini-batch results")
+                eval_output_variable = tg.Variable(int(eval_func(system_prompt.value, curr_batch_x)*100), requires_grad=True, role_description="evaluation of mini-batch results in percents")
                 losses.append(eval_output_variable)
             total_loss = tg.sum(losses)
             total_loss.backward()
