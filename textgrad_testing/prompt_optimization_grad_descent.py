@@ -529,6 +529,6 @@ if __name__ == "__main__":
     elif args.experiment == "final_call":
         #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
         prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
-        func_to_give = ollama_prompt_optimization
+        func_to_give = test_final_call
 
-    textgrad_prompt_optimization(func_to_give, data_set, prompt)
+    ollama_prompt_optimization(func_to_give, data_set, prompt)
