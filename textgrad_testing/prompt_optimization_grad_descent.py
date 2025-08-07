@@ -20,6 +20,7 @@ from textgrad.autograd import MultimodalLLMCall
 from textgrad.loss import ImageQALoss
 #from textgrad.tasks.base import DataLoader
 from torch.utils.data import DataLoader, Dataset
+from statistics import mean 
 
 from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
 from visual_search import parse_args, VSM, visual_search
@@ -432,6 +433,80 @@ def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str):
             if steps == 100:
                 break
 
+def prompt_generator(model_name: str, prompt: str):
+    # Initialize the Ollama client
+    response = chat(
+        model=model_name,
+        messages=[
+            {'role': 'user', 'content': prompt}
+        ]
+    )
+    result = response['message']['content']
+    return result
+def make_new_prompt(prompt_template, loss, results):
+    starting_text = "Create a new prompt based on the following previous prompt templates and their evaluation results:\n"
+    starting_text = "The current prompt template is: " + prompt_template + ", with results " + str(results) + "\n"
+    for i in range(len(results["prompt"])):
+        starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
+    new_prompt = prompt_generator("llama3:70b", starting_text)
+    return new_prompt
+
+
+def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str):
+    # Load the data and the evaluation function
+    train_fraction = 0.7
+    val_fraction = 0.15
+    test_fraction = 1.0 - train_fraction - val_fraction
+    train_len = int(len(data_set)*train_fraction)      
+    val_len = int(len(data_set)*val_fraction)
+    test_len = len(data_set) - train_len - val_len
+    train_set, val_set, test_set = random_split(data_set, [train_len, val_len, test_len])
+    #train_set, val_set, test_set, eval_fn = load_task("BBH_object_counting", evaluation_api=llm_api_eval)
+    data_set_train = MyDataset(train_set)
+    train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
+
+    print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
+
+    # Testing the 0-shot performance of the evaluation engine
+    system_prompt = tg.Variable(starting_prompt, 
+                                requires_grad=True,
+                                role_description="prompt to the model to answer the VQA task")
+    results = {"test_acc": [], "prompt": [], "validation_acc": []}
+
+    #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
+    #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
+
+    results["test_acc"].append(eval_func(system_prompt.value, test_set))
+    results["validation_acc"].append(eval_func(system_prompt.value, val_set))
+    results["prompt"].append(system_prompt.get_value())
+    for epoch in range(100):
+        for steps, batch_x in enumerate((pbar := tqdm(train_loader, position=0))):
+            #print(batch_x)
+            pbar.set_description(f"Training step {steps}. Epoch {epoch}")
+            losses = []
+            training_divisions = 2
+            mini_batch_len = len(batch_x) // training_divisions
+            
+            for div_num  in range(training_divisions):
+                if len(batch_x) % training_divisions != 0 and div_num == training_divisions - 1:
+                    mini_batch_len = len(batch_x) - mini_batch_len * (training_divisions - 1)
+                curr_batch_x = batch_x[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
+                #curr_batch_y = batch_y[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
+                eval_output_variable = eval_func(system_prompt.value, curr_batch_x)
+                losses.append(eval_output_variable)
+            total_loss = mean(losses)
+
+            system_prompt = make_new_prompt(system_prompt.value, total_loss, results)
+
+            run_validation_revert(system_prompt, results, val_set, eval_func)
+            
+            print("sys prompt: ", system_prompt)
+            test_acc = eval_func(system_prompt.value, test_set)
+            results["test_acc"].append(test_acc)
+            results["prompt"].append(system_prompt.get_value())
+            if steps == 100:
+                break
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--experiment", type=str, default="final_call")
@@ -454,6 +529,6 @@ if __name__ == "__main__":
     elif args.experiment == "final_call":
         #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
         prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
-        func_to_give = test_final_call
+        func_to_give = ollama_prompt_optimization
 
     textgrad_prompt_optimization(func_to_give, data_set, prompt)
