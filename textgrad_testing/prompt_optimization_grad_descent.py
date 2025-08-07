@@ -497,6 +497,9 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str):
             total_loss = mean(losses)
 
             system_prompt = make_new_prompt(system_prompt.value, total_loss, results)
+            system_prompt = tg.Variable(system_prompt, 
+                                requires_grad=True,
+                                role_description="prompt to the model to answer the VQA task")
 
             run_validation_revert(system_prompt, results, val_set, eval_func)
             
