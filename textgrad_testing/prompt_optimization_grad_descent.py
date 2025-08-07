@@ -356,7 +356,11 @@ def set_seed(seed):
     random.seed(seed)
 
 def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_func):
-    val_performance = eval_func(system_prompt.value, val_set)
+    try:
+        val_performance = eval_func(system_prompt.value, val_set)
+    except Exception as e:
+        print(f"Error during validation: {e}")
+        val_performance = 0.0
     previous_performance = results["validation_acc"][-1]
     print("val_performance: ", val_performance)
     print("previous_performance: ", previous_performance)
@@ -448,6 +452,8 @@ def make_new_prompt(prompt_template, loss, results):
     starting_text = "The current prompt template is: " + prompt_template + ", with results " + str(results) + "\n"
     for i in range(len(results["prompt"])):
         starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
+    starting_text += "Do not explain the prompt, do not explain the chain of thought. Only return the new prompt template, do not return any other text. The new prompt should be better than the previous one, take into account the previous prompts and their evaluation results.\n"
+    starting_text += "The new prompt has to still contain the <LABEL>, <BOUNDING_BOX> and the <object> placeholders, but you can change the rest of the prompt.\n"
     new_prompt = prompt_generator("llama3:70b", starting_text)
     return new_prompt
 
