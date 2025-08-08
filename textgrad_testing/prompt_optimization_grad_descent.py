@@ -302,6 +302,9 @@ def test_bounding_boxes_iou(prompt_template, evaluation_set):
     return iou_total / count if count > 0 else 0
 def test_bounding_boxes_final_result(prompt_template, evaluation_set):
     global vsm
+    global vqa_llm
+    if vqa_llm is None:
+        vqa_llm = VQA_LLM(args)
     if vsm is None:
         vsm_args = parse_args({})
         vsm_args.version = vsm_model_path
