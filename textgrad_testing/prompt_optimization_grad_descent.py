@@ -23,7 +23,7 @@ from torch.utils.data import DataLoader, Dataset
 from statistics import mean 
 
 from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
-from visual_search import parse_args, VSM, visual_search
+from visual_search_optim import parse_args, VSM, visual_search
 from torch.utils.data import random_split
 
 
@@ -72,8 +72,10 @@ def call_ollama_model_image(model_name: str, prompt: str, input: str, image_name
     # Read the image content
     with open(path, 'rb') as image_file:
         image_data = image_file.read()
-
-    text = f"{prompt} {input}"
+    if "<QUESTION>" in prompt:
+        text = prompt.replace("<QUESTION>", input)
+    else:
+        text = f"{prompt} {input}"
 
     # Prepare the request payload
     try:
@@ -105,7 +107,10 @@ def call_ollama_model_image(model_name: str, prompt: str, input: str, image_name
     return result
 def call_ollama_model(model_name: str, prompt: str, input:str):
     # Initialize the Ollama client
-    text = f"{prompt} {input}"
+    if "<QUESTION>" in prompt:
+        text = prompt.replace("<QUESTION>", input)
+    else:
+        text = f"{prompt} {input}"
     try:
         response = chat(
             model=model_name,
@@ -133,6 +138,7 @@ def call_ollama_model(model_name: str, prompt: str, input:str):
     elif model_name == "deepseek-r1:32b":
         result = handle_deepseek_response(temp_result)
     return result
+
 def call_vqa_model(model_name: str, prompt: str, question: str, image_path: str) -> str:
     missing_objects_msg = "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear:"
     image = Image.open(image_path).convert('RGB')
@@ -147,17 +153,25 @@ def call_vqa_model(model_name: str, prompt: str, question: str, image_path: str)
         missing_objects = missing_objects.split(',')
         missing_objects = [missing_object.strip() for missing_object in missing_objects]
     return missing_objects
-
 def get_missing_object_labels_correct(annotation):
     return annotation['target_object'], "no prediction needed, the object labels are correct"
 def get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template):
+    global vsm
+    if vsm is None:
+        vsm_args = parse_args({})
+        vsm_args.version = vsm_model_path
+        vsm = VSM(vsm_args)
+    if "<LABEL>" in prompt_template:
+        prompt_template = prompt_template.replace("<LABEL>", "{}")
+    else:
+        prompt_template = prompt_template + " {}"
     search_result = []
     if len(missing_objects) > 0:
         # visual search
         for object_name in missing_objects:
             image = Image.open(image_path).convert('RGB')
             smallest_size = max(int(np.ceil(min(image.width, image.height)/minimum_size_scale)), minimum_size)
-            final_step, path_length, search_successful, all_valid_boxes = visual_search(vsm, image, object_name, target_bbox=None, smallest_size=smallest_size)
+            final_step, path_length, search_successful, all_valid_boxes = visual_search(vsm, image, object_name, target_bbox=None, smallest_size=smallest_size, prompt=prompt_template)
             if all_valid_boxes is not None:
                 # might exist multiple target instances
                 for search_bbox in all_valid_boxes:
@@ -374,11 +388,11 @@ def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_fun
         val_performance = previous_performance
     results["validation_acc"].append(val_performance)
 
-def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str):
+def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b"):
     set_seed(42)
 
     client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
-    engine = ChatExternalClient(client=client, model_string='llama3:70b')
+    engine = ChatExternalClient(client=client, model_string=opti_model)
     tg.set_backward_engine(engine, override=True)
 
     # Load the data and the evaluation function
@@ -449,19 +463,51 @@ def prompt_generator(model_name: str, prompt: str):
     )
     result = response['message']['content']
     return result
-def make_new_prompt(prompt_template, loss, results):
+def make_new_prompt_object(prompt_template, loss, results, model="llama3:70b"):
     starting_text = "Create a new prompt based on the following previous prompt templates and their evaluation results:\n"
-    starting_text = "The current prompt template is: " + prompt_template + "\n The results for that prompt were: " + str(results) + "\n"
+    starting_text = "The current prompt template is: " + prompt_template + "\n The results for that prompt were: " + str(loss) + "\n"
     for i in range(len(results["prompt"])):
         starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
     starting_text += "Do not explain the prompt, do not explain the chain of thought. Only return the new prompt template, do not return any other text. The new prompt should be better than the previous one, take into account the previous prompts and their evaluation results.\n"
     starting_text += "The new prompt has to still contain the <LABEL>, <BOUNDING_BOX> and the <object> placeholders, but you can change the rest of the prompt.\n"
     starting_text += "Do not announce the prompt, do not present the prompt, only answer with the prompt, and do not invent any accuracy metric\n"
-    new_prompt = prompt_generator("llama3:70b", starting_text)
+    new_prompt = prompt_generator(model, starting_text)
+    return new_prompt
+
+def make_new_prompt_question(prompt_template, loss, results, model = "llama3:70b"):
+    starting_text = "Create a new prompt based on the following previous prompt templates and their evaluation results:\n"
+    starting_text = "The current prompt template is: " + prompt_template + "\n The results for that prompt were: " + str(loss) + "\n"
+    for i in range(len(results["prompt"])):
+        starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
+    starting_text += "Do not explain the prompt, do not explain the chain of thought. Only return the new prompt template, do not return any other text. The new prompt should be better than the previous one, take into account the previous prompts and their evaluation results.\n"
+    starting_text += "Do not announce the prompt, do not present the prompt, only answer with the prompt, and do not invent any accuracy metric\n"
+    new_prompt = prompt_generator(model, starting_text)
+    return new_prompt
+
+def make_new_prompt_missing_object(prompt_template, loss, results, model = "llama3:70b"):
+    starting_text = "Create a new prompt based on the following previous prompt templates and their evaluation results:\n"
+    starting_text = "The current prompt template is: " + prompt_template + "\n The results for that prompt were: " + str(loss) + "\n"
+    for i in range(len(results["prompt"])):
+        starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
+    starting_text += "Do not explain the prompt, do not explain the chain of thought. Only return the new prompt template, do not return any other text. The new prompt should be better than the previous one, take into account the previous prompts and their evaluation results.\n"
+    starting_text += "The new prompt has to still contain the <QUESTION> placeholder, but you can change the rest of the prompt.\n"
+    starting_text += "Do not announce the prompt, do not present the prompt, only answer with the prompt, and do not invent any accuracy metric\n"
+    new_prompt = prompt_generator(model, starting_text)
+    return new_prompt
+
+def make_new_prompt_bounding_box(prompt_template, loss, results, model = "llama3:70b"):
+    starting_text = "Create a new prompt based on the following previous prompt templates and their evaluation results:\n"
+    starting_text = "The current prompt template is: " + prompt_template + "\n The results for that prompt were: " + str(loss) + "\n"
+    for i in range(len(results["prompt"])):
+        starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
+    starting_text += "Do not explain the prompt, do not explain the chain of thought. Only return the new prompt template, do not return any other text. The new prompt should be better than the previous one, take into account the previous prompts and their evaluation results.\n"
+    starting_text += "The new prompt has to still contain the <LABEL> placeholder, but you can change the rest of the prompt.\n"
+    starting_text += "Do not announce the prompt, do not present the prompt, only answer with the prompt, and do not invent any accuracy metric\n"
+    new_prompt = prompt_generator(model, starting_text)
     return new_prompt
 
 
-def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str):
+def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b", prompt_gen_func: Callable = make_new_prompt_object):
     # Load the data and the evaluation function
     train_fraction = 0.5
     val_fraction = 0.25
@@ -505,7 +551,7 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str):
                 losses.append(eval_output_variable)
             total_loss = mean(losses)
 
-            system_prompt = make_new_prompt(system_prompt.value, total_loss, results)
+            system_prompt = prompt_gen_func(system_prompt.value, total_loss, results, model=opti_model)
             system_prompt = tg.Variable(system_prompt, 
                                 requires_grad=True,
                                 role_description="prompt to the model to answer the VQA task")
@@ -530,21 +576,31 @@ if __name__ == "__main__":
         for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
-    prompt = "You are a helpful assistant that provides the objects present in the question to the user. You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: "
+    prompt = """You are a helpful assistant that provides the objects present in the question to the user. 
+                You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>.\n
+                Do not answer the question, only provide the objects that are relevant to the question.
+                The objects should be separated by commas, and the objects should be in lowercase."""
     func_to_give = test_missing_objects
+    optim_model_name = "llama3:70b"
+    prompt_gen_func = make_new_prompt_missing_object
     if args.experiment == "bbox_iou":
-        prompt = "todo"
+        prompt = "Please locate the <LABEL> in this image."
         func_to_give = test_bounding_boxes_iou
+        optim_model_name = "llama3:70b_box_iou"
+        prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "bbox_final":
-        prompt = "todo"
+        prompt = "Please locate the <LABEL> in this image."
         func_to_give = test_bounding_boxes_final_result
+        optim_model_name = "llama3:70b_box_final"
+        prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "final_call":
         #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
         #prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
         #prompt = "<object> is located at <BOUNDING_BOX> and represents a <LABEL>."
         #prompt = "In the image, a <object> is shown as a <LABEL> at location <BOUNDING_BOX>"
         prompt = "The Question: "
-
+        optim_model_name = "llama3:70b_final_call"
         func_to_give = test_final_call
+        prompt_gen_func = make_new_prompt_question
 
-    ollama_prompt_optimization(func_to_give, data_set, prompt)
+    ollama_prompt_optimization(func_to_give, data_set, prompt, optim_model_name, prompt_gen_func)
