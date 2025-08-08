@@ -303,6 +303,17 @@ def test_bounding_boxes_iou(prompt_template, evaluation_set):
 def test_bounding_boxes_final_result(prompt_template, evaluation_set):
     global vsm
     global vqa_llm
+    if True:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--vqa-model-path", type=str, default="craigwu/seal_vqa_7b")
+        parser.add_argument("--vqa-model-base", type=str, default=None)
+        parser.add_argument("--conv_type", default="v1", type=str,)
+        parser.add_argument("--benchmark-folder", type=str, default="vbench")
+        parser.add_argument("--vsm-model-path", type=str, default="craigwu/seal_vsm_7b")
+        parser.add_argument("--output-path", type=str, default="eval_result.json")
+        parser.add_argument("--minimum_size_scale", default=4.0, type=float, help="minimum sub-image scale for the termination of search")
+        parser.add_argument("--minimum_size", default=224, type=int, help="minimum sub-image size for the termination of search")
+        args = parser.parse_args()
     if vqa_llm is None:
         vqa_llm = VQA_LLM(args)
     if vsm is None:
@@ -579,10 +590,11 @@ if __name__ == "__main__":
         for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
-    prompt = """You are a helpful assistant that provides the objects present in the question to the user. 
-                You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>.\n
-                Do not answer the question, only provide the objects that are relevant to the question.
-                The objects should be separated by commas, and the objects should be in lowercase."""
+    #prompt = """You are a helpful assistant that provides the objects present in the question to the user. 
+    #            You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>.\n
+    #            Do not answer the question, only provide the objects that are relevant to the question.
+    #            The objects should be separated by commas, and the objects should be in lowercase."""
+    prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please extract and list the essential entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on identifying the most crucial elements, ignoring irrelevant details, and prioritize clarity over completeness while maintaining a balance between brevity and accuracy."
     func_to_give = test_missing_objects
     optim_model_name = "llama3:70b"
     prompt_gen_func = make_new_prompt_missing_object
