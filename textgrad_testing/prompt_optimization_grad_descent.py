@@ -179,7 +179,9 @@ def get_bounding_boxes_correct(missing_objects, image_path, annotation):
     return search_result
 def get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template):
     global vqa_llm
-    object_prompt = prompt_template.replace("<LABEL>", "{}").replace("<BOUNDING_BOX>", "[{:.3f},{:.3f},{:.3f},{:.3f}]")
+    question_prompt = prompt_template
+    object_prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
+    object_prompt = object_prompt.replace("<LABEL>", "{}").replace("<BOUNDING_BOX>", "[{:.3f},{:.3f},{:.3f},{:.3f}]")
     # predict the multiple-choice option
     options = annotation['options']
     image = Image.open(image_path).convert('RGB')
@@ -214,10 +216,10 @@ def get_multiple_choice_seal(image_path, question, search_result, annotation, mi
                 cur_focus_msg = cur_focus_msg+"; "
             else:
                 cur_focus_msg = cur_focus_msg +'.'
-        question_with_focus = cur_focus_msg+"\n"+question
+        question_with_focus = cur_focus_msg+"\n"+ question_prompt + question
         option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
     else:
-        option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
+        option_chosen = vqa_llm.multiple_choices_inference(image, question_prompt + question, options)
     correct = 1 if option_chosen==0 else 0
     return correct, options, options[option_chosen]
 
@@ -366,7 +368,7 @@ def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_fun
     print("previous_performance: ", previous_performance)
     previous_prompt = results["prompt"][-1]
     
-    if val_performance < previous_performance:
+    if val_performance <= previous_performance:
         print(f"rejected prompt: {system_prompt.value}")
         system_prompt.set_value(previous_prompt)
         val_performance = previous_performance
@@ -449,19 +451,20 @@ def prompt_generator(model_name: str, prompt: str):
     return result
 def make_new_prompt(prompt_template, loss, results):
     starting_text = "Create a new prompt based on the following previous prompt templates and their evaluation results:\n"
-    starting_text = "The current prompt template is: " + prompt_template + ", with results " + str(results) + "\n"
+    starting_text = "The current prompt template is: " + prompt_template + "\n The results for that prompt were: " + str(results) + "\n"
     for i in range(len(results["prompt"])):
         starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
     starting_text += "Do not explain the prompt, do not explain the chain of thought. Only return the new prompt template, do not return any other text. The new prompt should be better than the previous one, take into account the previous prompts and their evaluation results.\n"
     starting_text += "The new prompt has to still contain the <LABEL>, <BOUNDING_BOX> and the <object> placeholders, but you can change the rest of the prompt.\n"
+    starting_text += "Do not announce the prompt, do not present the prompt, only answer with the prompt, and do not invent any accuracy metric\n"
     new_prompt = prompt_generator("llama3:70b", starting_text)
     return new_prompt
 
 
 def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str):
     # Load the data and the evaluation function
-    train_fraction = 0.7
-    val_fraction = 0.15
+    train_fraction = 0.5
+    val_fraction = 0.25
     test_fraction = 1.0 - train_fraction - val_fraction
     train_len = int(len(data_set)*train_fraction)      
     val_len = int(len(data_set)*val_fraction)
@@ -537,7 +540,11 @@ if __name__ == "__main__":
         func_to_give = test_bounding_boxes_final_result
     elif args.experiment == "final_call":
         #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
-        prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
+        #prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
+        #prompt = "<object> is located at <BOUNDING_BOX> and represents a <LABEL>."
+        #prompt = "In the image, a <object> is shown as a <LABEL> at location <BOUNDING_BOX>"
+        prompt = "The Question: "
+
         func_to_give = test_final_call
 
     ollama_prompt_optimization(func_to_give, data_set, prompt)
