@@ -598,7 +598,12 @@ if __name__ == "__main__":
         #prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
         #prompt = "<object> is located at <BOUNDING_BOX> and represents a <LABEL>."
         #prompt = "In the image, a <object> is shown as a <LABEL> at location <BOUNDING_BOX>"
-        prompt = "The Question: "
+
+        #prompt = "The Question: "
+        #prompt = "Please clarify or rephrase the question:"
+
+        prompt = "Please answer the following Question: "
+
         optim_model_name = "llama3:70b_final_call"
         func_to_give = test_final_call
         prompt_gen_func = make_new_prompt_question
