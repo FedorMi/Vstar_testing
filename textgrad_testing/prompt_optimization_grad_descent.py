@@ -270,6 +270,21 @@ def test_missing_objects(prompt_template, evaluation_set,with_image=True, model_
     return recall
 def test_bounding_boxes_iou(prompt_template, evaluation_set):
     global vsm
+    global vqa_llm
+    if True:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--experiment", type=str, default="final_call")
+        parser.add_argument("--vqa-model-path", type=str, default="craigwu/seal_vqa_7b")
+        parser.add_argument("--vqa-model-base", type=str, default=None)
+        parser.add_argument("--conv_type", default="v1", type=str,)
+        parser.add_argument("--benchmark-folder", type=str, default="vbench")
+        parser.add_argument("--vsm-model-path", type=str, default="craigwu/seal_vsm_7b")
+        parser.add_argument("--output-path", type=str, default="eval_result.json")
+        parser.add_argument("--minimum_size_scale", default=4.0, type=float, help="minimum sub-image scale for the termination of search")
+        parser.add_argument("--minimum_size", default=224, type=int, help="minimum sub-image size for the termination of search")
+        args = parser.parse_args()
+    if vqa_llm is None:
+        vqa_llm = VQA_LLM(args)
     if vsm is None:
         vsm_args = parse_args({})
         vsm_args.version = vsm_model_path
@@ -305,6 +320,7 @@ def test_bounding_boxes_final_result(prompt_template, evaluation_set):
     global vqa_llm
     if True:
         parser = argparse.ArgumentParser()
+        parser.add_argument("--experiment", type=str, default="final_call")
         parser.add_argument("--vqa-model-path", type=str, default="craigwu/seal_vqa_7b")
         parser.add_argument("--vqa-model-base", type=str, default=None)
         parser.add_argument("--conv_type", default="v1", type=str,)
@@ -342,6 +358,7 @@ def test_bounding_boxes_final_result(prompt_template, evaluation_set):
 def test_final_call(prompt_template, evaluation_set):
     if True:
         parser = argparse.ArgumentParser()
+        parser.add_argument("--experiment", type=str, default="final_call")
         parser.add_argument("--vqa-model-path", type=str, default="craigwu/seal_vqa_7b")
         parser.add_argument("--vqa-model-base", type=str, default=None)
         parser.add_argument("--conv_type", default="v1", type=str,)
