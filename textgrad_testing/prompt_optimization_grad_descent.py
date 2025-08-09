@@ -169,6 +169,7 @@ def get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_temp
     if len(missing_objects) > 0:
         # visual search
         for object_name in missing_objects:
+            print("Searching for object:", object_name)
             image = Image.open(image_path).convert('RGB')
             smallest_size = max(int(np.ceil(min(image.width, image.height)/minimum_size_scale)), minimum_size)
             final_step, path_length, search_successful, all_valid_boxes = visual_search(vsm, image, object_name, target_bbox=None, smallest_size=smallest_size, prompt=prompt_template)
@@ -193,7 +194,8 @@ def get_bounding_boxes_correct(missing_objects, image_path, annotation):
     return search_result
 def get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template):
     global vqa_llm
-    question_prompt = prompt_template
+    focus_msg = prompt_template
+    question_prompt = ""
     object_prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
     object_prompt = object_prompt.replace("<LABEL>", "{}").replace("<BOUNDING_BOX>", "[{:.3f},{:.3f},{:.3f},{:.3f}]")
     # predict the multiple-choice option
@@ -494,6 +496,17 @@ def prompt_generator(model_name: str, prompt: str):
     )
     result = response['message']['content']
     return result
+
+def make_new_prompt_focus_message(prompt_template, loss, results, model="llama3:70b"):
+    starting_text = "Create a new prompt based on the following previous prompt templates and their evaluation results:\n"
+    starting_text = "The current prompt template is: " + prompt_template + "\n The results for that prompt were: " + str(loss) + "\n"
+    for i in range(len(results["prompt"])):
+        starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
+    starting_text += "Do not explain the prompt, do not explain the chain of thought. Only return the new prompt template, do not return any other text. The new prompt should be better than the previous one, take into account the previous prompts and their evaluation results.\n"
+    starting_text += "Do not announce the prompt, do not present the prompt, only answer with the prompt, and do not invent any accuracy metric\n"
+    new_prompt = prompt_generator(model, starting_text)
+    return new_prompt
+
 def make_new_prompt_object(prompt_template, loss, results, model="llama3:70b"):
     starting_text = "Create a new prompt based on the following previous prompt templates and their evaluation results:\n"
     starting_text = "The current prompt template is: " + prompt_template + "\n The results for that prompt were: " + str(loss) + "\n"
@@ -611,7 +624,8 @@ if __name__ == "__main__":
     #            You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>.\n
     #            Do not answer the question, only provide the objects that are relevant to the question.
     #            The objects should be separated by commas, and the objects should be in lowercase."""
-    prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please extract and list the essential entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on identifying the most crucial elements, ignoring irrelevant details, and prioritize clarity over completeness while maintaining a balance between brevity and accuracy."
+    #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please extract and list the essential entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on identifying the most crucial elements, ignoring irrelevant details, and prioritize clarity over completeness while maintaining a balance between brevity and accuracy."
+    prompt = "You are a skilled extractor that identifies key elements in a question. Please process the given question (<QUESTION>) and provide a list of essential entities, concepts, and objects mentioned, separated by commas, in lowercase, without explanations or full sentences. Focus on capturing crucial details while ignoring irrelevant information and strike a balance between brevity and accuracy."
     func_to_give = test_missing_objects
     optim_model_name = "llama3:70b"
     prompt_gen_func = make_new_prompt_missing_object
@@ -634,10 +648,12 @@ if __name__ == "__main__":
         #prompt = "The Question: "
         #prompt = "Please clarify or rephrase the question:"
 
-        prompt = "Please answer the following Question: "
+        #prompt = "Please answer the following Question: "
+        #prompt = "Please provide a response to the following question:"
 
+        prompt = "Additional visual information to focus on: "
         optim_model_name = "llama3:70b_final_call"
         func_to_give = test_final_call
-        prompt_gen_func = make_new_prompt_question
+        prompt_gen_func = make_new_prompt_focus_message
 
     ollama_prompt_optimization(func_to_give, data_set, prompt, optim_model_name, prompt_gen_func)

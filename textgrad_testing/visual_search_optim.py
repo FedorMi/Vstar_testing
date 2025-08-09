@@ -393,7 +393,7 @@ def visual_search_queue(vsm, image, target_object_name, current_patch, search_pa
 
     image_patch = image.crop((int(current_patch_bbox[0]), int(current_patch_bbox[1]), int(current_patch_bbox[0]+current_patch_bbox[2]), int(current_patch_bbox[1]+current_patch_bbox[3])))
     # whehter we can detect the target object on the current image patch
-    question = "Please locate the {} in this image.".format(target_object_name)
+    question = prompt.format(target_object_name)
     pred_bboxes, pred_logits, target_cue_heatmap = vsm.inference(copy.deepcopy(image_patch), question, mode='detection')
     if len(pred_logits) > 0:
         top_index = pred_logits.view(-1).argmax()
@@ -437,7 +437,7 @@ def visual_search_queue(vsm, image, target_object_name, current_patch, search_pa
             possible_location_phrase = noun_chunks[0]
         else:
             possible_location_phrase = "region {}".format(possible_location_phrase)
-        question = "Please locate the {} in this image.".format(possible_location_phrase)
+        question = prompt.format(possible_location_phrase)
         context_cue_heatmap = vsm.inference(copy.deepcopy(image_patch), question, mode='segmentation').view(current_patch_bbox[3], current_patch_bbox[2], 1)
         context_cue_heatmap = normalize_score(context_cue_heatmap)
         final_heatmap = context_cue_heatmap
