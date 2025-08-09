@@ -154,7 +154,7 @@ def call_vqa_model(model_name: str, prompt: str, question: str, image_path: str)
         missing_objects = [missing_object.strip() for missing_object in missing_objects]
     return missing_objects
 def get_missing_object_labels_correct(annotation):
-    return annotation['target_object'], "no prediction needed, the object labels are correct"
+    return annotation['target_object']
 def get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template):
     global vsm
     if vsm is None:
@@ -306,6 +306,12 @@ def test_bounding_boxes_iou(prompt_template, evaluation_set):
         question = annotation['question']
         missing_objects = get_missing_object_labels_correct(annotation)
         search_result = get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template)
+        temp = []
+        for i in correct_data[test_type]:
+            if i["name"] == image_file:
+                temp = i
+                break
+        correct_data = temp
         correct_search_result = correct_data["search_result"]
         for i in search_result:
             missing_label = i["name"]
@@ -394,6 +400,7 @@ def test_final_call(prompt_template, evaluation_set):
         annotation = json.load(open(annotation_path))
         question = annotation['question']
         missing_objects = initial_image_data['missing_objects']
+        print("missing objects: ", missing_objects)
         search_result = initial_image_data['search_result']
         correct, _, _ = get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
         correct_total += correct
@@ -651,7 +658,8 @@ if __name__ == "__main__":
         #prompt = "Please answer the following Question: "
         #prompt = "Please provide a response to the following question:"
 
-        prompt = "Additional visual information to focus on: "
+        #prompt = "Additional visual information to focus on: "
+        prompt = "Specific regions of interest to highlight in images"
         optim_model_name = "llama3:70b_final_call"
         func_to_give = test_final_call
         prompt_gen_func = make_new_prompt_focus_message
