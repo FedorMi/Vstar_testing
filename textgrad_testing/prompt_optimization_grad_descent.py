@@ -308,7 +308,7 @@ def test_bounding_boxes_iou(prompt_template, evaluation_set):
         search_result = get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template)
         temp = []
         for i in correct_data[test_type]:
-            if i["name"] == image_file:
+            if i["image"] == image_file:
                 temp = i
                 break
         correct_data = temp
@@ -400,7 +400,7 @@ def test_final_call(prompt_template, evaluation_set):
         annotation = json.load(open(annotation_path))
         question = annotation['question']
         missing_objects = initial_image_data['missing_objects']
-        print("missing objects: ", missing_objects)
+        #print("missing objects: ", missing_objects)
         search_result = initial_image_data['search_result']
         correct, _, _ = get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
         correct_total += correct
@@ -627,12 +627,13 @@ if __name__ == "__main__":
         for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
-    #prompt = """You are a helpful assistant that provides the objects present in the question to the user. 
-    #            You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>.\n
-    #            Do not answer the question, only provide the objects that are relevant to the question.
-    #            The objects should be separated by commas, and the objects should be in lowercase."""
+    prompt = """You are a helpful assistant that provides the objects present in the question to the user. 
+                You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>.\n
+                Do not answer the question, only provide the objects that are relevant to the question.
+                The objects should be separated by commas, and the objects should be in lowercase."""
     #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please extract and list the essential entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on identifying the most crucial elements, ignoring irrelevant details, and prioritize clarity over completeness while maintaining a balance between brevity and accuracy."
-    prompt = "You are a skilled extractor that identifies key elements in a question. Please process the given question (<QUESTION>) and provide a list of essential entities, concepts, and objects mentioned, separated by commas, in lowercase, without explanations or full sentences. Focus on capturing crucial details while ignoring irrelevant information and strike a balance between brevity and accuracy."
+    #prompt = "You are a skilled extractor that identifies key elements in a question. Please process the given question (<QUESTION>) and provide a list of essential entities, concepts, and objects mentioned, separated by commas, in lowercase, without explanations or full sentences. Focus on capturing crucial details while ignoring irrelevant information and strike a balance between brevity and accuracy."
+    
     func_to_give = test_missing_objects
     optim_model_name = "llama3:70b"
     prompt_gen_func = make_new_prompt_missing_object
@@ -659,7 +660,8 @@ if __name__ == "__main__":
         #prompt = "Please provide a response to the following question:"
 
         #prompt = "Additional visual information to focus on: "
-        prompt = "Specific regions of interest to highlight in images"
+        #prompt = "Specific regions of interest to highlight in images"
+        prompt = "Identifying key objects or features within images to facilitate targeted analysis or processing."
         optim_model_name = "llama3:70b_final_call"
         func_to_give = test_final_call
         prompt_gen_func = make_new_prompt_focus_message
