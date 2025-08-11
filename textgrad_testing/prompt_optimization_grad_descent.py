@@ -422,11 +422,14 @@ def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_fun
     print("previous_performance: ", previous_performance)
     previous_prompt = results["prompt"][-1]
     
-    if val_performance <= previous_performance:
+    if val_performance < previous_performance:
         print(f"rejected prompt: {system_prompt.value}")
         system_prompt.set_value(previous_prompt)
         val_performance = previous_performance
-    results["validation_acc"].append(val_performance)
+        return False
+    else:
+        results["validation_acc"].append(val_performance)
+        return True
 
 def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b"):
     set_seed(42)
@@ -484,12 +487,13 @@ def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str, opti
             total_loss.backward()
             optimizer.step()
             
-            run_validation_revert(system_prompt, results, val_set, eval_func)
+            better = run_validation_revert(system_prompt, results, val_set, eval_func)
             
             print("sys prompt: ", system_prompt)
-            test_acc = eval_func(system_prompt.value, test_set)
-            results["test_acc"].append(test_acc)
-            results["prompt"].append(system_prompt.get_value())
+            if better: 
+                test_acc = eval_func(system_prompt.value, test_set)
+                results["test_acc"].append(test_acc)
+                results["prompt"].append(system_prompt.get_value())
             if steps == 100:
                 break
 
