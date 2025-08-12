@@ -169,7 +169,7 @@ def get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_temp
     if len(missing_objects) > 0:
         # visual search
         for object_name in missing_objects:
-            print("Searching for object:", object_name)
+            #print("Searching for object:", object_name)
             image = Image.open(image_path).convert('RGB')
             smallest_size = max(int(np.ceil(min(image.width, image.height)/minimum_size_scale)), minimum_size)
             final_step, path_length, search_successful, all_valid_boxes = visual_search(vsm, image, object_name, target_bbox=None, smallest_size=smallest_size, prompt=prompt_template)
@@ -660,17 +660,20 @@ if __name__ == "__main__":
     #prompt = "You are a skilled extractor that identifies key elements in a question. Please process the given question (<QUESTION>) and provide a list of essential entities, concepts, and objects mentioned, separated by commas, in lowercase, without explanations or full sentences. Focus on capturing crucial details while ignoring irrelevant information and strike a balance between brevity and accuracy."
     
     func_to_give = test_missing_objects
-    optim_model_name = "llama3:70b"
+    #optim_model_name = "llama3:70b"
+    optim_model_name = "llama3:8b"
     prompt_gen_func = make_new_prompt_missing_object
     if args.experiment == "bbox_iou":
         prompt = "Please locate the <LABEL> in this image."
         func_to_give = test_bounding_boxes_iou
-        optim_model_name = "llama3:70b_box_iou"
+        #optim_model_name = "llama3:70b_box_iou"
+        optim_model_name = "llama3:8b_box_iou"
         prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "bbox_final":
         prompt = "Please locate the <LABEL> in this image."
         func_to_give = test_bounding_boxes_final_result
-        optim_model_name = "llama3:70b_box_final"
+        #optim_model_name = "llama3:70b_box_final"
+        optim_model_name = "llama3:8b_box_final"
         prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "final_call":
         #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
@@ -692,7 +695,8 @@ if __name__ == "__main__":
         prompt += "<LABEL> <object> at location <BOUNDING_BOX>$"
         prompt += "The Question: "
 
-        optim_model_name = "llama3:70b_final_call"
+        #optim_model_name = "llama3:70b_final_call"
+        optim_model_name = "llama3:8b_final_call"
         func_to_give = test_final_call
         prompt_gen_func = make_new_prompt_complete
 
