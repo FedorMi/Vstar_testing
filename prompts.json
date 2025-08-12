@@ -1,0 +1,10 @@
+{"1": {"focus_msg": "Focus on this visual detail: ", "objects": "<LABEL> <object> located at <BOUNDING_BOX>", "question": "Q: "},
+"2": {"focus_msg": "Please consider ", "objects": "the <LABEL> (<object> at <BOUNDING_BOX>) as important visual information", "question": "Question: "},
+"3": {"focus_msg": "The following region may be relevant: ", "objects": "<object> (<LABEL>) at coordinates <BOUNDING_BOX>", "question": "Task: "},
+"4": {"focus_msg": "Region of interest: ", "objects": "<LABEL> (<object> at <BOUNDING_BOX>)", "question": "Q: "},
+"5": {"focus_msg": "Focus your attention on this crop: ", "objects": "<object> — <LABEL> at <BOUNDING_BOX>", "question": "Question: "},
+"6": {"focus_msg": "You are given extra context: ","objects":"<object> (<LABEL>) appears at location <BOUNDING_BOX>", "question": ""},
+"7": {"focus_msg": "Take into account the object of interest — ", "objects": "<LABEL>, located at <BOUNDING_BOX>", "question": "Question to answer: "},
+"8": {"focus_msg": "Visual aid: ", "objects": "<LABEL>, marked as <object> at <BOUNDING_BOX>", "question": ""},
+"9": {"focus_msg": "Highlighted for reference: ", "objects": "<LABEL> (<object> at <BOUNDING_BOX>)", "question": "Question: "},
+"10": {"focus_msg": "The model should consider this: ", "objects": "<object> refers to <LABEL>, located at <BOUNDING_BOX>.", "question": "Please answer: "}}

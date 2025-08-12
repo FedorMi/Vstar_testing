@@ -188,8 +188,8 @@ def eval_model(args):
         #objects_msg = "<LABEL> <object> at location <BOUNDING_BOX>".replace('<LABEL>', "{}").replace('<BOUNDING_BOX>', "[{:.3f},{:.3f},{:.3f},{:.3f}]")
         #question_msg = ""
         focus_msg = json_data[i]['focus_msg']
-        objects_msg = json_data[i]['objects_msg'].replace('<LABEL>', "{}").replace('<BOUNDING_BOX>', "[{:.3f},{:.3f},{:.3f},{:.3f}]")
-        question_msg = json_data[i]['question_msg']
+        objects_msg = json_data[i]['objects'].replace('<LABEL>', "{}").replace('<BOUNDING_BOX>', "[{:.3f},{:.3f},{:.3f},{:.3f}]")
+        question_msg = json_data[i]['question']
         
         for test_type in ['direct_attributes', 'relative_position']:
             results[test_type] = []
@@ -237,6 +237,7 @@ def eval_model(args):
                 # predict the multiple-choice option
                 options = annotation['options']
                 image = Image.open(image_path).convert('RGB')
+                question = question_msg + question
                 if len(missing_objects) > 0:
                     object_names = [_['name'] for _ in search_result]
                     bboxs = deepcopy([_['bbox'] for _ in search_result])
@@ -265,10 +266,10 @@ def eval_model(args):
                             cur_focus_msg = cur_focus_msg+"; "
                         else:
                             cur_focus_msg = cur_focus_msg +'.'
-                    question_with_focus = cur_focus_msg+"\n"+question_msg+question
+                    question_with_focus = cur_focus_msg + "\n" + question
                     option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
                 else:
-                    option_chosen = vqa_llm.multiple_choices_inference(image, question_msg + question, options)
+                    option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
 
                 correct = 1 if option_chosen==0 else 0
                 per_type_acc[test_type].append(correct)
@@ -288,8 +289,8 @@ def eval_model(args):
 
         print(np.mean(all_acc))
 
-    with open(args.output_path, 'w') as f:
-        json.dump(results, f, indent=4)
+        with open(args.output_path.replace(".json", "") + str(i) + ".json", 'w') as f:
+            json.dump(results, f, indent=4)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

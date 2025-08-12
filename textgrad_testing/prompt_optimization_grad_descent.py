@@ -581,13 +581,16 @@ def make_new_prompt_complete(prompt_template, loss, results, model = "llama3:70b
 
 def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b", prompt_gen_func: Callable = make_new_prompt_object):
     # Load the data and the evaluation function
-    train_fraction = 0.5
-    val_fraction = 0.25
+    train_fraction = 0.33
+    val_fraction = 0.34
     test_fraction = 1.0 - train_fraction - val_fraction
     train_len = int(len(data_set)*train_fraction)      
     val_len = int(len(data_set)*val_fraction)
     test_len = len(data_set) - train_len - val_len
     train_set, val_set, test_set = random_split(data_set, [train_len, val_len, test_len])
+    train_set = data_set
+    val_set = data_set
+    test_set = data_set
     #train_set, val_set, test_set, eval_fn = load_task("BBH_object_counting", evaluation_api=llm_api_eval)
     data_set_train = MyDataset(train_set)
     train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
@@ -628,12 +631,13 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
                                 requires_grad=True,
                                 role_description="prompt to the model to answer the VQA task")
 
-            run_validation_revert(system_prompt, results, val_set, eval_func)
+            better = run_validation_revert(system_prompt, results, val_set, eval_func)
             
             print("sys prompt: ", system_prompt)
-            test_acc = eval_func(system_prompt.value, test_set)
-            results["test_acc"].append(test_acc)
-            results["prompt"].append(system_prompt.get_value())
+            if better: 
+                test_acc = eval_func(system_prompt.value, test_set)
+                results["test_acc"].append(test_acc)
+                results["prompt"].append(system_prompt.get_value())
             if steps == 100:
                 break
 
