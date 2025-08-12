@@ -195,7 +195,7 @@ def get_bounding_boxes_correct(missing_objects, image_path, annotation):
 def get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template):
     global vqa_llm
 
-    temp = prompt_template.split("$")
+    temp = prompt_template.split("\n")
     #focus_msg = prompt_template
     #question_prompt = ""
     focus_msg = temp[0]
@@ -573,7 +573,7 @@ def make_new_prompt_complete(prompt_template, loss, results, model = "llama3:70b
         starting_text += f"Prompt {i}: {results['prompt'][i]}, with validation accuracy: {results['validation_acc'][i]}, and test accuracy: {results['test_acc'][i]}\n"
     starting_text += "Do not explain the prompt, do not explain the chain of thought. Only return the new prompt template, do not return any other text. The new prompt should be better than the previous one, take into account the previous prompts and their evaluation results.\n"
     starting_text += "The new prompt has to still contain the <LABEL>, <BOUNDING_BOX> and the <object> placeholders, but you can change the rest of the prompt.\n"
-    starting_text += "The new prompt should still be divided into three parts using the $ symbol.\n"
+    starting_text += "The new prompt should still be divided into three parts using the newline \"\\n\" symbol.\n"
     starting_text += "Do not announce the prompt, do not present the prompt, only answer with the prompt, and do not invent any accuracy metric\n"
     new_prompt = prompt_generator(model, starting_text)
     return new_prompt
@@ -691,8 +691,8 @@ if __name__ == "__main__":
         #prompt = "Specific regions of interest to highlight in images"
         #prompt = "Identifying key objects or features within images to facilitate targeted analysis or processing."
 
-        prompt = "Additional visual information to focus on: $"
-        prompt += "<LABEL> <object> at location <BOUNDING_BOX>$"
+        prompt = "Additional visual information to focus on: \n"
+        prompt += "<LABEL> <object> at location <BOUNDING_BOX>\n"
         prompt += "The Question: "
 
         #optim_model_name = "llama3:70b_final_call"
