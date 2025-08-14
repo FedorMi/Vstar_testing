@@ -656,9 +656,8 @@ if __name__ == "__main__":
                 You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>.\n
                 Do not answer the question, only provide the objects that are relevant to the question.
                 The objects should be separated by commas, and the objects should be in lowercase."""
+    #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please identify and list the main entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on extracting the most important elements, ignoring irrelevant details, and prioritize clarity over completeness."
     #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please extract and list the essential entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on identifying the most crucial elements, ignoring irrelevant details, and prioritize clarity over completeness while maintaining a balance between brevity and accuracy."
-    #prompt = "You are a skilled extractor that identifies key elements in a question. Please process the given question (<QUESTION>) and provide a list of essential entities, concepts, and objects mentioned, separated by commas, in lowercase, without explanations or full sentences. Focus on capturing crucial details while ignoring irrelevant information and strike a balance between brevity and accuracy."
-    
     func_to_give = test_missing_objects
     #optim_model_name = "llama3:70b"
     optim_model_name = "llama3:8b"
@@ -680,6 +679,7 @@ if __name__ == "__main__":
         #prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
         #prompt = "<object> is located at <BOUNDING_BOX> and represents a <LABEL>."
         #prompt = "In the image, a <object> is shown as a <LABEL> at location <BOUNDING_BOX>"
+        prompt = "The <LABEL> depicted is a <object> situated at <BOUNDING_BOX>."
 
         #prompt = "The Question: "
         #prompt = "Please clarify or rephrase the question:"
