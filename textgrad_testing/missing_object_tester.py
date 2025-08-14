@@ -1,21 +1,12 @@
 import os
 import json
-import torch
-import random
-import argparse
-import concurrent
 import numpy as np
 import textgrad as tg
 
 
 from ollama import chat, ResponseError, pull
 from typing import Callable, List, Any
-from copy import deepcopy
-from openai import OpenAI
-from PIL import Image
-from tqdm import tqdm
 
-from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
 
 
 def handle_llava_response(response: str):
