@@ -427,7 +427,7 @@ def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_fun
     print("previous_performance: ", previous_performance)
     previous_prompt = results["prompt"][-1]
     
-    if val_performance < previous_performance:
+    if val_performance <= previous_performance:
         print(f"rejected prompt: {system_prompt.value}")
         system_prompt.set_value(previous_prompt)
         val_performance = previous_performance
@@ -444,8 +444,8 @@ def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str, opti
     tg.set_backward_engine(engine, override=True)
 
     # Load the data and the evaluation function
-    train_fraction = 0.7
-    val_fraction = 0.15
+    train_fraction = 0.33
+    val_fraction = 0.34
     test_fraction = 1.0 - train_fraction - val_fraction
     train_len = int(len(data_set)*train_fraction)      
     val_len = int(len(data_set)*val_fraction)
@@ -498,6 +498,7 @@ def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str, opti
             if better: 
                 test_acc = eval_func(system_prompt.value, test_set)
                 results["test_acc"].append(test_acc)
+                print("test_acc: ", test_acc)
                 results["prompt"].append(system_prompt.get_value())
             if steps == 100:
                 break
