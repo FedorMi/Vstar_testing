@@ -357,23 +357,27 @@ def test_bounding_boxes_iou(prompt_template, evaluation_set):
         image, _, _ = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
         question = annotation['question']
         missing_objects = get_missing_object_labels_correct(annotation)
-        search_result = get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template)
-        temp = []
-        for i in correct_data[test_type]:
-            if i["image"] == image_file:
-                temp = i
-                break
-        correct_data = temp
-        correct_search_result = correct_data["search_result"]
-        for i in search_result:
-            missing_label = i["name"]
-            missing_bbox = i["bbox"]
-            for j in range(len(correct_search_result)):
-                if correct_search_result[j]["name"] == missing_label:
-                    correct_bbox = correct_search_result[j]["bbox"]
-                    iou_total += iou(missing_bbox, correct_bbox)
+        try:
+            search_result = get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template)
+            temp = []
+            for i in correct_data[test_type]:
+                if i["image"] == image_file:
+                    temp = i
                     break
-        count += len(search_result)
+            correct_data = temp
+            correct_search_result = correct_data["search_result"]
+            for i in search_result:
+                missing_label = i["name"]
+                missing_bbox = i["bbox"]
+                for j in range(len(correct_search_result)):
+                    if correct_search_result[j]["name"] == missing_label:
+                        correct_bbox = correct_search_result[j]["bbox"]
+                        iou_total += iou(missing_bbox, correct_bbox)
+                        break
+            count += len(search_result)
+        except Exception as e:
+            count += len(missing_objects)
+
     return iou_total / count if count > 0 else 0
 def test_bounding_boxes_final_result(prompt_template, evaluation_set):
     global vsm
@@ -410,9 +414,12 @@ def test_bounding_boxes_final_result(prompt_template, evaluation_set):
         image, _, _ = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
         question = annotation['question']
         missing_objects = get_missing_object_labels_correct(annotation)
-        search_result = get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template)
-        correct, _, _ = get_multiple_choice_seal_standard(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
-        correct_total += correct
+        try:
+            search_result = get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template)
+            correct, _, _ = get_multiple_choice_seal_standard(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
+            correct_total += correct
+        except Exception as e:
+            pass
         count += 1
     return correct_total / count if count > 0 else 0
 def test_final_call(prompt_template, evaluation_set):
