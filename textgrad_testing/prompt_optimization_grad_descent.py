@@ -627,7 +627,7 @@ def make_new_prompt_complete(prompt_template, loss, results, model = "llama3:70b
     return new_prompt
 
 
-def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b", prompt_gen_func: Callable = make_new_prompt_object):
+def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b", prompt_gen_func: Callable = make_new_prompt_object, args = None):
     # Load the data and the evaluation function
     train_fraction = 0.33
     val_fraction = 0.34
@@ -663,7 +663,7 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
     print("Initial prompt: ", results["prompt"][-1])
 
     # Training loop
-    for epoch in range(100):
+    for epoch in range(10):
         for steps, batch_x in enumerate((pbar := tqdm(train_loader, position=0))):
             #print(batch_x)
             pbar.set_description(f"Training step {steps}. Epoch {epoch}")
@@ -693,8 +693,11 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
                 results["test_acc"].append(test_acc)
                 print("test_acc: ", test_acc)
                 results["prompt"].append(system_prompt.get_value())
-            if steps == 100:
+            if steps == 10:
                 break
+    # save results
+    with open("results_" + args.experiment + ".json", "w") as f:
+        json.dump(results, f)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -755,4 +758,4 @@ if __name__ == "__main__":
         func_to_give = test_final_call
         prompt_gen_func = make_new_prompt_complete
 
-    ollama_prompt_optimization(func_to_give, data_set, prompt, optim_model_name, prompt_gen_func)
+    ollama_prompt_optimization(func_to_give, data_set, prompt, optim_model_name, prompt_gen_func, args)
