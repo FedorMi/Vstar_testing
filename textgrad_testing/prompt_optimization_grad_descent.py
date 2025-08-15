@@ -638,6 +638,7 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
             if better: 
                 test_acc = eval_func(system_prompt.value, test_set)
                 results["test_acc"].append(test_acc)
+                print("test_acc: ", test_acc)
                 results["prompt"].append(system_prompt.get_value())
             if steps == 100:
                 break
