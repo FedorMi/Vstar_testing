@@ -244,6 +244,53 @@ def get_multiple_choice_seal(image_path, question, search_result, annotation, mi
     correct = 1 if option_chosen==0 else 0
     return correct, options, options[option_chosen]
 
+def get_multiple_choice_seal_standard(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template):
+    global vqa_llm
+    #focus_msg = prompt_template
+    question_prompt = ""
+    object_prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
+    object_prompt = object_prompt.replace("<LABEL>", "{}").replace("<BOUNDING_BOX>", "[{:.3f},{:.3f},{:.3f},{:.3f}]")
+    # predict the multiple-choice option
+    options = annotation['options']
+    image = Image.open(image_path).convert('RGB')
+    if len(missing_objects) > 0:
+        object_names = [_['name'] for _ in search_result]
+        bboxs = deepcopy([_['bbox'] for _ in search_result])
+        if len(object_names) <= 2:
+            images_long = [False]
+            objects_long = [True]*len(object_names)
+        else:
+            images_long = [False]
+            objects_long = [False]*len(object_names)
+        object_crops = []
+        for bbox in bboxs:
+            object_crop = vqa_llm.get_object_crop(image, bbox, patch_scale=1.2)
+            object_crops.append(object_crop)
+        object_crops = torch.stack(object_crops, 0)
+        image, left, top = expand2square(image, tuple(int(x*255) for x in vqa_llm.image_processor.image_mean))
+        bbox_list = []
+        for bbox in bboxs:
+            bbox[0] += left
+            bbox[1] += top
+            bbox_list.append(bbox)
+        bbox_list = [normalize_bbox(bbox, image.width, image.height) for bbox in bbox_list]
+        cur_focus_msg = focus_msg
+        for i, (object_name, bbox) in enumerate(zip(object_names, bbox_list)):
+            try:
+                cur_focus_msg = cur_focus_msg + object_prompt.format(object_name, bbox[0], bbox[1], bbox[2], bbox[3])
+            except Exception as e:
+                cur_focus_msg = cur_focus_msg + object_prompt + "{} [{:.3f},{:.3f},{:.3f},{:.3f}]".format(object_name, bbox[0], bbox[1], bbox[2], bbox[3])
+            if i != len(bbox_list)-1:
+                cur_focus_msg = cur_focus_msg+"; "
+            else:
+                cur_focus_msg = cur_focus_msg +'.'
+        question_with_focus = cur_focus_msg+"\n"+ question_prompt + question
+        option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
+    else:
+        option_chosen = vqa_llm.multiple_choices_inference(image, question_prompt + question, options)
+    correct = 1 if option_chosen==0 else 0
+    return correct, options, options[option_chosen]
+
 def test_missing_objects(prompt_template, evaluation_set,with_image=True, model_name="llava:34b"):
     true_positive = 0
     count = 0
@@ -364,7 +411,7 @@ def test_bounding_boxes_final_result(prompt_template, evaluation_set):
         question = annotation['question']
         missing_objects = get_missing_object_labels_correct(annotation)
         search_result = get_bounding_boxes_seal(missing_objects, image_path, annotation, prompt_template)
-        correct, _, _ = get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
+        correct, _, _ = get_multiple_choice_seal_standard(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template)
         correct_total += correct
         count += 1
     return correct_total / count if count > 0 else 0
@@ -609,6 +656,12 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
     results["test_acc"].append(eval_func(system_prompt.value, test_set))
     results["validation_acc"].append(eval_func(system_prompt.value, val_set))
     results["prompt"].append(system_prompt.get_value())
+    
+    print("Initial test accuracy: ", results["test_acc"][-1])
+    print("Initial validation accuracy: ", results["validation_acc"][-1])
+    print("Initial prompt: ", results["prompt"][-1])
+
+    # Training loop
     for epoch in range(100):
         for steps, batch_x in enumerate((pbar := tqdm(train_loader, position=0))):
             #print(batch_x)
@@ -659,27 +712,27 @@ if __name__ == "__main__":
     #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please identify and list the main entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on extracting the most important elements, ignoring irrelevant details, and prioritize clarity over completeness."
     #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please extract and list the essential entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on identifying the most crucial elements, ignoring irrelevant details, and prioritize clarity over completeness while maintaining a balance between brevity and accuracy."
     func_to_give = test_missing_objects
-    #optim_model_name = "llama3:70b"
-    optim_model_name = "llama3:8b"
+    optim_model_name = "llama3:70b"
+    #optim_model_name = "llama3:8b"
     prompt_gen_func = make_new_prompt_missing_object
     if args.experiment == "bbox_iou":
         prompt = "Please locate the <LABEL> in this image."
         func_to_give = test_bounding_boxes_iou
-        #optim_model_name = "llama3:70b_box_iou"
-        optim_model_name = "llama3:8b_box_iou"
+        optim_model_name = "llama3:70b_box_iou"
+        #optim_model_name = "llama3:8b_box_iou"
         prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "bbox_final":
         prompt = "Please locate the <LABEL> in this image."
         func_to_give = test_bounding_boxes_final_result
-        #optim_model_name = "llama3:70b_box_final"
-        optim_model_name = "llama3:8b_box_final"
+        optim_model_name = "llama3:70b_box_final"
+        #optim_model_name = "llama3:8b_box_final"
         prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "final_call":
         #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
         #prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
         #prompt = "<object> is located at <BOUNDING_BOX> and represents a <LABEL>."
         #prompt = "In the image, a <object> is shown as a <LABEL> at location <BOUNDING_BOX>"
-        prompt = "The <LABEL> depicted is a <object> situated at <BOUNDING_BOX>."
+        #prompt = "The <LABEL> depicted is a <object> situated at <BOUNDING_BOX>."
 
         #prompt = "The Question: "
         #prompt = "Please clarify or rephrase the question:"
@@ -695,8 +748,8 @@ if __name__ == "__main__":
         prompt += "<LABEL> <object> at location <BOUNDING_BOX>\n"
         prompt += "The Question: "
 
-        #optim_model_name = "llama3:70b_final_call"
-        optim_model_name = "llama3:8b_final_call"
+        optim_model_name = "llama3:70b_final_call"
+        #optim_model_name = "llama3:8b_final_call"
         func_to_give = test_final_call
         prompt_gen_func = make_new_prompt_complete
 
