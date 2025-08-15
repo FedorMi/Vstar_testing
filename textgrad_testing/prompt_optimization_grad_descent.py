@@ -636,9 +636,9 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
     val_len = int(len(data_set)*val_fraction)
     test_len = len(data_set) - train_len - val_len
     train_set, val_set, test_set = random_split(data_set, [train_len, val_len, test_len])
-    train_set = data_set
-    val_set = data_set
-    test_set = data_set
+    #train_set = data_set
+    #val_set = data_set
+    #test_set = data_set
     #train_set, val_set, test_set, eval_fn = load_task("BBH_object_counting", evaluation_api=llm_api_eval)
     data_set_train = MyDataset(train_set)
     train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
