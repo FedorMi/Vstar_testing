@@ -195,12 +195,13 @@ def get_bounding_boxes_correct(missing_objects, image_path, annotation):
 def get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template):
     global vqa_llm
 
-    temp = prompt_template.split("\n")
+    #temp = prompt_template.split("\n")
     #focus_msg = prompt_template
-    #question_prompt = ""
-    focus_msg = temp[0]
-    object_prompt = temp[1]
-    question_prompt = temp[2]
+    question_prompt = ""
+    #focus_msg = temp[0]
+    #object_prompt = temp[1]
+    #question_prompt = temp[2]
+    object_prompt = prompt_template
     #object_prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
     object_prompt = object_prompt.replace("<LABEL>", "{}").replace("<BOUNDING_BOX>", "[{:.3f},{:.3f},{:.3f},{:.3f}]")
     # predict the multiple-choice option
@@ -481,7 +482,7 @@ def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_fun
     print("previous_performance: ", previous_performance)
     previous_prompt = results["prompt"][-1]
     
-    if val_performance <= previous_performance:
+    if val_performance < previous_performance:
         print(f"rejected prompt: {system_prompt.value}")
         system_prompt.set_value(previous_prompt)
         val_performance = previous_performance
@@ -649,25 +650,50 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
     #train_set, val_set, test_set, eval_fn = load_task("BBH_object_counting", evaluation_api=llm_api_eval)
     data_set_train = MyDataset(train_set)
     train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
-
-    print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
-
-    # Testing the 0-shot performance of the evaluation engine
-    system_prompt = tg.Variable(starting_prompt, 
-                                requires_grad=True,
-                                role_description="prompt to the model to answer the VQA task")
     results = {"test_acc": [], "prompt": [], "validation_acc": []}
+    print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
+    if isinstance(starting_prompt, str):
+        # Testing the 0-shot performance of the evaluation engine
+        system_prompt = tg.Variable(starting_prompt, 
+                                    requires_grad=True,
+                                    role_description="prompt to the model to answer the VQA task")
+        
 
-    #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
-    #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
+        #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
+        #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
 
-    results["test_acc"].append(eval_func(system_prompt.value, test_set))
-    results["validation_acc"].append(eval_func(system_prompt.value, val_set))
-    results["prompt"].append(system_prompt.get_value())
-    
-    print("Initial test accuracy: ", results["test_acc"][-1])
-    print("Initial validation accuracy: ", results["validation_acc"][-1])
-    print("Initial prompt: ", results["prompt"][-1])
+        results["test_acc"].append(eval_func(system_prompt.value, test_set))
+        results["validation_acc"].append(eval_func(system_prompt.value, val_set))
+        results["prompt"].append(system_prompt.get_value())
+        
+        print("Initial test accuracy: ", results["test_acc"][-1])
+        print("Initial validation accuracy: ", results["validation_acc"][-1])
+        print("Initial prompt: ", results["prompt"][-1])
+    else:
+        for i in range(len(starting_prompt)):
+            system_prompt = tg.Variable(starting_prompt, 
+                                    requires_grad=True,
+                                    role_description="prompt to the model to answer the VQA task")
+        
+
+            #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
+            #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
+
+            results["test_acc"].append(eval_func(system_prompt.value, test_set))
+            results["validation_acc"].append(eval_func(system_prompt.value, val_set))
+            results["prompt"].append(system_prompt.get_value())
+        highest_validation = 0
+        highest_idx = -1
+        for i in range(len(results["prompt"])):
+            if results["validation_acc"][i] > highest_validation:
+                highest_validation = results["validation_acc"][i]
+                highest_idx = i
+        print("Initial test accuracy: ", results["test_acc"][highest_idx])
+        print("Initial validation accuracy: ", results["validation_acc"][highest_idx])
+        print("Initial prompt: ", results["prompt"][highest_idx])
+        system_prompt = tg.Variable(results["prompt"][highest_idx], 
+                                    requires_grad=True,
+                                    role_description="prompt to the model to answer the VQA task")
 
     # Training loop
     for epoch in range(10):
@@ -741,6 +767,12 @@ if __name__ == "__main__":
         prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "final_call":
         #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
+        prompt = []
+        with open("prompts.json") as f:
+            data = json.load(f)
+            for item in data:
+                data[item]["objects"]
+
         #prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
         #prompt = "<object> is located at <BOUNDING_BOX> and represents a <LABEL>."
         #prompt = "In the image, a <object> is shown as a <LABEL> at location <BOUNDING_BOX>"
@@ -756,13 +788,13 @@ if __name__ == "__main__":
         #prompt = "Specific regions of interest to highlight in images"
         #prompt = "Identifying key objects or features within images to facilitate targeted analysis or processing."
 
-        prompt = "Additional visual information to focus on: \n"
-        prompt += "<LABEL> <object> at location <BOUNDING_BOX>\n"
-        prompt += "The Question: "
+        #prompt = "Additional visual information to focus on: \n"
+        #prompt += "<LABEL> <object> at location <BOUNDING_BOX>\n"
+        #prompt += "The Question: "
 
         optim_model_name = "llama3:70b_final_call"
         #optim_model_name = "llama3:8b_final_call"
         func_to_give = test_final_call
-        prompt_gen_func = make_new_prompt_complete
+        prompt_gen_func = make_new_prompt_object
 
     ollama_prompt_optimization(func_to_give, data_set, prompt, optim_model_name, prompt_gen_func, args)
