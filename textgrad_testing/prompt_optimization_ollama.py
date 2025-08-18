@@ -5,7 +5,6 @@ import random
 import argparse
 import concurrent
 import numpy as np
-import textgrad as tg
 
 
 from ollama import chat, ResponseError, pull
@@ -15,9 +14,6 @@ from openai import OpenAI
 from PIL import Image
 from tqdm import tqdm
 
-from textgrad.engine.local_model_openai_api import ChatExternalClient  # (not needed anymore)
-from textgrad.autograd import MultimodalLLMCall
-from textgrad.loss import ImageQALoss
 #from textgrad.tasks.base import DataLoader
 from torch.utils.data import DataLoader, Dataset
 from statistics import mean 
@@ -34,6 +30,16 @@ vsm = None
 vsm_model_path = "craigwu/seal_vsm_7b"
 minimum_size_scale = 4.0
 minimum_size = 224
+
+class MyVariable:
+    def __init__(self, value, requires_grad=False, role_description=None):
+        self.value = value
+        self.requires_grad = requires_grad
+        self.role_description = role_description
+    def set_value(self, value):
+        self.value = value
+    def get_value(self):
+        return self.value
 
 class MyDataset(Dataset):
     def __init__(self, file_list):
@@ -471,7 +477,7 @@ def set_seed(seed):
     np.random.seed(seed)
     random.seed(seed)
 
-def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_func):
+def run_validation_revert(system_prompt: MyVariable, results, val_set, eval_func):
     try:
         val_performance = eval_func(system_prompt.value, val_set)
     except Exception as e:
@@ -490,73 +496,6 @@ def run_validation_revert(system_prompt: tg.Variable, results, val_set, eval_fun
     else:
         results["validation_acc"].append(val_performance)
         return True
-
-def textgrad_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b"):
-    set_seed(42)
-
-    client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
-    engine = ChatExternalClient(client=client, model_string=opti_model)
-    tg.set_backward_engine(engine, override=True)
-
-    # Load the data and the evaluation function
-    train_fraction = 0.33
-    val_fraction = 0.34
-    test_fraction = 1.0 - train_fraction - val_fraction
-    train_len = int(len(data_set)*train_fraction)      
-    val_len = int(len(data_set)*val_fraction)
-    test_len = len(data_set) - train_len - val_len
-    train_set, val_set, test_set = random_split(data_set, [train_len, val_len, test_len])
-    #train_set, val_set, test_set, eval_fn = load_task("BBH_object_counting", evaluation_api=llm_api_eval)
-    data_set_train = MyDataset(train_set)
-    train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
-
-    print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
-
-    # Testing the 0-shot performance of the evaluation engine
-    system_prompt = tg.Variable(starting_prompt, 
-                                requires_grad=True,
-                                role_description="prompt to the model to answer the VQA task")
-
-    optimizer = tg.TGD(engine=engine, parameters=[system_prompt])
-
-    results = {"test_acc": [], "prompt": [], "validation_acc": []}
-
-    #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
-    #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
-
-    results["test_acc"].append(eval_func(system_prompt.value, test_set))
-    results["validation_acc"].append(eval_func(system_prompt.value, val_set))
-    results["prompt"].append(system_prompt.get_value())
-    for epoch in range(100):
-        for steps, batch_x in enumerate((pbar := tqdm(train_loader, position=0))):
-            #print(batch_x)
-            pbar.set_description(f"Training step {steps}. Epoch {epoch}")
-            optimizer.zero_grad()
-            losses = []
-            training_divisions = 2
-            mini_batch_len = len(batch_x) // training_divisions
-            
-            for div_num  in range(training_divisions):
-                if len(batch_x) % training_divisions != 0 and div_num == training_divisions - 1:
-                    mini_batch_len = len(batch_x) - mini_batch_len * (training_divisions - 1)
-                curr_batch_x = batch_x[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
-                #curr_batch_y = batch_y[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
-                eval_output_variable = tg.Variable(int(eval_func(system_prompt.value, curr_batch_x)*100), requires_grad=True, role_description="evaluation of mini-batch results in percents")
-                losses.append(eval_output_variable)
-            total_loss = tg.sum(losses)
-            total_loss.backward()
-            optimizer.step()
-            
-            better = run_validation_revert(system_prompt, results, val_set, eval_func)
-            
-            print("sys prompt: ", system_prompt)
-            if better: 
-                test_acc = eval_func(system_prompt.value, test_set)
-                results["test_acc"].append(test_acc)
-                print("test_acc: ", test_acc)
-                results["prompt"].append(system_prompt.get_value())
-            if steps == 100:
-                break
 
 def prompt_generator(model_name: str, prompt: str):
     # Initialize the Ollama client
@@ -654,7 +593,7 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
     print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
     if isinstance(starting_prompt, str):
         # Testing the 0-shot performance of the evaluation engine
-        system_prompt = tg.Variable(starting_prompt, 
+        system_prompt = MyVariable(starting_prompt, 
                                     requires_grad=True,
                                     role_description="prompt to the model to answer the VQA task")
         
@@ -671,7 +610,7 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
         print("Initial prompt: ", results["prompt"][-1])
     else:
         for i in range(len(starting_prompt)):
-            system_prompt = tg.Variable(starting_prompt, 
+            system_prompt = MyVariable(starting_prompt, 
                                     requires_grad=True,
                                     role_description="prompt to the model to answer the VQA task")
         
@@ -691,7 +630,7 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
         print("Initial test accuracy: ", results["test_acc"][highest_idx])
         print("Initial validation accuracy: ", results["validation_acc"][highest_idx])
         print("Initial prompt: ", results["prompt"][highest_idx])
-        system_prompt = tg.Variable(results["prompt"][highest_idx], 
+        system_prompt = MyVariable(results["prompt"][highest_idx], 
                                     requires_grad=True,
                                     role_description="prompt to the model to answer the VQA task")
 
@@ -714,7 +653,7 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
             total_loss = mean(losses)
 
             system_prompt = prompt_gen_func(system_prompt.value, total_loss, results, model=opti_model)
-            system_prompt = tg.Variable(system_prompt, 
+            system_prompt = MyVariable(system_prompt, 
                                 requires_grad=True,
                                 role_description="prompt to the model to answer the VQA task")
 
