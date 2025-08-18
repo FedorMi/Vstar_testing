@@ -1,0 +1,1 @@
+{"test_acc": [0.765625, 0.75, 0.78125], "prompt": ["The Question: ", "The Question: What is", "The Question: What is the definition of"], "validation_acc": [0.71875, 0.765625, 0.78125]}

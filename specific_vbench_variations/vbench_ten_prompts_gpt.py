@@ -181,16 +181,16 @@ def eval_model(args):
     with open("json_path", 'r') as f:
         json_data = json.load(f)
     
-    for i in json_data:
+    for b in json_data:
 
         missing_objects_msg = "Sorry, I can not answer the question. Some visual information about the following objects is missing or unclear:"
         #focus_msg = "Additional visual information to focus on: "
         #objects_msg = "<LABEL> <object> at location <BOUNDING_BOX>".replace('<LABEL>', "{}").replace('<BOUNDING_BOX>', "[{:.3f},{:.3f},{:.3f},{:.3f}]")
         #question_msg = ""
-        focus_msg = json_data[i]['focus_msg']
-        objects_msg = json_data[i]['objects'].replace('<LABEL>', "{}").replace('<BOUNDING_BOX>', "[{:.3f},{:.3f},{:.3f},{:.3f}]")
-        question_msg = json_data[i]['question']
-        
+        focus_msg = json_data[b]['focus_msg']
+        objects_msg = json_data[b]['objects'].replace('<LABEL>', "{}").replace('<BOUNDING_BOX>', "[{:.3f},{:.3f},{:.3f},{:.3f}]")
+        question_msg = json_data[b]['question']
+
         for test_type in ['direct_attributes', 'relative_position']:
             results[test_type] = []
             folder = os.path.join(args.benchmark_folder, test_type)
@@ -289,7 +289,7 @@ def eval_model(args):
 
         print(np.mean(all_acc))
 
-        with open(args.output_path.replace(".json", "") + str(i) + ".json", 'w') as f:
+        with open(args.output_path.replace(".json", "") + str(b) + ".json", 'w') as f:
             json.dump(results, f, indent=4)
 
 if __name__ == "__main__":

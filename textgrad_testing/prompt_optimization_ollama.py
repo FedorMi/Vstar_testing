@@ -10,7 +10,6 @@ import numpy as np
 from ollama import chat, ResponseError, pull
 from typing import Callable, List, Any
 from copy import deepcopy
-from openai import OpenAI
 from PIL import Image
 from tqdm import tqdm
 
