@@ -199,15 +199,8 @@ def get_bounding_boxes_correct(missing_objects, image_path, annotation):
     return search_result
 def get_multiple_choice_seal(image_path, question, search_result, annotation, missing_objects, focus_msg, prompt_template):
     global vqa_llm
-
-    #temp = prompt_template.split("\n")
-    #focus_msg = prompt_template
     question_prompt = ""
-    #focus_msg = temp[0]
-    #object_prompt = temp[1]
-    #question_prompt = temp[2]
     object_prompt = prompt_template
-    #object_prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
     object_prompt = object_prompt.replace("<LABEL>", "{}").replace("<BOUNDING_BOX>", "[{:.3f},{:.3f},{:.3f},{:.3f}]")
     # predict the multiple-choice option
     options = annotation['options']
@@ -487,12 +480,14 @@ def run_validation_revert(system_prompt: MyVariable, results, val_set, eval_func
     print("previous_performance: ", previous_performance)
     previous_prompt = results["prompt"][-1]
     
-    if val_performance <= previous_performance:
+    if val_performance < previous_performance:
         print(f"rejected prompt: {system_prompt.get_value()}")
         system_prompt.set_value(previous_prompt)
         val_performance = previous_performance
-    results["validation_acc"].append(val_performance)
-    return True
+        return False
+    else:
+        results["validation_acc"].append(val_performance)
+        return True
 
 def prompt_generator(model_name: str, prompt: str):
     # Initialize the Ollama client
@@ -573,99 +568,109 @@ def make_new_prompt_complete(prompt_template, loss, results, model = "llama3:70b
 
 def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b", prompt_gen_func: Callable = make_new_prompt_object, args = None):
     # Load the data and the evaluation function
-    train_fraction = 0.5
-    val_fraction = 0.25
-    test_fraction = 1.0 - train_fraction - val_fraction
-    train_len = int(len(data_set)*train_fraction)      
-    val_len = int(len(data_set)*val_fraction)
-    test_len = len(data_set) - train_len - val_len
-    train_set, val_set, test_set = random_split(data_set, [train_len, val_len, test_len])
-    #train_set = data_set
-    #val_set = data_set
-    #test_set = data_set
-    #train_set, val_set, test_set, eval_fn = load_task("BBH_object_counting", evaluation_api=llm_api_eval)
-    data_set_train = MyDataset(train_set)
-    train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
-    results = {"test_acc": [], "prompt": [], "validation_acc": []}
-    print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
-    if isinstance(starting_prompt, str):
-        # Testing the 0-shot performance of the evaluation engine
-        system_prompt = MyVariable(starting_prompt, 
-                                    requires_grad=True,
-                                    role_description="prompt to the model to answer the VQA task")
-        
+    first_frac = 0.25
+    second_frac = 0.25
+    third_frac = 0.25
+    first_len = int(len(data_set)*first_frac)      
+    second_len = int(len(data_set)*second_frac)
+    third_len = int(len(data_set)*third_frac)
+    fourth_len = len(data_set) - first_len - second_len - third_len
+    first_set, second_set, third_set, fourth_set = random_split(data_set, [first_len, second_len, third_len, fourth_len])
+    set_of_sets = [first_set, second_set, third_set, fourth_set]
+    init_prompt = starting_prompt
+    out = {}
+    for index_sets in range(len(set_of_sets)):
+        data_set_frac = set_of_sets[index_sets]
+        temp_out = {}
+        for index in range(1,6):
+            starting_prompt = init_prompt
+            train_fraction = 0.33
+            val_fraction = 0.34
+            test_fraction = 1.0 - train_fraction - val_fraction
+            train_len = int(len(data_set_frac)*train_fraction)      
+            val_len = int(len(data_set_frac)*val_fraction)
+            test_len = len(data_set_frac) - train_len - val_len
+            train_set, val_set, test_set = random_split(data_set_frac, [train_len, val_len, test_len])
+            #train_set = data_set
+            #val_set = data_set
+            #test_set = data_set
+            #train_set, val_set, test_set, eval_fn = load_task("BBH_object_counting", evaluation_api=llm_api_eval)
+            data_set_train = MyDataset(train_set)
+            train_loader = DataLoader(data_set_train, batch_size=12, shuffle=True)
+            results = {"test_acc": [], "prompt": [], "validation_acc": []}
+            print("Train/Val/Test Set Lengths: ", len(train_set), len(val_set), len(test_set))
+            if isinstance(starting_prompt, str):
+                # Testing the 0-shot performance of the evaluation engine
+                system_prompt = MyVariable(starting_prompt, 
+                                            requires_grad=True,
+                                            role_description="prompt to the model to answer the VQA task")
+                
 
-        #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
-        #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
+                #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
+                #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
 
-        results["test_acc"].append(eval_func(system_prompt.get_value(), test_set))
-        results["validation_acc"].append(eval_func(system_prompt.get_value(), val_set))
-        results["prompt"].append(system_prompt.get_value())
-        
-        print("Initial test accuracy: ", results["test_acc"][-1])
-        print("Initial validation accuracy: ", results["validation_acc"][-1])
-        print("Initial prompt: ", results["prompt"][-1])
-    else:
-        for i in range(len(starting_prompt)):
-            system_prompt = MyVariable(starting_prompt, 
-                                    requires_grad=True,
-                                    role_description="prompt to the model to answer the VQA task")
-        
+                results["test_acc"].append(eval_func(system_prompt.get_value(), test_set))
+                results["validation_acc"].append(eval_func(system_prompt.get_value(), val_set))
+                results["prompt"].append(system_prompt.get_value())
+                
+                print("Initial test accuracy: ", results["test_acc"][-1])
+                print("Initial validation accuracy: ", results["validation_acc"][-1])
+                print("Initial prompt: ", results["prompt"][-1])
+            else:
+                for i in range(len(starting_prompt)):
+                    system_prompt = MyVariable(starting_prompt, 
+                                            requires_grad=True,
+                                            role_description="prompt to the model to answer the VQA task")
+                
 
-            #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
-            #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
+                    #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
+                    #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
 
-            results["test_acc"].append(eval_func(system_prompt.get_value(), test_set))
-            results["validation_acc"].append(eval_func(system_prompt.get_value(), val_set))
-            results["prompt"].append(system_prompt.get_value())
-        highest_validation = 0
-        highest_idx = -1
-        for i in range(len(results["prompt"])):
-            if results["validation_acc"][i] > highest_validation:
-                highest_validation = results["validation_acc"][i]
-                highest_idx = i
-        print("Initial test accuracy: ", results["test_acc"][highest_idx])
-        print("Initial validation accuracy: ", results["validation_acc"][highest_idx])
-        print("Initial prompt: ", results["prompt"][highest_idx])
-        system_prompt = MyVariable(results["prompt"][highest_idx], 
-                                    requires_grad=True,
-                                    role_description="prompt to the model to answer the VQA task")
+                    results["test_acc"].append(eval_func(system_prompt.get_value(), test_set))
+                    results["validation_acc"].append(eval_func(system_prompt.get_value(), val_set))
+                    results["prompt"].append(system_prompt.get_value())
+                highest_validation = 0
+                highest_idx = -1
+                for i in range(len(results["prompt"])):
+                    if results["validation_acc"][i] > highest_validation:
+                        highest_validation = results["validation_acc"][i]
+                        highest_idx = i
+                print("Initial test accuracy: ", results["test_acc"][highest_idx])
+                print("Initial validation accuracy: ", results["validation_acc"][highest_idx])
+                print("Initial prompt: ", results["prompt"][highest_idx])
+                system_prompt = MyVariable(results["prompt"][highest_idx], 
+                                            requires_grad=True,
+                                            role_description="prompt to the model to answer the VQA task")
 
-    # Training loop
-    for epoch in range(100):
-        for steps, batch_x in enumerate((pbar := tqdm(train_loader, position=0))):
-            #print(batch_x)
-            pbar.set_description(f"Training step {steps}. Epoch {epoch}")
-            losses = []
-            training_divisions = 2
-            mini_batch_len = len(batch_x) // training_divisions
-            
-            for div_num  in range(training_divisions):
-                if len(batch_x) % training_divisions != 0 and div_num == training_divisions - 1:
-                    mini_batch_len = len(batch_x) - mini_batch_len * (training_divisions - 1)
-                curr_batch_x = batch_x[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
-                #curr_batch_y = batch_y[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
-                eval_output_variable = eval_func(system_prompt.get_value(), curr_batch_x)
-                losses.append(eval_output_variable)
-            total_loss = mean(losses)
+            # Training loop
+            for epoch in range(30):
+                for steps, batch_x in enumerate((pbar := tqdm(train_loader, position=0))):
+                    #print(batch_x)
+                    pbar.set_description(f"Training step {steps}. Epoch {epoch}")
+                    
+                    eval_output_variable = eval_func(system_prompt.get_value(), batch_x)
+                    total_loss = eval_output_variable
 
-            system_prompt = prompt_gen_func(system_prompt.get_value(), total_loss, results, model=opti_model)
-            system_prompt = MyVariable(system_prompt, 
-                                requires_grad=True,
-                                role_description="prompt to the model to answer the VQA task")
+                    system_prompt = prompt_gen_func(system_prompt.get_value(), total_loss, results, model=opti_model)
+                    system_prompt = MyVariable(system_prompt, 
+                                        requires_grad=True,
+                                        role_description="prompt to the model to answer the VQA task")
 
-            run_validation_revert(system_prompt, results, val_set, eval_func)
-            
-            print("sys prompt: ", system_prompt.get_value())
-            test_acc = eval_func(system_prompt.get_value(), test_set)
-            results["test_acc"].append(test_acc)
-            print("test_acc: ", test_acc)
-            results["prompt"].append(system_prompt.get_value())
-            if steps == 100:
-                break
-        # save results
-        with open("results_" + args.experiment + ".json", "w") as f:
-            json.dump(results, f)
+                    better = run_validation_revert(system_prompt, results, val_set, eval_func)
+                    
+                    print("sys prompt: ", system_prompt.get_value())
+                    if better:
+                        test_acc = eval_func(system_prompt.get_value(), test_set)
+                        results["test_acc"].append(test_acc)
+                        print("test_acc: ", test_acc)
+                        results["prompt"].append(system_prompt.get_value())
+                    if steps == 100:
+                        break
+            temp_out[index] = results
+        out[index_sets] = temp_out
+    # save results
+    with open("results_divided_testing.json", "w") as f:
+        json.dump(out, f)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -701,12 +706,12 @@ if __name__ == "__main__":
         #optim_model_name = "llama3:8b_box_final"
         prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "final_call":
-        #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
-        prompt = []
-        with open("prompts.json") as f:
-            data = json.load(f)
-            for item in data:
-                data[item]["objects"]
+        prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
+        #prompt = []
+        #with open("prompts.json") as f:
+        #    data = json.load(f)
+        #    for item in data:
+        #        data[item]["objects"]
 
         #prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
         #prompt = "<object> is located at <BOUNDING_BOX> and represents a <LABEL>."
