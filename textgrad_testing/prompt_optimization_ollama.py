@@ -478,7 +478,7 @@ def set_seed(seed):
 
 def run_validation_revert(system_prompt: MyVariable, results, val_set, eval_func):
     try:
-        val_performance = eval_func(system_prompt.value, val_set)
+        val_performance = eval_func(system_prompt.get_value(), val_set)
     except Exception as e:
         print(f"Error during validation: {e}")
         val_performance = 0.0
@@ -488,13 +488,11 @@ def run_validation_revert(system_prompt: MyVariable, results, val_set, eval_func
     previous_prompt = results["prompt"][-1]
     
     if val_performance < previous_performance:
-        print(f"rejected prompt: {system_prompt.value}")
+        print(f"rejected prompt: {system_prompt.get_value()}")
         system_prompt.set_value(previous_prompt)
         val_performance = previous_performance
-        return False
-    else:
-        results["validation_acc"].append(val_performance)
-        return True
+    results["validation_acc"].append(val_performance)
+    return True
 
 def prompt_generator(model_name: str, prompt: str):
     # Initialize the Ollama client
@@ -600,8 +598,8 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
         #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
         #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
 
-        results["test_acc"].append(eval_func(system_prompt.value, test_set))
-        results["validation_acc"].append(eval_func(system_prompt.value, val_set))
+        results["test_acc"].append(eval_func(system_prompt.get_value(), test_set))
+        results["validation_acc"].append(eval_func(system_prompt.get_value(), val_set))
         results["prompt"].append(system_prompt.get_value())
         
         print("Initial test accuracy: ", results["test_acc"][-1])
@@ -617,8 +615,8 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
             #results["test_acc"].append(eval_dataset(test_set, eval_fn, model))
             #results["validation_acc"].append(eval_dataset(val_set, eval_fn, model))
 
-            results["test_acc"].append(eval_func(system_prompt.value, test_set))
-            results["validation_acc"].append(eval_func(system_prompt.value, val_set))
+            results["test_acc"].append(eval_func(system_prompt.get_value(), test_set))
+            results["validation_acc"].append(eval_func(system_prompt.get_value(), val_set))
             results["prompt"].append(system_prompt.get_value())
         highest_validation = 0
         highest_idx = -1
@@ -647,23 +645,22 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
                     mini_batch_len = len(batch_x) - mini_batch_len * (training_divisions - 1)
                 curr_batch_x = batch_x[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
                 #curr_batch_y = batch_y[div_num * mini_batch_len:(div_num + 1) * mini_batch_len]
-                eval_output_variable = eval_func(system_prompt.value, curr_batch_x)
+                eval_output_variable = eval_func(system_prompt.get_value(), curr_batch_x)
                 losses.append(eval_output_variable)
             total_loss = mean(losses)
 
-            system_prompt = prompt_gen_func(system_prompt.value, total_loss, results, model=opti_model)
+            system_prompt = prompt_gen_func(system_prompt.get_value(), total_loss, results, model=opti_model)
             system_prompt = MyVariable(system_prompt, 
                                 requires_grad=True,
                                 role_description="prompt to the model to answer the VQA task")
 
-            better = run_validation_revert(system_prompt, results, val_set, eval_func)
+            run_validation_revert(system_prompt, results, val_set, eval_func)
             
-            print("sys prompt: ", system_prompt)
-            if better: 
-                test_acc = eval_func(system_prompt.value, test_set)
-                results["test_acc"].append(test_acc)
-                print("test_acc: ", test_acc)
-                results["prompt"].append(system_prompt.get_value())
+            print("sys prompt: ", system_prompt.get_value())
+            test_acc = eval_func(system_prompt.get_value(), test_set)
+            results["test_acc"].append(test_acc)
+            print("test_acc: ", test_acc)
+            results["prompt"].append(system_prompt.get_value())
             if steps == 100:
                 break
         # save results
@@ -681,7 +678,10 @@ if __name__ == "__main__":
         for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
-    prompt = """You are a helpful assistant that provides the objects present in the question to the user. You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>. Do not answer the question, only provide the objects that are relevant to the question. The objects should be separated by commas, and the objects should be in lowercase."""
+    prompt = """You are a helpful assistant that provides the objects present in the question to the user. 
+                You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>. 
+                Do not answer the question, only provide the objects that are relevant to the question. 
+                The objects should be separated by commas, and the objects should be in lowercase."""
     #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please identify and list the main entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on extracting the most important elements, ignoring irrelevant details, and prioritize clarity over completeness."
     #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please extract and list the essential entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on identifying the most crucial elements, ignoring irrelevant details, and prioritize clarity over completeness while maintaining a balance between brevity and accuracy."
     func_to_give = test_missing_objects
