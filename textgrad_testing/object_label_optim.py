@@ -177,8 +177,10 @@ def run_validation_revert(system_prompt: MyVariable, results, val_set, eval_func
         print(f"rejected prompt: {system_prompt.get_value()}")
         system_prompt.set_value(previous_prompt)
         val_performance = previous_performance
-    results["validation_acc"].append(val_performance)
-    return True
+        return False
+    else:
+        results["validation_acc"].append(val_performance)
+        return True
 
 def prompt_generator(model_name: str, prompt: str):
     # Initialize the Ollama client
@@ -205,8 +207,8 @@ def make_new_prompt_missing_object(prompt_template, loss, results, model = "llam
 
 def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_model: str = "llama3:70b", prompt_gen_func: Callable = make_new_prompt_missing_object, args = None):
     # Load the data and the evaluation function
-    train_fraction = 0.5
-    val_fraction = 0.25
+    train_fraction = 0.33
+    val_fraction = 0.34
     test_fraction = 1.0 - train_fraction - val_fraction
     train_len = int(len(data_set)*train_fraction)      
     val_len = int(len(data_set)*val_fraction)
@@ -286,13 +288,14 @@ def ollama_prompt_optimization(eval_func, data_set, starting_prompt: str, opti_m
                                 requires_grad=True,
                                 role_description="prompt to the model to answer the VQA task")
 
-            run_validation_revert(system_prompt, results, val_set, eval_func)
+            better = run_validation_revert(system_prompt, results, val_set, eval_func)
             
             print("sys prompt: ", system_prompt.get_value())
-            test_acc = eval_func(system_prompt.get_value(), test_set)
-            results["test_acc"].append(test_acc)
-            print("test_acc: ", test_acc)
-            results["prompt"].append(system_prompt.get_value())
+            if better:
+                test_acc = eval_func(system_prompt.get_value(), test_set)
+                results["test_acc"].append(test_acc)
+                print("test_acc: ", test_acc)
+                results["prompt"].append(system_prompt.get_value())
             if steps == 100:
                 break
         # save results
@@ -310,10 +313,7 @@ if __name__ == "__main__":
         for image_file in image_files:
             image_path = test_type + "$" + image_file
             data_set.append(image_path)
-    prompt = """You are a helpful assistant that provides the objects present in the question to the user. 
-                You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>.\n 
-                Do not answer the question, only provide the objects that are relevant to the question. 
-                The objects should be separated by commas, and the objects should be in lowercase."""
+    prompt = """You are a helpful assistant that provides the objects present in the question to the user. You do not give explanations, you don't respond in full sentences, you only respond with objects. The relevant question is: <QUESTION>. Do not answer the question, only provide the objects that are relevant to the question. The objects should be separated by commas, and the objects should be in lowercase."""
     #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please identify and list the main entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on extracting the most important elements, ignoring irrelevant details, and prioritize clarity over completeness."
     #prompt = "You are a helpful assistant that provides the objects present in the question to the user. The relevant question is: <QUESTION>. Please extract and list the essential entities, concepts, and key objects mentioned in the question, separated by commas, in lowercase, without explanations or full sentences. Focus on identifying the most crucial elements, ignoring irrelevant details, and prioritize clarity over completeness while maintaining a balance between brevity and accuracy."
     func_to_give = test_missing_objects

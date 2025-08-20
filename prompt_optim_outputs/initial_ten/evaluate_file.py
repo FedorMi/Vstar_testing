@@ -7,8 +7,8 @@ temp = "eval_result_manual_results"
 json_files = [temp + str(idx) + ".json" for idx in range(1, 11)]
 
 for i in json_files:
-    path = os.path.join("dino_jsons", i)
-    path = os.path.join("visual_search_replacements", path)
+    path = os.path.join("initial_ten", i)
+    path = os.path.join("prompt_optim_outputs", path)
     name = i.split(".")[0].replace("eval_results_", "")
     with open(path, "r") as f:
         hyperparameters = json.load(f)
