@@ -21,7 +21,7 @@ def process_image(rect_image_path, temp_image_path, question_text):
     # Process image with the specified model
     try:
         response = chat(
-            model='minicpm-v',
+            model='llava:34b',
             messages=[
                 {'role': 'user', 'content': question_text, 'images':[rect_image_path, temp_image_path]}
 #                {'role': 'user', 'content': question_text, 'images':[temp_image_path]}
@@ -30,9 +30,9 @@ def process_image(rect_image_path, temp_image_path, question_text):
     except ResponseError as e:
         if e.status_code == 404:
             print('Model not found, pulling the model...')
-            pull('minicpm-v')
+            pull('llava:34b')
             response = chat(
-                model='minicpm-v',
+                model='llava:34b',
                 messages=[
                     {'role': 'user', 'content': question_text}
                 ],
@@ -166,9 +166,9 @@ def create_instruction(question_text, actions, x):
     return system_prompt
 
 def interactive_process_image(question, question_text, image_name):
-    #question_text = "Focus the frame on the little girl in the image."
-    question_text = "Focus on the left frame edge of the image."
-    folder = "left_minicpmv"
+    question_text = "Focus the frame on the little girl in the image."
+    #question_text = "Focus on the left frame edge of the image."
+    folder = "gamify_llava"
     idxt = 0
     image_jpgless = image_name.split(".")[0]
     image_path = os.path.join(question['category'], image_name)

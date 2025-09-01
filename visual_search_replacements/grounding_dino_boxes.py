@@ -61,10 +61,12 @@ def process_image_with_quadrants(image, model, text_prompt, box_threshold, text_
         for box in boxes:
             # Adjust x coordinates
             box[0] = (box[0]*(w//2) +x1)/w
-            box[2] = (box[2]*(w//2) +x1)/w
+            #box[2] = (box[2]*(w//2) +x1)/w
+            box[2] = box[2]/2
             # Adjust y coordinates
             box[1] = (box[1]*(h//2) +y1)/h
-            box[3] = (box[3]*(h//2) +y1)/h
+            #box[3] = (box[3]*(h//2) +y1)/h
+            box[3] = box[3]/2
             print(box)
             all_boxes.append(box)
 
@@ -150,7 +152,7 @@ def main(with_quadrants=False):
             )
 
             # Save the annotated image
-            output_path = os.path.join("dino_normal_output", test_type, i)
+            output_path = os.path.join("dino_quadrant_output", test_type, i)
             cv2.imwrite(output_path, annotated_frame)
             print(f"Annotated image saved as '{i}'")
 
@@ -158,4 +160,4 @@ def main(with_quadrants=False):
             save_json(output_path, total_boxes, total_phrases, image_source.shape)
 
 if __name__ == "__main__":
-    main()
+    main(with_quadrants=True)
