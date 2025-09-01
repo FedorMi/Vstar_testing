@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is the house on the left or right side of the road sign?",
+    "options": [
+        "The house is on the left side of the road sign.",
+        "The house is on the right side of the road sign."
+    ]
+}

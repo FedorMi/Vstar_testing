@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "The yellow tool is in the hand or not in the hand?",
+    "options": [
+        "The yellow tool is in the hand.",
+        "The yellow tool is not in the hand."
+    ]
+}

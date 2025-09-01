@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What color are the handles on the scissors?",
+    "options": [
+        "The color of the handles on the scissors is white.",
+        "The color of the handles on the scissors is blue.",
+        "The color of the handles on the scissors is green.",
+        "The color of the handles on the scissors is purple."
+    ]
+}

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 json_files = list(filter(lambda file: '.json' in file, os.listdir("hyperparameter_jsons")))
-
+#json_files = ["parameter_ablationminimum_size_scale.json"]
 
 for i in json_files:
     path = os.path.join("hyperparameter_jsons", i)
@@ -45,7 +45,7 @@ for i in json_files:
         plt.plot(x_axis_list, overall_list, label="Overall")
         plt.plot(x_axis_list, relative_position_list, label="Relative Position")
         plt.plot(x_axis_list, direct_attributes_list, label="Direct Attributes")
-        plt.xlabel("Ablation Step")
+        plt.xlabel(name + " value")
         plt.ylabel("Percentage Correct")
         plt.title("Hyperparameter Ablation Results on " + name.replace("_", " ").capitalize())
         plt.legend()

@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What is the color of the 'STRAITS TRADING' text on the central building?",
+    "options": [
+        "The 'STRAITS TRADING' text is red.",
+        "The 'STRAITS TRADING' text is blue.",
+        "The 'STRAITS TRADING' text is white.",
+        "The 'STRAITS TRADING' text is green."
+    ]
+}

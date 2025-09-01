@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is the wine bottle above or below the clay pot?",
+    "options": [
+        "The wine bottle is below the clay pot.",
+        "The wine bottle is above the clay pot."
+    ]
+}

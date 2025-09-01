@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "The orange stand is to the right or left side of the white surgical mask?",
+    "options": [
+        "The orange stand is on the left side of the white surgical mask.",
+        "The orange stand is on the right side of the white surgical mask."
+    ]
+}

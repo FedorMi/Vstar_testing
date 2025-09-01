@@ -1,0 +1,19 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What is written in red letters on the middle tower, the word 'HSBC', the word 'BANK', the words 'STRAITS TRADING'?",
+    "options": [
+        "The words 'STRAITS TRADING' are written in red letters on the middle tower.",
+        "The word 'HSBC' is written in red letters on the middle tower.",
+        "The word 'BANK' is written in red letters on the middle tower."
+    ]
+}

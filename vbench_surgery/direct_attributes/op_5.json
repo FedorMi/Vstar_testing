@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What color is the cloth?",
+    "options": [
+        "The color of the cloth is blue.",
+        "The color of the cloth is purple.",
+        "The color of the cloth is green.",
+        "The color of the cloth is yellow."
+    ]
+}

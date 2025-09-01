@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "The white bottle is to the right or left side of the tweezers?",
+    "options": [
+        "The white bottle is on the left side of the tweezers.",
+        "The white bottle is on the right side of the tweezers."
+    ]
+}

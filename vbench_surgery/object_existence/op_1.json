@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Are there tweezers being used in the image?",
+    "options": [
+        "Yes, there are tweezers being used in the image.",
+        "No, there are no tweezers being used in the image."
+    ]
+}

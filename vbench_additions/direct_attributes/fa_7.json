@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What color is the egg?",
+    "options": [
+        "The egg is Brown.",
+        "The egg is White.",
+        "The egg is Blue.",
+        "The egg is Green."
+    ]
+}

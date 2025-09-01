@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is there a green sphere on the table?",
+    "options": [
+        "No, there is no green sphere on the table.",
+        "Yes, there is a green sphere on the table."
+    ]
+}

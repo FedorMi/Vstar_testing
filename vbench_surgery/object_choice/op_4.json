@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What is on the gloved hand, a syringe, a scalpel, scissors, or nothing?",
+    "options": [
+        "There is no object on the gloved hand.",
+        "The object on the gloved hand is a syringe.",
+        "The object on the gloved hand is a scalpel.",
+        "The object on the gloved hand is scissors."
+    ]
+}

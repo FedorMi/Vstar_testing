@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Are there red gloves in the image?",
+    "options": [
+        "No, there are no red gloves in the image.",
+        "Yes, there are red gloves in the image."
+    ]
+}

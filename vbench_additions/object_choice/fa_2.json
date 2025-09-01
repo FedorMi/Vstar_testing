@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What kind of road sign is on the left of the palm tree, a turn left sign, a speed limit sign, a stop sign or a parking sign?",
+    "options": [
+        "A parking sign is on the left of the palm tree.",
+        "A turn left sign is on the left of the palm tree.",
+        "A speed limit sign is on the left of the palm tree.",
+        "A stop sign is on the left of the palm tree."
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "The red tube is below or above the green tape?",
+    "options": [
+        "The red tube is above the green tape.",
+        "The red tube is below the green tape."
+    ]
+}

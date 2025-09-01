@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is there a road sign on the side of the road?",
+    "options": [
+        "Yes, there is a road sign on the side of the road.",
+        "No, there is no road sign on the side of the road."
+    ]
+}

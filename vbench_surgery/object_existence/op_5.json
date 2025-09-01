@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is there a magnifying glass on the table?",
+    "options": [
+        "No, there is no magnifying glass on the table.",
+        "Yes, there is a magnifying glass on the table."
+    ]
+}

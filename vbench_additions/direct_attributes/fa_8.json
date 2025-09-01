@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What color is the product label on the shaker?",
+    "options": [
+        "The product label on the shaker is Green.",
+        "The product label on the shaker is Red.",
+        "The product label on the shaker is Blue.",
+        "The product label on the shaker is Yellow."
+    ]
+}

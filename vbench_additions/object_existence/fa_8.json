@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is there a plate on the table?",
+    "options": [
+        "Yes, there is a plate on the table.",
+        "No, there is no plate on the table."
+    ]
+}

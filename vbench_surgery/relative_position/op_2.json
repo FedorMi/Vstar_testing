@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "The green cloth is above or below the white glove?",
+    "options": [
+        "The green cloth is below the white glove.",
+        "The green cloth is above the white glove."
+    ]
+}

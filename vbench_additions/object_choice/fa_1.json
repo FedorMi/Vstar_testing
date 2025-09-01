@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What is among the buildings, a construction crane, a construction truck, a helicopter or a bus?",
+    "options": [
+        "A construction crane is among the buildings.",
+        "A construction truck is among the buildings.",
+        "A helicopter is among the buildings.",
+        "A bus is among the buildings."
+    ]
+}

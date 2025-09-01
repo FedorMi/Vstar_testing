@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is there a white surgeon mask on the face?",
+    "options": [
+        "Yes, there is a white surgeon mask on the face.",
+        "No, there is no white surgeon mask on the face."
+    ]
+}

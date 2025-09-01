@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What is on the road, a tram, a bicycle, a car or a dog?",
+    "options": [
+        "A bicycle is on the road.",
+        "A tram is on the road.",
+        "A car is on the road.",
+        "A dog is on the road."
+    ]
+}

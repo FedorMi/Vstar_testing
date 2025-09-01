@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What is the color of the blinkers of the car?",
+    "options": [
+        "The blinkers of the car are pink.",
+        "The blinkers of the car are blue.",
+        "The blinkers of the car are orange.",
+        "The blinkers of the car are green."
+    ]
+}

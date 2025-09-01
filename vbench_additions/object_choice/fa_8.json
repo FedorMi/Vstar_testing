@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What is on the table, a cup, a spoon, a plate, or a human?",
+    "options": [
+        "A plate is on the table.",
+        "A cup is on the table.",
+        "A spoon is on the table.",
+        "A human is on the table."
+    ]
+}

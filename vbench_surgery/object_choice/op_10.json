@@ -1,0 +1,20 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "What is on the table, a sponge, a red box, a light or scissors?",
+    "options": [
+        "The object on the table is scissors.",
+        "The object on the table is a sponge.",
+        "The object on the table is a light.",
+        "The object on the table is a red box."
+    ]
+}

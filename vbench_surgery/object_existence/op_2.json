@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is there a glove on the hand?",
+    "options": [
+        "Yes, there is a glove on the hand.",
+        "No, there is no glove on the hand."
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is there a sausage on the board?",
+    "options": [
+        "Yes, there is a sausage on the board.",
+        "No, there is no sausage on the board."
+    ]
+}

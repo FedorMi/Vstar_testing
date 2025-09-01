@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is the construction crane on the left or right side of the woman?",
+    "options": [
+        "The construction crane is on the right side of the woman.",
+        "The construction crane is on the left side of the woman."
+    ]
+}

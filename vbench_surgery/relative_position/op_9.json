@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is the syringe above or below the cotton ball?",
+    "options": [
+        "The syringe is below the cotton ball.",
+        "The syringe is above the cotton ball."
+    ]
+}

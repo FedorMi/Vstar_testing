@@ -1,0 +1,18 @@
+{
+    "target_object": [
+        "default"
+    ],
+    "bbox": [
+        [
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "question": "Is there a parking sign left of the palm tree?",
+    "options": [
+        "Yes, there is a parking sign left of the palm tree.",
+        "No, there is no parking sign left of the palm tree."
+    ]
+}
