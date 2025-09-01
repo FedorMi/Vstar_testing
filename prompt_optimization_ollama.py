@@ -18,7 +18,7 @@ from torch.utils.data import DataLoader, Dataset
 from statistics import mean 
 
 from vstar_bench_eval import VQA_LLM, expand2square, normalize_bbox
-from visual_search_optim import parse_args, VSM, visual_search
+from prompt_optimization.visual_search_optim import parse_args, VSM, visual_search
 from torch.utils.data import random_split
 
 
@@ -355,7 +355,7 @@ def test_bounding_boxes_iou(prompt_template, evaluation_set):
         image_file = item.split("$")[1]
         test_type = item.split("$")[0]
         folder = os.path.join("vbench", test_type)
-        correct_data = json.load(open("eval_results_correct_bounding_boxes.json", 'r'))
+        correct_data = json.load(open(os.path.join("general_jsons", "eval_results_correct_bounding_boxes.json"), 'r'))
         image_path = os.path.join(folder, image_file)
         annotation_path = image_path.split('.')[0] + '.json'
         image = Image.open(image_path).convert('RGB')
@@ -447,7 +447,7 @@ def test_final_call(prompt_template, evaluation_set):
     if vqa_llm is None:
         vqa_llm = VQA_LLM(args)
     focus_msg = "Additional visual information to focus on: "
-    initial_json = json.load(open('eval_results_initial_seal_testing.json', 'r'))
+    initial_json = json.load(open(os.path.join("general_jsons", "eval_results_initial_seal_testing.json"), 'r'))
     count= 0
     correct_total = 0
     for item in evaluation_set:
@@ -701,12 +701,7 @@ if __name__ == "__main__":
         #optim_model_name = "llama3:8b_box_final"
         prompt_gen_func = make_new_prompt_bounding_box
     elif args.experiment == "final_call":
-        #prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
-        prompt = []
-        with open("prompts.json") as f:
-            data = json.load(f)
-            for item in data:
-                data[item]["objects"]
+        prompt = "<LABEL> <object> at location <BOUNDING_BOX>"
 
         #prompt = "The model should consider this: <object> refers to <LABEL>, located at <BOUNDING_BOX>"
         #prompt = "<object> is located at <BOUNDING_BOX> and represents a <LABEL>."
