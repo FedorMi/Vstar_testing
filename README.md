@@ -2,8 +2,8 @@
 
 This repository contains the important experiments conducted during the Master's Thesis: "Exploring Modular Guided Visual Search and Prompt Optimization on Visual Question Answering Tasks"
 
-Most experiments in this repository require the setup of the vstar repository
-"https://github.com/penghao-wu/vstar" with its V* benchmark "https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain" saved as the folder "vbench". When setting up the vstar repository on the Euler cluster, the library "accelerate" has to be updated:
+Most experiments in this repository are based on, contain code parts from, and therefore require the setup of the vstar repository
+"https://github.com/penghao-wu/vstar" with its V* benchmark "https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain" saved as the folder "vbench".  When setting up the vstar repository on the Euler cluster, the library "accelerate" has to be updated:
 
 ```console
 pip install -U accelerate
