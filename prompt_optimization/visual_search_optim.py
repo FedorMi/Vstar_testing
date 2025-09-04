@@ -1,3 +1,5 @@
+# as this is a modified visual search file to allow for prompt testing on V*, almost the whole code is from https://github.com/penghao-wu/vstar
+
 import argparse
 import os
 import sys
