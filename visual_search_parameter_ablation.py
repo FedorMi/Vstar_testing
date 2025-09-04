@@ -1,3 +1,5 @@
+# as this is testing the hyperparameters of SEAL and V*, called by "hyperparamter_ablation.py", almost the whole code is from https://github.com/penghao-wu/vstar
+
 import argparse
 import os
 import sys
