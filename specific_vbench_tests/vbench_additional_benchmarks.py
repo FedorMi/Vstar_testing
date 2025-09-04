@@ -1,3 +1,5 @@
+# as this is testing additional benchmarks with SEAL, almost the whole code is from https://github.com/penghao-wu/vstar
+
 import argparse
 import os
 import json
