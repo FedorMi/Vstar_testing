@@ -1,3 +1,5 @@
+# as this is an initial manual prompt testing, almost the whole code is from https://github.com/penghao-wu/vstar
+
 import argparse
 import os
 import json
@@ -225,6 +227,7 @@ def eval_model(args):
             # predict the multiple-choice option
             options = annotation['options']
             image = Image.open(image_path).convert('RGB')
+            question_in = "The Question: " + question
             if len(missing_objects) > 0:
                 object_names = [_['name'] for _ in search_result]
                 bboxs = deepcopy([_['bbox'] for _ in search_result])
@@ -253,10 +256,10 @@ def eval_model(args):
                         cur_focus_msg = cur_focus_msg+"; "
                     else:
                         cur_focus_msg = cur_focus_msg +'.'
-                question_with_focus = cur_focus_msg+"\n"+question
+                question_with_focus = cur_focus_msg+"\n"+question_in
                 option_chosen = vqa_llm.multiple_choices_inference(image, question_with_focus, options, object_crops, images_long=images_long, objects_long=objects_long)
             else:
-                option_chosen = vqa_llm.multiple_choices_inference(image, question, options)
+                option_chosen = vqa_llm.multiple_choices_inference(image, question_in, options)
 
             correct = 1 if option_chosen==0 else 0
             per_type_acc[test_type].append(correct)
